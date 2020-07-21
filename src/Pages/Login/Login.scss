@@ -1,0 +1,151 @@
+.Login {
+  $border: 1px solid #e5e5e5;
+  %boxSize {
+    width: 436px;
+    height: 48px;
+  }
+  %displayCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  margin-top: 130px;
+  padding: 60px 0px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  section {
+    width: 538px;
+    height: 630px;
+    padding: 60px 40px;
+    border: $border;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .id,
+    .pw {
+      width: 436px;
+      line-height: 48px;
+      padding-left: 20px;
+      border: $border;
+      margin-bottom: 10px;
+
+      &::placeholder {
+        color: #b3b3b3;
+      }
+    }
+
+    .warningText {
+      width: 436px;
+      margin-bottom: 10px;
+      visibility: visible;
+      color: red;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .sideBetween {
+      width: 436px;
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        display: flex;
+        align-items: center;
+
+        input {
+          margin-right: 10px;
+          border-radius: 0;
+        }
+
+        p {
+          color: #8f8f8f;
+          font-size: 12px;
+        }
+      }
+
+      .right {
+        font-size: 14px;
+        text-decoration: underline;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .forgotPw {
+      margin-top: 10px;
+    }
+
+    .loginBtn {
+      margin-top: 50px;
+      margin-bottom: 10px;
+      background-color: rgb(0, 0, 0);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      @extend %boxSize;
+      @extend %displayCenter;
+    }
+
+    .kakaoLoginBtn {
+      background-color: #f5cb0f;
+      font-size: 16px;
+      font-weight: 600;
+      @extend %boxSize;
+      @extend %displayCenter;
+
+      svg {
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .signUpBox {
+    width: 436px;
+    margin-top: 20px;
+    font-size: 14px;
+
+    p {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .membershipBenefit {
+    width: 436px;
+    height: 80px;
+    margin-top: 20px;
+    background-color: #f4f4f4;
+    font-size: 14px;
+    line-height: 1.6;
+    @extend %displayCenter;
+
+    svg {
+      height: 32px;
+      width: 32px;
+      margin-right: 20px;
+    }
+  }
+}
