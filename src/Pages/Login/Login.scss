@@ -1,13 +1,10 @@
+@import "../../Styles/Common.scss";
+
 .Login {
   $border: 1px solid #e5e5e5;
   %boxSize {
     width: 436px;
     height: 48px;
-  }
-  %displayCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   margin-top: 130px;
@@ -101,7 +98,7 @@
       font-weight: 600;
       cursor: pointer;
       @extend %boxSize;
-      @extend %displayCenter;
+      @extend %flexCenter;
 
       &:hover {
         background-color: white;
@@ -117,7 +114,7 @@
       font-weight: 600;
       cursor: pointer;
       @extend %boxSize;
-      @extend %displayCenter;
+      @extend %flexCenter;
 
       &:hover {
         opacity: 0.6;
@@ -157,7 +154,7 @@
     background-color: #f4f4f4;
     font-size: 14px;
     line-height: 1.6;
-    @extend %displayCenter;
+    @extend %flexCenter;
 
     svg {
       height: 32px;
