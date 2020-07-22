@@ -80,6 +80,8 @@ class Login extends React.Component {
           (error) => console.error("Error:", error),
           this.setState({ loginErr: true })
         );
+    } else {
+      return null;
     }
   };
 
