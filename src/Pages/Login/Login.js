@@ -6,8 +6,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: "",
-      userPw: "",
+      id: "",
+      pw: "",
       incorrectId: false,
       incorrectPw: false,
       loginErr: false,
@@ -15,58 +15,55 @@ class Login extends React.Component {
   }
 
   handleInput = (e) => {
-    const { userId, userPw } = this.state;
-    e.target.className === "id"
-      ? this.setState({ userId: e.target.value })
-      : this.setState({ userPw: e.target.value });
-    if (e.keyCode === 13 && userId && userPw) {
+    const { id, pw } = this.state;
+    this.setState({ [e.target.name]: e.target.value });
+    if (e.keyCode === 13 && id && pw) {
       this.handleLogin();
     }
   };
 
   handleId = () => {
-    const { userId } = this.state;
-    this.setState({ incorrectId: userId.includes("@") ? false : true });
+    const { id } = this.state;
+    this.setState({ incorrectId: id.includes("@") ? false : true });
   };
 
   handlePw = () => {
     const numbers = /[0-9]/;
     const spellings = /[a-zA-Z]/;
     const specialCharacters = /[~!@#$%<>^&*]/;
-    const { userPw } = this.state;
+    const { pw } = this.state;
 
     if (
-      !numbers.test(userPw) ||
-      !spellings.test(userPw) ||
-      !specialCharacters.test(userPw) ||
-      userPw.length < 8 ||
-      userPw.length > 16
+      !numbers.test(pw) ||
+      !spellings.test(pw) ||
+      !specialCharacters.test(pw) ||
+      pw.length < 8 ||
+      pw.length > 16
     ) {
       this.setState({ incorrectPw: true });
     } else if (
-      numbers.test(userPw) &&
-      spellings.test(userPw) &&
-      specialCharacters.test(userPw) &&
-      userPw.length >= 8 &&
-      userPw.length < 17
+      numbers.test(pw) &&
+      spellings.test(pw) &&
+      specialCharacters.test(pw) &&
+      pw.length >= 8 &&
+      pw.length < 17
     ) {
       this.setState({ incorrectPw: false });
     }
   };
 
   handleLogin = () => {
-    const { userId, userPw, incorrectId, incorrectPw } = this.state;
+    const { id, pw, incorrectId, incorrectPw } = this.state;
 
     if (!incorrectId && !incorrectPw) {
       fetch(signinAPI, {
         method: "POST",
         body: JSON.stringify({
-          email: userId,
-          password: userPw,
+          email: id,
+          password: pw,
         }),
       })
         .then((res) => {
-          console.log(res);
           if (!res.ok) {
             throw new Error();
           }
@@ -100,6 +97,7 @@ class Login extends React.Component {
             type="email"
             placeholder="이메일 형태로 입력해주세요."
             className="id"
+            name="id"
             onKeyUp={this.handleInput}
             onChange={this.handleId}
           />
@@ -110,6 +108,7 @@ class Login extends React.Component {
             type="password"
             placeholder="비밀번호 (영문/숫자/특수문자 조합 8자 이상)"
             className="pw"
+            name="pw"
             onKeyUp={this.handleInput}
             onChange={this.handlePw}
           />
