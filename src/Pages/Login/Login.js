@@ -1,5 +1,5 @@
 import React from "react";
-import { iconGiftBox, iconKaKao } from "../../config";
+import { iconGiftBox, iconKaKao, signinAPI } from "../../config";
 import "./Login.scss";
 
 class Login extends React.Component {
@@ -58,7 +58,7 @@ class Login extends React.Component {
     const { userId, userPw, incorrectId, incorrectPw } = this.state;
 
     if (!incorrectId && !incorrectPw) {
-      fetch("http://10.58.0.114:8000/user/signin", {
+      fetch(signinAPI, {
         method: "POST",
         body: JSON.stringify({
           email: userId,
