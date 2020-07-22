@@ -12,7 +12,13 @@ a {
   text-decoration: none;
 }
 
-$borderColor: #e5e5e5;
+%flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$border: 1px solid #e5e5e5;
 $black: #000000;
 $blue: #0600ff;
 $green: #009900;

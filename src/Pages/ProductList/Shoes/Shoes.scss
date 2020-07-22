@@ -1,0 +1,12 @@
+.Shoes {
+  main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .mainBox {
+      width: 1440px;
+      padding: 0 20px;
+    }
+  }
+}

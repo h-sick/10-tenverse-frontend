@@ -1,5 +1,8 @@
 import React from "react";
 import Header from "../Components/Header/Header";
+import TopFilterBar from "../Components/TopFilterBar/TopFilterBar";
+import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
+import ItemList from "../Components/ItemList/ItemList";
 import "./Shoes.scss";
 
 class Shoes extends React.Component {
@@ -26,6 +29,13 @@ class Shoes extends React.Component {
           title={this.state.headerData.title}
           imgUrl={this.state.headerData.imgUrl}
         />
+        <TopFilterBar />
+        <main>
+          <div className="mainBox">
+            <SideFilterBar />
+            <ItemList />
+          </div>
+        </main>
       </section>
     );
   }
