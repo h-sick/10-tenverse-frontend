@@ -64,7 +64,14 @@ class Login extends React.Component {
         }),
       })
         .then((res) => res.json())
-        .then((res) => this.props.history.push("/"))
+        .then((res) => {
+          console.log(res);
+          if (res.access_token) {
+            this.props.history.push("/");
+          } else if (res.status === 401) {
+            throw new Error();
+          }
+        })
         .catch(
           (error) => console.error("Error:", error),
           this.setState({ loginErr: true })
