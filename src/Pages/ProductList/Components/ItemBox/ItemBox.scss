@@ -1,0 +1,18 @@
+.ItemBox {
+  width: 252px;
+  height: 401px;
+  margin: 0 8px 16px;
+  background-color: beige;
+
+  .productImg {
+    width: 252px;
+    height: 315px;
+    padding: 15px;
+    background-size: 252px 315px;
+
+    svg {
+      width: 18px;
+      height: 16px;
+    }
+  }
+}

@@ -1,9 +1,14 @@
 .Shoes {
   main {
     width: 100%;
+    height: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
 
     .mainBox {
       width: 1440px;
+      height: 100%;
       padding: 0 20px;
       display: flex;
       justify-content: center;
