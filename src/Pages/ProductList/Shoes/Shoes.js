@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../Components/Header/Header";
-import TopFilterBar from "../Components/TopFilterBar/TopFilterBar";
+import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
 import "./Shoes.scss";
