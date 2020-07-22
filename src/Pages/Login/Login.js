@@ -63,13 +63,17 @@ class Login extends React.Component {
           password: userPw,
         }),
       })
-        .then((res) => res.json())
         .then((res) => {
           console.log(res);
+          if (res.status === 401) {
+            throw new Error();
+          }
+          const nextRes = res.json();
+          return nextRes;
+        })
+        .then((res) => {
           if (res.access_token) {
             this.props.history.push("/");
-          } else if (res.status === 401) {
-            throw new Error();
           }
         })
         .catch(
