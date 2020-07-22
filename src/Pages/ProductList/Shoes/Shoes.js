@@ -22,7 +22,7 @@ class Shoes extends React.Component {
         {
           name: "척테일러 올스타 데인티 데님 데이즈",
           price: "55,000 원",
-          color: "black",
+          color: ["black"],
           imgs: {
             imgUrl:
               "https://image.converse.co.kr/cmsstatic/product/567872C_567872C_primary.jpg?browse",
@@ -33,7 +33,7 @@ class Shoes extends React.Component {
         {
           name: "척테일러 올스타 리프트 EVA",
           price: "109,000 원",
-          color: "gray",
+          color: ["gray"],
           imgs: {
             imgUrl:
               "https://image.converse.co.kr/cmsstatic/product/565829C_565829C_primary.jpg?browse",
