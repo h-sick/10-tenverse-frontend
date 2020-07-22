@@ -34,6 +34,7 @@ class Login extends React.Component {
     const spellings = /[a-zA-Z]/;
     const specialCharacters = /[~!@#$%<>^&*]/;
     const { userPw } = this.state;
+
     if (
       !numbers.test(userPw) ||
       !spellings.test(userPw) ||
@@ -55,6 +56,7 @@ class Login extends React.Component {
 
   handleLogin = () => {
     const { userId, userPw, incorrectId, incorrectPw } = this.state;
+
     if (!incorrectId && !incorrectPw) {
       fetch("http://10.58.0.114:8000/user/signin", {
         method: "POST",
@@ -65,11 +67,10 @@ class Login extends React.Component {
       })
         .then((res) => {
           console.log(res);
-          if (res.status === 401) {
+          if (!res.ok) {
             throw new Error();
           }
-          const nextRes = res.json();
-          return nextRes;
+          return res.json();
         })
         .then((res) => {
           if (res.access_token) {
@@ -87,6 +88,7 @@ class Login extends React.Component {
 
   render() {
     const { incorrectId, incorrectPw, loginErr } = this.state;
+
     return (
       <main className="Login">
         <section>
@@ -100,7 +102,7 @@ class Login extends React.Component {
             className="id"
             onKeyUp={this.handleInput}
             onChange={this.handleId}
-          ></input>
+          />
           <div className={incorrectId ? "warningText" : "hidden"}>
             이메일 형태로 입력해주세요
           </div>
@@ -110,7 +112,7 @@ class Login extends React.Component {
             className="pw"
             onKeyUp={this.handleInput}
             onChange={this.handlePw}
-          ></input>
+          />
           <div className={incorrectPw ? "warningText" : "hidden"}>
             영문/숫자/특수문자 조합 8~16자 조합으로 입력해주세요.
           </div>
