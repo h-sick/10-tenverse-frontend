@@ -15,7 +15,6 @@
 
   section {
     width: 538px;
-    height: 630px;
     padding: 60px 40px;
     border: $border;
     display: flex;
@@ -26,6 +25,16 @@
       font-size: 28px;
       margin-bottom: 40px;
       font-weight: 600;
+    }
+
+    .displayErr {
+      width: 436px;
+      height: 35px;
+      margin-bottom: 15px;
+      background-color: #fff1f0;
+      color: #dc6044;
+      font-size: 14px;
+      @extend %flexCenter;
     }
 
     .id,

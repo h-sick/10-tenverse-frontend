@@ -1,6 +1,5 @@
 import React from "react";
-import { iconGiftBox } from "../../config";
-import { iconKaKao } from "../../config";
+import { iconGiftBox, iconKaKao } from "../../config";
 import "./Login.scss";
 
 class Login extends React.Component {
@@ -11,14 +10,16 @@ class Login extends React.Component {
       userPw: "",
       incorrectId: false,
       incorrectPw: false,
+      loginErr: false,
     };
   }
 
   handleInput = (e) => {
+    const { userId, userPw } = this.state;
     e.target.className === "id"
       ? this.setState({ userId: e.target.value })
       : this.setState({ userPw: e.target.value });
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && userId && userPw) {
       this.handleLogin();
     }
   };
@@ -53,8 +54,8 @@ class Login extends React.Component {
   };
 
   handleLogin = () => {
-    const { userId, userPw } = this.state;
-    if (userId && userPw) {
+    const { userId, userPw, incorrectId, incorrectPw } = this.state;
+    if (!incorrectId && !incorrectPw) {
       fetch("http://10.58.0.114:8000/user/signin", {
         method: "POST",
         body: JSON.stringify({
@@ -63,16 +64,23 @@ class Login extends React.Component {
         }),
       })
         .then((res) => res.json())
-        .then((res) => this.props.history.push("/"));
+        .then((res) => this.props.history.push("/"))
+        .catch(
+          (error) => console.error("Error:", error),
+          this.setState({ loginErr: true })
+        );
     }
   };
 
   render() {
-    const { incorrectId, incorrectPw } = this.state;
+    const { incorrectId, incorrectPw, loginErr } = this.state;
     return (
       <main className="Login">
         <section>
           <h1>로그인</h1>
+          <div className={loginErr ? "displayErr" : "hidden"}>
+            아이디 혹은 비밀번호가 잘못 입력되었습니다.
+          </div>
           <input
             type="email"
             placeholder="이메일 형태로 입력해주세요."
