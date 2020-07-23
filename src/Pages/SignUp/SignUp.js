@@ -134,7 +134,8 @@ class SignUp extends React.Component {
 
   checkingBirth = (e) => {
     this.setState({
-      incorrectBirthDate: !(e.target.value.length === !10),
+      incorrectBirthDate:
+        e.target.value.length < 10 || e.target.value.length > 10,
     });
   };
 
@@ -268,6 +269,7 @@ class SignUp extends React.Component {
                   <input
                     className="infoBox"
                     name="userBirthDate"
+                    type="string"
                     placeholder="생년월일을 입력해주세요.(1999-01-01)"
                     id="birthDate"
                     onKeyUp={this.handleInput}
