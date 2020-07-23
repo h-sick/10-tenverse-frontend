@@ -6,27 +6,38 @@ class ItemBox extends React.Component {
   constructor() {
     super();
     this.state = {
-      hover: false,
+      colorTextDisplay: true,
     };
   }
 
-  toggleHover = () => {
-    const { hover } = this.state;
-    this.setState({ hover: !hover });
+  handleColorText = (e) => {
+    const { colorTextDisplay } = this.state;
+    this.setState({ colorTextDisplay: !colorTextDisplay });
   };
 
   render() {
     const { data } = this.props;
+    const { colorTextDisplay } = this.state;
+
     return (
       <div className="ItemBox">
-        <div className="imgBox">
+        <div
+          className="imgBox"
+          onMouseEnter={this.handleColorText}
+          onMouseLeave={this.handleColorText}
+        >
           <div className="unhovered">
             <img
               className="productImg"
               alt="제품 이미지"
-              src={this.props.data.imgs.imgUrl}
-              onMouseEnter={this.toggleHover}
-              onMouseLeave={this.toggleHover}
+              src={data.imgs.imgUrl}
+            />
+          </div>
+          <div className="hover">
+            <img
+              className="productImg"
+              alt="제품 이미지"
+              src={data.imgs.hoverImgUrl}
             />
           </div>
           <svg id="icon-heart" viewBox="0 0 38 34">
@@ -36,7 +47,23 @@ class ItemBox extends React.Component {
         <div className="productText">
           <p className="name">{data.name}</p>
           <p className="price">{data.price}</p>
-          <p className="color">{data.color.length} 컬러</p>
+          <p className={colorTextDisplay ? "colors" : "hidden"}>
+            {data.colors.length} 컬러
+          </p>
+          <div className="colorBox">
+            {data.colors.map((color) => {
+              return (
+                <div
+                  className={
+                    colorTextDisplay ? "hidden" : `colorCircle ${color}`
+                  }
+                  style={{
+                    backgroundColor: color,
+                  }}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     );

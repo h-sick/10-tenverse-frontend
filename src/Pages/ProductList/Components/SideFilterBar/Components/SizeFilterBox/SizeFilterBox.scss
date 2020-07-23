@@ -1,0 +1,17 @@
+.SizeFilterBox {
+  padding: 10px 0;
+  border-top: $border;
+
+  header {
+    height: 40px;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  div {
+    display: grid;
+  }
+}

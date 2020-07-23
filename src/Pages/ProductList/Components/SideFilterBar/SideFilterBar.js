@@ -1,25 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { FiMinus } from "react-icons/fi";
+import GenderFilterBox from "./Components/GenderFilterBox/GenderFilterBox";
+import TypeFilterBox from "./Components/TypeFilterBox/TypeFilterBox";
+import ColorFilterBox from "./Components/ColorFilterBox/ColorFilterBox";
 import "./SideFilterBar.scss";
 
 class SideFilterBar extends React.Component {
+  constructor() {
+    super();
+    this.state = [
+      {
+        headerTitle: "구분",
+        filterList: ["남성", "여성"],
+      },
+      {
+        headerTitle: "제품타입",
+        filterList: ["뮬", "샌들&뮬", "스니커즈"],
+      },
+    ];
+  }
+
   render() {
     return (
       <aside className="SideFilterBar">
-        <div>
-          <header>
-            <p>구분</p>
-            <FiMinus />
-          </header>
-          <ul>
-            <li>
-              <Link to="/male">
-                <input type="checkbox" name="gender" value="male" />
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <GenderFilterBox />
+        <TypeFilterBox />
+        <ColorFilterBox />
       </aside>
     );
   }
