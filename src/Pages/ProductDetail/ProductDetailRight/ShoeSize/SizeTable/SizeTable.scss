@@ -1,0 +1,24 @@
+@import "../../../../../Styles/Common.scss";
+
+.SizeTable {
+  width: 352px;
+  height: 204px;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    .pickSizeBtn {
+      width: 65.22px;
+      height: 50px;
+      border: $border;
+      @extend %flexCenter;
+      cursor: pointer;
+
+      &.Clicked {
+        background-color: black;
+        color: white;
+      }
+    }
+  }
+}

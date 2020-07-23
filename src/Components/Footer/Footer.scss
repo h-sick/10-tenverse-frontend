@@ -1,6 +1,4 @@
 footer {
-  width: 100%;
-
   .footerLink {
     height: 160px;
     border-top: 1px solid lightgrey;
@@ -13,7 +11,7 @@ footer {
       padding-top: 30px;
 
       p {
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         font-weight: bold;
         font-size: 14px;
       }
@@ -31,13 +29,14 @@ footer {
         justify-content: space-between;
         align-items: center;
 
-        a {
+        .iconFacebook,
+        .iconInstagram {
+          width: 15px;
+          height: 15px;
           margin: 0 auto;
 
-          #icon-facebook,
-          #icon-instagram {
-            width: 15px;
-            height: 15px;
+          &:hover {
+            cursor: pointer;
           }
         }
 
