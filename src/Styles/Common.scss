@@ -1,6 +1,5 @@
 * {
-  font-family: "proxima nova", "proxima-nova", "Nanum Gothic", Arial, Helvetica,
-    sans-serif;
+  font-family: "proxima nova", "proxima-nova", "Nanum Gothic", Arial, Helvetica, sans-serif;
 
   &:focus {
     outline: none;
@@ -17,6 +16,7 @@ a {
   justify-content: center;
   align-items: center;
 }
+
 $borderColor: #e5e5e5;
 $black: #000000;
 $blue: #0600ff;
