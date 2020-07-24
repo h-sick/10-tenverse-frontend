@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./Pages/Login/Login";
-import Main from "./Pages/Main/Main";
-import ProductDetail from "./Pages/ProductDetail/ProductDetail";
-import ProductList from "./Pages/ProductList/ProductList";
+// import Login from "./Pages/Login/Login";
+// import Main from "./Pages/Main/Main";
+// import ProductDetail from "./Pages/ProductDetail/ProductDetail";
+// import ProductList from "./Pages/ProductList/ProductList";
 import SignUp from "./Pages/SignUp/SignUp";
 
 class Routes extends React.Component {

@@ -13,12 +13,12 @@ class SignUp extends React.Component {
       userNumber: "",
       userBirthDate: "",
       gender: "여성",
-      incorrectEmail: false,
-      incorrectPw: false,
-      incorrectRePw: false,
-      incorrectName: false,
-      incorrectNumber: false,
-      incorrectBirthDate: false,
+      // incorrectEmail: false,
+      // incorrectPw: false,
+      // incorrectRePw: false,
+      // incorrectName: false,
+      // incorrectNumber: false,
+      // incorrectBirthDate: false,
       incorrectGender: false,
       entireCheck: false,
       firstCheck: false,
@@ -78,13 +78,18 @@ class SignUp extends React.Component {
   };
 
   handleInput = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   };
 
   handleId = (e) => {
-    this.setState({
-      incorrectEmail: e.target.value.includes("@") ? false : true,
-    });
+    const { userEmail } = this.state;
+    return userEmail.includes("@");
+    // const incorrectEmail = userEmail.includes("@");
+
+    // this.setState({
+    //   incorrectEmail: e.target.value.includes("@") ? false : true,
+    // });
   };
 
   handlePw = (e) => {
@@ -99,7 +104,7 @@ class SignUp extends React.Component {
       userPw.length < 8 ||
       userPw.length > 16
     ) {
-      this.setState({ incorrectPw: true });
+      return false;
     } else if (
       numbers.test(userPw) &&
       spellings.test(userPw) &&
@@ -107,36 +112,54 @@ class SignUp extends React.Component {
       userPw.length >= 8 &&
       userPw.length < 17
     ) {
-      this.setState({ incorrectPw: false });
+      return true;
     }
   };
 
   checkingPw = (e) => {
     const { userPw } = this.state;
-    this.setState({
-      incorrectPw: !(userPw === e.target.value),
-    });
+    // this.setState({
+    //   incorrectPw: !(userPw === e.target.value),
+    // });
+    console.log(userPw);
+    // return userPw === e.target.value;
   };
 
   checkingName = (e) => {
-    this.setState({
-      incorrectName: e.target.value.length < 0,
-    });
+    return e.target.value.length > 0;
+    // this.setState({
+    //   incorrectName: e.target.value.length < 0,
+    // });
   };
 
   checkingNumber = (e) => {
-    this.setState({
-      incorrectNumber: !(
-        e.target.value.length === 11 && parseInt(e.target.value[0]) === 0
-      ),
-    });
+    return e.target.value.length === 11 && parseInt(e.target.value[0]) === 0;
+    // this.setState({
+    //   incorrectNumber: !(
+    //     e.target.value.length === 11 && parseInt(e.target.value[0]) === 0
+    //   ),
   };
 
   checkingBirth = (e) => {
+    return e.target.value.length === 10;
+    // this.setState({
+    //   incorrectBirthDate:
+    //     e.target.value.length < 10 || e.target.value.length > 10,
+    // });
+  };
+
+  checkingFeMale = (e) => {
     this.setState({
-      incorrectBirthDate:
-        e.target.value.length < 10 || e.target.value.length > 10,
+      gender: "여성",
     });
+    return e.target.checked;
+  };
+
+  checkingMale = (e) => {
+    this.setState({
+      gender: "남성",
+    });
+    return e.target.checked;
   };
 
   checkingState = (e) => {
@@ -150,12 +173,12 @@ class SignUp extends React.Component {
 
   render() {
     const {
-      incorrectEmail,
-      incorrectPw,
-      incorrectRePw,
-      incorrectName,
-      incorrectNumber,
-      incorrectBirthDate,
+      // incorrectEmail,
+      // incorrectPw,
+      // incorrectRePw,
+      // incorrectName,
+      // incorrectNumber,
+      // incorrectBirthDate,
       firstCheck,
       secondCheck,
       thirdCheck,
@@ -198,11 +221,10 @@ class SignUp extends React.Component {
                     name="userEmail"
                     type="email"
                     placeholder="이메일 형태로 입력해주세요.(필수)"
-                    id="email"
                     onKeyUp={this.handleInput}
-                    onChange={this.handleId}
+                    // onChange={this.handleId}
                   ></input>
-                  <span className={incorrectEmail ? "warningText" : "hidden"}>
+                  <span className={this.handleId() ? "hidden" : "warningText"}>
                     이메일 형태로 입력해주세요
                   </span>
                 </div>
@@ -212,11 +234,10 @@ class SignUp extends React.Component {
                     name="userPw"
                     type="password"
                     placeholder="비밀번호 (영문/숫자/특수문자 조합 8자이상)"
-                    id="pw"
                     onKeyUp={this.handleInput}
-                    onChange={this.handlePw}
+                    // onChange={this.handlePw}
                   ></input>
-                  <span className={incorrectPw ? "warningText" : "hidden"}>
+                  <span className={this.handlePw() ? "hidden" : "warningText"}>
                     영문/숫자/특수문자 조합 8~16자 조합으로 입력해주세요.
                   </span>
                 </div>
@@ -226,11 +247,12 @@ class SignUp extends React.Component {
                     name="userRePw"
                     type="password"
                     placeholder="비밀번호 입력 확인"
-                    id="rePw"
                     onKeyUp={this.handleInput}
-                    onChange={this.checkingPw}
+                    // onChange={this.checkingPw}
                   ></input>
-                  <span className={incorrectRePw ? "warningText" : "hidden"}>
+                  <span
+                    className={this.checkingPw() ? "hidden" : "warningText"}
+                  >
                     입력값이 일치하지 않습니다
                   </span>
                 </div>
@@ -240,11 +262,12 @@ class SignUp extends React.Component {
                     name="userName"
                     type="text"
                     placeholder="이름을 입력해주세요.(필수)"
-                    id="name"
                     onKeyUp={this.handleInput}
-                    onChange={this.checkingName}
+                    // onChange={this.checkingName}
                   ></input>
-                  <span className={incorrectName ? "warningText" : "hidden"}>
+                  <span
+                    className={this.checkingName() ? "hidden" : "warningText"}
+                  >
                     필수 입력 항목입니다
                   </span>
                 </div>
@@ -254,11 +277,12 @@ class SignUp extends React.Component {
                     name="userNumber"
                     type="number"
                     placeholder="휴대폰 번호'-'표 없이 입력해주세요.(필수)"
-                    id="number"
                     onKeyUp={this.handleInput}
-                    onChange={this.checkingNumber}
+                    // onChange={this.checkingNumber}
                   ></input>
-                  <span className={incorrectNumber ? "warningText" : "hidden"}>
+                  <span
+                    className={this.checkingNumber() ? "hidden" : "warningText"}
+                  >
                     올바른 휴대폰 번호를 입력해주세요.
                   </span>
                 </div>
@@ -271,37 +295,19 @@ class SignUp extends React.Component {
                     name="userBirthDate"
                     type="string"
                     placeholder="생년월일을 입력해주세요.(1999-01-01)"
-                    id="birthDate"
                     onKeyUp={this.handleInput}
-                    onChange={this.checkingBirth}
+                    // onChange={this.checkingBirth}
                   ></input>
                   <span
-                    className={incorrectBirthDate ? "warningText" : "hidden"}
+                    className={this.checkingBirth() ? "hidden" : "warningText"}
                   >
-                    생년월일(YYYY-MM-DD)은 숫자 8자리로만 입력 가능합니다
+                    생년월일(YYYY-MM-DD)은 숫자 8자리 와 "-" 총 10자리만 입력
+                    가능합니다
                   </span>
                 </div>
                 <div className="genderBtn">
-                  <button
-                    onClick={() => {
-                      this.setState({
-                        gender: "여성",
-                        incorrectGender: true,
-                      });
-                    }}
-                  >
-                    여성
-                  </button>
-                  <button
-                    onClick={() => {
-                      this.setState({
-                        gender: "남성",
-                        incorrectGender: true,
-                      });
-                    }}
-                  >
-                    남성
-                  </button>
+                  <button onClick={this.checkingFeMale}>여성</button>
+                  <button onClick={this.checkingMale}>남성</button>
                 </div>
               </div>
             </div>
