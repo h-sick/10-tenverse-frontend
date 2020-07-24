@@ -12,16 +12,17 @@
       font-size: 14px;
       color: grey;
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 
   .iconStarWrap {
     margin: 14px 0;
+    cursor: pointer;
 
     .IconStar {
       width: 17px;
       margin: 0 3px;
-      cursor: pointer;
     }
 
     .starPoint {

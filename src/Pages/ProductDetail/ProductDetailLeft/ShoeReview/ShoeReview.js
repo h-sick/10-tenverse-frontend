@@ -5,18 +5,11 @@ import IconStar from "../../ProductDetailRight/svg/IconStar";
 import "./ShoeReview.scss";
 
 class ShoeReview extends Component {
-  constructor() {
-    super();
-    this.myRef = React.createRef();
-  }
-
-  iconStarArray = [1, 2, 3, 4, 5];
-  listIconStar = this.iconStarArray.map((num) => <IconStar />);
-  // scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
+  listIconStar = new Array(5).fill().map((num) => <IconStar />);
 
   render() {
     return (
-      <div ref={this.myRef} className="Review">
+      <div className="Review" ref={this.props.reviewRef}>
         <div className="reviewTop">
           <div className="reviewCount">REVIEW(47)</div>
           <div>

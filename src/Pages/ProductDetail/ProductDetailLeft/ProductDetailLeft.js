@@ -7,13 +7,14 @@ import "./ProductDetailLeft.scss";
 
 class ProductDetailLeft extends Component {
   render() {
+    const [shoeDetailRef, reviewRef] = this.props.refArr;
     return (
       <div className="ProductDetailLeft">
         <ShoeImage />
         <div className="border"></div>
-        <DetailShoeImage />
+        <DetailShoeImage shoeDetailRef={shoeDetailRef} />
         <div className="border black"></div>
-        <ShoeReview />
+        <ShoeReview reviewRef={reviewRef} />
         <div className="border black"></div>
         <SocialInsta />
       </div>

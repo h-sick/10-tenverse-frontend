@@ -9,11 +9,13 @@
     margin-bottom: 20px;
     cursor: pointer;
 
-    span {
+    button {
       position: absolute;
       right: 0;
+      background-color: white;
       text-decoration: underline;
       font-size: 14px;
+      cursor: pointer;
     }
   }
 
@@ -24,7 +26,7 @@
     .count {
       border: $border;
       @extend %flexCenter;
-      cursor: pointer;
+      background-color: white;
 
       &.num {
         width: 80px;
@@ -36,6 +38,7 @@
         width: 60px;
         height: 50px;
         font-size: 25px;
+        cursor: pointer;
       }
     }
   }

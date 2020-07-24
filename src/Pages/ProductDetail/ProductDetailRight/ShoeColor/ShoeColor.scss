@@ -1,8 +1,6 @@
-// @import "../../../../Styles/Common.scss";
 @import "../../../../Styles/Common.scss";
 
 .ShoeColor {
-  // height: 160px;
   padding: 20px 0 30px 0;
   font-size: 14px;
   border-bottom: $border;
@@ -19,6 +17,7 @@
     .shoeColorImageEach {
       width: 68px;
       margin-right: 2px;
+      cursor: pointer;
 
       img {
         width: 67px;

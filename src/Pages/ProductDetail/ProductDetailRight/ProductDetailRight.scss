@@ -2,9 +2,10 @@
 
 .ProductDetailRight {
   width: 430px;
-  height: 1000px;
+  height: 100%;
   padding: 20px 30px 0 0;
   position: sticky;
   top: 60px;
-  z-index: 999;
+  z-index: 99;
+  background-color: white;
 }

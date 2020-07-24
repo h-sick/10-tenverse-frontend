@@ -8,17 +8,17 @@
     display: flex;
     flex-wrap: wrap;
 
-    .pickSizeBtn {
-      width: 65.22px;
+    li {
+      width: 70px;
       height: 50px;
       border: $border;
       @extend %flexCenter;
       cursor: pointer;
+    }
 
-      &.Clicked {
-        background-color: black;
-        color: white;
-      }
+    .sizeBtnClicked {
+      background-color: black;
+      color: white;
     }
   }
 }

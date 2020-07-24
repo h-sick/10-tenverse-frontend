@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import "./ShoeImage.scss";
 
 class ShoeImage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <div className="ShoeImage">
