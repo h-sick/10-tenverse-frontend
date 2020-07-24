@@ -25,7 +25,7 @@ class Nav extends Component {
     const { navSearchBtnActive } = this.state;
 
     return (
-      <nav>
+      <div className="Nav">
         <div className="navLeft">
           <Link to="/">
             <ConverseLogo />
@@ -44,7 +44,7 @@ class Nav extends Component {
           <NavHeart />
           <NavCs />
           <button
-            className={navSearchBtnActive ? "navSearchBtnChanged" : "navSearchBtn"}
+            className={navSearchBtnActive ? "navSearchBtn Changed" : "navSearchBtn"}
             onClick={this.handleNavSearchBtn}
           >
             <div class="navSearchText">검색</div>
@@ -52,7 +52,7 @@ class Nav extends Component {
             <NavSearch />
           </button>
         </div>
-      </nav>
+      </div>
     );
   }
 }

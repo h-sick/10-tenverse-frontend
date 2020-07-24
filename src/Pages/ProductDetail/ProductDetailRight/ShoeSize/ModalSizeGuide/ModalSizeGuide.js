@@ -21,11 +21,12 @@ class ModalSizeGuide extends Component {
       [10.5, 290, 19.5, 270],
       [11, 295, 11, "-"],
     ];
+
     return (
       <div className="ModalSizeGuide">
         <div className="modalContent">
           <div className="modalTop">
-            <button onClick={this.props.onClose}>X</button>
+            <button onClick={this.props.handleModal}>X</button>
           </div>
           <div className="modalSizeGuideTitle">신발 사이즈 차트</div>
           <div className="sizeMeasure">

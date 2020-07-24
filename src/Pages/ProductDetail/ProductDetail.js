@@ -24,7 +24,6 @@ class ProductDetail extends Component {
         <Nav />
         <div className="ProductDetailWrapper">
           <div className="productDetailContainer">
-            {/* <ProductDetailLeft shoeDetailRef={this.shoeDetailRef} reviewRef={this.reviewRef} /> */}
             <ProductDetailLeft refArr={[this.shoeDetailRef, this.reviewRef]} />
             <ProductDetailRight
               scrollTo={this.scrollTo}

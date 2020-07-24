@@ -1,4 +1,4 @@
-Nav {
+.Nav {
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -102,46 +102,86 @@ Nav {
         width: 15px;
         z-index: 1;
       }
+
+      &.Changed {
+        width: 60px;
+        height: 60px;
+        background-color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        margin: 10px;
+        transition: all 400ms ease;
+
+        .navSearchText {
+          display: none;
+        }
+
+        .navSearch {
+          display: none;
+        }
+
+        .navSearchClose {
+          color: white;
+          margin: 0 auto;
+          font-weight: bold;
+          font-size: 18px;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .navSearchText {
+          color: white;
+        }
+
+        .navSearch {
+          width: 15px;
+          z-index: 1;
+        }
+      }
     }
 
-    .navSearchBtnChanged {
-      width: 60px;
-      height: 60px;
-      background-color: black;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      margin: 10px;
-      transition: all 400ms ease;
+    // .navSearchBtnChanged {
+    //   width: 60px;
+    //   height: 60px;
+    //   background-color: black;
+    //   display: flex;
+    //   justify-content: space-between;
+    //   align-items: center;
+    //   padding: 0 20px;
+    //   margin: 10px;
+    //   transition: all 400ms ease;
 
-      .navSearchText {
-        display: none;
-      }
+    //   .navSearchText {
+    //     display: none;
+    //   }
 
-      .navSearch {
-        display: none;
-      }
+    //   .navSearch {
+    //     display: none;
+    //   }
 
-      .navSearchClose {
-        color: white;
-        margin: 0 auto;
-        font-weight: bold;
-        font-size: 18px;
-      }
+    //   .navSearchClose {
+    //     color: white;
+    //     margin: 0 auto;
+    //     font-weight: bold;
+    //     font-size: 18px;
+    //   }
 
-      &:hover {
-        cursor: pointer;
-      }
+    //   &:hover {
+    //     cursor: pointer;
+    //   }
 
-      .navSearchText {
-        color: white;
-      }
+    //   .navSearchText {
+    //     color: white;
+    //   }
 
-      .navSearch {
-        width: 15px;
-        z-index: 1;
-      }
-    }
+    //   .navSearch {
+    //     width: 15px;
+    //     z-index: 1;
+    //   }
+    // }
   }
 }

@@ -15,7 +15,7 @@
     overflow: scroll;
     width: 680px;
     height: 100%;
-    background: white;
+    background: $white;
     padding: 30px 30px 45px 30px;
 
     &::-webkit-scrollbar {
@@ -27,8 +27,10 @@
     }
 
     button {
-      float: right;
-      background-color: white;
+      display: block;
+      margin-left: auto;
+      margin-right: 0;
+      background-color: $white;
       font-size: 22px;
       cursor: pointer;
     }
@@ -63,7 +65,7 @@
 
         th {
           width: 25%;
-          color: darkgray;
+          color: #a9a9a9;
           border-bottom: $border;
           font-size: 1;
         }
@@ -73,7 +75,7 @@
           text-align: center;
 
           &:hover {
-            background-color: aqua;
+            background-color: #00ffff;
           }
         }
       }
