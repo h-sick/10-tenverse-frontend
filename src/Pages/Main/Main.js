@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import "./Main.scss";
 import FirstPage from "./FirstPage/FirstPage";
@@ -34,6 +35,13 @@ class Main extends React.Component {
         </div>
       </>
     );
+=======
+import React, { Component } from "react";
+
+class Main extends Component {
+  render() {
+    return <nav className="Main">Main</nav>;
+>>>>>>> master
   }
 }
 
