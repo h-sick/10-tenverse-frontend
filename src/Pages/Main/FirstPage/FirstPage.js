@@ -1,7 +1,10 @@
 import React from "react";
 import "./FirstPage.scss";
-import ItemList from "./ItemList";
-import ItemBox from "./ItemBox";
+import ItemList from "../Components/ItemList";
+
+const firstImg = {
+  backgroundImage: `url(${"https://image.converse.co.kr/cmsstatic/structured-content/17636/KakaoTalk_20200721_172805223.jpg?gallery"})`,
+};
 
 class FirstPage extends React.Component {
   constructor(props) {
@@ -48,16 +51,6 @@ class FirstPage extends React.Component {
               "https://image.converse.co.kr/cmsstatic/product/560251C_560251C_hover.jpg?browse",
           },
         },
-        {
-          name: "WOMEN'S COLLECTION",
-          price: "75,000 원",
-          imgs: {
-            imgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/21553/560251C_560251C.jpg?browse",
-            hoverImgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/560251C_560251C_hover.jpg?browse",
-          },
-        },
       ],
     };
   }
@@ -67,26 +60,21 @@ class FirstPage extends React.Component {
     let firstRow1 = itemDatas.filter((item, index) => index < 2);
     let firstRow2 = itemDatas.filter((item, index) => index > 1 && index < 4);
 
-    console.log(firstRow1);
     return (
-      <div className="pageContainer">
-        <div className="leftBox">
-          <ItemList itemDatas={firstRow1} />
-          <ItemList itemDatas={firstRow2} />
-        </div>
-        <div className="rightBox">
-          <div className="textContainer">
-            <p className="title">WOMEN'S COLLECTION</p>
-            <p className="sub">유니크한 연출이 가능한 스타일링의 완성</p>
-            <div style={{ textAlign: "center" }}>
+      <div className="pageWrapper">
+        <div className="pageContainer">
+          <div className="smallBox">
+            <ItemList itemDatas={firstRow1} />
+            <ItemList itemDatas={firstRow2} />
+          </div>
+          <div className="largeBox" style={firstImg}>
+            <div className="textContainer">
+              <p className="title">WOMEN'S COLLECTION</p>
+              <p className="sub">유니크한 연출이 가능한 스타일링의 완성</p>
               <button className="btn">더 알아보기</button>
             </div>
           </div>
         </div>
-        {/* {this.state.itemDatas.map((item) => {
-          console.log(item);
-          return <ItemBox data={item} />;
-        })} */}
       </div>
     );
   }

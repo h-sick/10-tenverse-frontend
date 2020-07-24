@@ -1,5 +1,5 @@
 import React from "react";
-import { iconHeart } from "../../../../config";
+import { iconHeart } from "../../../config";
 import "./ItemBox.scss";
 
 class ItemBox extends React.Component {
@@ -32,10 +32,10 @@ class ItemBox extends React.Component {
           <svg id="icon-heart" viewBox="0 0 38 34">
             <path fill-rule="nonzero" d={iconHeart}></path>
           </svg>
-        </div>
-        <div className="productText">
-          <p className="name">{name}</p>
-          <p className="price">{price}</p>
+          <div className="productText">
+            <p className="name">{name}</p>
+            <p className="price">{price}</p>
+          </div>
         </div>
       </div>
     );

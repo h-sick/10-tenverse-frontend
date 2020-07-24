@@ -1,0 +1,25 @@
+.pageWrapper {
+  .pageContainer {
+    display: flex;
+
+    .smallBox {
+      .video {
+        width: 720px;
+        height: 447px;
+
+        video {
+          width: 100%;
+        }
+      }
+    }
+
+    .largeBox {
+      width: 720px;
+      height: 900px;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
