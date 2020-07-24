@@ -4,13 +4,53 @@
   padding: 10px 0;
   border-top: $border;
 
+  .fold {
+    height: 40px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+
+    ul {
+      opacity: 0;
+    }
+  }
+
+  .display {
+    height: inherit;
+    transition: height 0.3s ease-in-out;
+
+    ul {
+      opacity: 1;
+      transition: opacity 0.7s ease-in-out;
+    }
+  }
+
   header {
     height: 40px;
     padding: 10px 0px;
     display: flex;
     justify-content: space-between;
+    position: relative;
     font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
+
+    .plusIcon {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+      width: 14px;
+      height: 14px;
+    }
+
+    .minusIcon {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+    }
+
+    .hidden {
+      opacity: 0;
+    }
   }
 
   ul {
@@ -21,6 +61,7 @@
       width: 22px;
       height: 22px;
       margin-right: 10px;
+      margin-top: 10px;
       display: flex;
       justify-content: center;
       align-items: center;

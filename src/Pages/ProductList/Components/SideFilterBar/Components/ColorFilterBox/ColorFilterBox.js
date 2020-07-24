@@ -1,58 +1,69 @@
 import React from "react";
 import { FiMinus } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
 import "./ColorFilterBox.scss";
 
 class ColorFilterBox extends React.Component {
   constructor() {
     super();
     this.state = {
-      colors: [
-        { name: "black", color: "#000000" },
-        { name: "blue", color: "#0600ff" },
-        { name: "green", color: "#009900" },
-        { name: "indigo", color: "#141936" },
-        { name: "purple", color: "#6600cc" },
-        { name: "brown", color: "#986633" },
-        { name: "gray", color: "#999999" },
-        { name: "khaki", color: "#a39263" },
-        { name: "beige", color: "#f0e4d2" },
-        { name: "red", color: "#ff0400" },
-        { name: "orange", color: "#ff6600" },
-        { name: "pink", color: "#ffb6c1" },
-        { name: "yellow", color: "#ffcc00" },
-        { name: "white", color: "#ffffff" },
-      ],
+      colors: {
+        black: "#000000",
+        blue: "#0600ff",
+        green: "#009900",
+        indigo: "#141936",
+        purple: "#6600cc",
+        brown: "#986633",
+        gray: "#999999",
+        khaki: "#a39263",
+        beige: "#f0e4d2",
+        red: "#ff0400",
+        orange: "#ff6600",
+        pink: "#ffb6c1",
+        yellow: "#ffcc00",
+        white: "#ffffff",
+      },
+      fold: false,
     };
   }
 
+  handleFolder = () => {
+    this.setState({ fold: !this.state.fold });
+  };
+
   render() {
-    const { colors } = this.state;
+    const { colors, fold } = this.state;
+    const { filters } = this.props;
 
     return (
       <div className="ColorFilterBox">
-        <header>
-          <p>색상</p>
-          <FiMinus />
-        </header>
-        <ul>
-          {colors.map((color) => {
-            return (
-              <li>
-                <div
-                  value={color.name}
-                  className={(() => {
-                    if (color.name === "white") {
-                      return "white";
-                    } else {
-                      return null;
-                    }
-                  })()}
-                  style={{ backgroundColor: color.color }}
-                ></div>
-              </li>
-            );
-          })}
-        </ul>
+        <section className={fold ? "fold" : "display"}>
+          <header onClick={this.handleFolder}>
+            <p>색상</p>
+            <FiMinus className={fold ? "hidden" : "minusIcon"} />
+            <FiPlus className={fold ? "plusIcon" : "hidden"} />
+          </header>
+          <ul>
+            {filters &&
+              filters.color_filters.map((colorFilter) => {
+                return (
+                  <li>
+                    <div
+                      value={colorFilter}
+                      className={(() => {
+                        if (colorFilter === "white") {
+                          return "white";
+                        } else {
+                          return null;
+                        }
+                      })()}
+                      style={{ backgroundColor: colors[colorFilter] }}
+                    ></div>
+                  </li>
+                );
+              })}
+          </ul>
+        </section>
       </div>
     );
   }

@@ -14,7 +14,7 @@ class TopFilterBar extends React.Component {
             </svg>
           </div>
           <div className="productsCount">
-            <p>총 221개의 상품</p>
+            <p>총 {this.props.dataNumber}개의 상품</p>
           </div>
           <select name="priceFilter">
             <option value="높은 가격순">높은 가격순</option>

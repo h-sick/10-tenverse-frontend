@@ -18,34 +18,22 @@ class Shoes extends React.Component {
         imgUrl:
           "https://image.converse.co.kr/cmsstatic/structured-content/15400/D-Converse-SP20-PWH-Best-Sellers-.jpg",
       },
-      itemDatas: [
-        {
-          name: "척테일러 올스타 데인티 데님 데이즈",
-          price: "55,000 원",
-          colors: ["black", "white", "red"],
-          imgs: {
-            imgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/567872C_567872C_primary.jpg?browse",
-            hoverImgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/567872C_567872C_hover.jpg?browse",
-          },
-        },
-        {
-          name: "척테일러 올스타 리프트 EVA",
-          price: "109,000 원",
-          colors: ["gray"],
-          imgs: {
-            imgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/565829C_565829C_primary.jpg?browse",
-            hoverImgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/565829C_565829C_hover.jpg?browse",
-          },
-        },
-      ],
+      itemDatas: [],
+      filterLables: [],
     };
   }
 
+  componentDidMount() {
+    fetch("http://10.58.0.114:8000/product")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ itemDatas: json });
+      });
+  }
+
   render() {
+    const products = this.state.itemDatas.products;
+    console.log(products);
     return (
       <section className="Shoes">
         <Header
@@ -53,11 +41,11 @@ class Shoes extends React.Component {
           title={this.state.headerData.title}
           imgUrl={this.state.headerData.imgUrl}
         />
-        <TopFilterBar />
+        {products && <TopFilterBar dataNumber={products.length} />}
         <main>
           <div className="mainBox">
-            <SideFilterBar />
-            <ItemList itemDatas={this.state.itemDatas} />
+            <SideFilterBar filterLables={this.state.filterLables} />
+            {products && <ItemList datas={products} />}
           </div>
         </main>
       </section>

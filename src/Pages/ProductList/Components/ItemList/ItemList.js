@@ -6,9 +6,11 @@ class ItemList extends React.Component {
   render() {
     return (
       <div className="ItemList">
-        {this.props.itemDatas.map((data) => {
-          return <ItemBox data={data} />;
-        })}
+        <div className="box">
+          {this.props.datas.map((data) => {
+            return <ItemBox data={data} />;
+          })}
+        </div>
       </div>
     );
   }

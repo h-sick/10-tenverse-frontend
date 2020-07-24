@@ -47,6 +47,7 @@
       width: 252px;
       height: 315px;
     }
+
     svg {
       width: 18px;
       height: 16px;
@@ -65,23 +66,23 @@
 
   .productText {
     height: 86px;
-    font-size: 14px;
+    font-size: 13px;
     position: relative;
     overflow: hidden;
+
+    .name {
+      margin-top: 15px;
+    }
 
     .name,
     .price {
       height: 22px;
     }
 
-    .name {
-      margin-top: 15px;
-    }
-
     .colors {
-      height: 25px;
+      height: 20px;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
     }
 
     .hidden {
