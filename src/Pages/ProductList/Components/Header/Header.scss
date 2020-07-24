@@ -1,11 +1,14 @@
 .Header {
   width: 1400px;
-  margin: 130px auto 20px;
+  margin: auto;
 
-  nav {
+  .headerNav {
+    width: 1400px;
     height: 30px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    font-weight: 400;
 
     a {
       font-size: 12px;
@@ -22,8 +25,8 @@
     }
   }
 
-  div {
-    height: 175px;
+  .headerImg {
+    height: 190px;
     background-size: 1400px 190px;
     display: flex;
     justify-content: center;

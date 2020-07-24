@@ -1,13 +1,15 @@
 import React from "react";
+import Nav from "../../../Components/Nav/Nav";
 import Header from "../Components/Header/Header";
 import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
+import Footer from "../../../Components/Footer/Footer";
 import "./Shoes.scss";
 
 class Shoes extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       headerData: {
         links: [
@@ -36,6 +38,7 @@ class Shoes extends React.Component {
     console.log(products);
     return (
       <section className="Shoes">
+        <Nav />
         <Header
           links={this.state.headerData.links}
           title={this.state.headerData.title}
@@ -48,6 +51,7 @@ class Shoes extends React.Component {
             {products && <ItemList datas={products} />}
           </div>
         </main>
+        <Footer />
       </section>
     );
   }

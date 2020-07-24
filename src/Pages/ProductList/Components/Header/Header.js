@@ -6,15 +6,16 @@ class Header extends React.Component {
   render() {
     return (
       <header className="Header">
-        <nav>
+        <div className="headerNav">
           {this.props.links.map((link) => {
             return <Link to={link.linkTo}>{link.linkText}</Link>;
           })}
-        </nav>
+        </div>
         <div
           style={{
             backgroundImage: `url(${this.props.imgUrl})`,
           }}
+          className="headerImg"
         >
           <p>{this.props.title}</p>
         </div>

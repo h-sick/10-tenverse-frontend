@@ -3,6 +3,7 @@ import GenderFilterBox from "./Components/GenderFilterBox/GenderFilterBox";
 import TypeFilterBox from "./Components/TypeFilterBox/TypeFilterBox";
 import ColorFilterBox from "./Components/ColorFilterBox/ColorFilterBox";
 import SizeFilterBox from "./Components/SizeFilterBox/SizeFilterBox";
+import { categoryAPI } from "../../../../config";
 import "./SideFilterBar.scss";
 
 class SideFilterBar extends React.Component {
@@ -14,7 +15,7 @@ class SideFilterBar extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://10.58.0.114:8000/product/category")
+    fetch(categoryAPI)
       .then((res) => res.json())
       .then((json) => {
         this.setState({ category: json });
@@ -23,7 +24,6 @@ class SideFilterBar extends React.Component {
 
   render() {
     const { category } = this.state;
-    console.log(category);
 
     return (
       <aside className="SideFilterBar">
