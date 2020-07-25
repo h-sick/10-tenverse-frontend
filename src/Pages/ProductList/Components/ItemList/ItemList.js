@@ -15,10 +15,16 @@ class ItemList extends React.Component {
 
   handleOptionImgs = () => {
     const { datas } = this.props;
-    const optionImgs = datas.find((data) =>
-      data.includes({ id: [data.options.shoecolor__id] })
-    );
-    console.log(optionImgs);
+    const optionImgs = datas.find((data) => {
+      return data.productDetail.id === parseInt(this.state.clickedColorId);
+    });
+    if (optionImgs) {
+      return {
+        id: optionImgs.productDetail.id,
+        imgUrl: optionImgs.productDetail.image__image,
+        hoverUrl: optionImgs.productDetail.subimage__image,
+      };
+    }
     return optionImgs;
   };
 
@@ -40,7 +46,7 @@ class ItemList extends React.Component {
                     <ItemBox
                       data={data}
                       handleColorNumber={this.handleColorNumber}
-                      optionImgs={this.handleOptionImgs}
+                      optionImgs={this.handleOptionImgs()}
                     />
                   );
                 })
@@ -55,7 +61,7 @@ class ItemList extends React.Component {
                     <ItemBox
                       data={data}
                       handleColorNumber={this.handleColorNumber}
-                      optionImgs={this.handleOptionImgs}
+                      optionImgs={this.handleOptionImgs()}
                     />
                   );
                 })}

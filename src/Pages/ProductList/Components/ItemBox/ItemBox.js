@@ -25,8 +25,7 @@ class ItemBox extends React.Component {
     super();
     this.state = {
       colorTextDisplay: true,
-      colorClickedNmber: "",
-      images: {},
+      colorClickedNumber: "",
     };
   }
 
@@ -40,20 +39,20 @@ class ItemBox extends React.Component {
 
   handleColorNumber = (e) => {
     this.props.handleColorNumber(e.target.id);
-    this.setState({ colorClickedNmber: e.target.id });
+    this.setState({ colorClickedNumber: e.target.id });
   };
 
   handleColorName = (colordata) => {
-    const { colorTextDisplay, colorClickedNmber } = this.state;
+    const { colorTextDisplay, colorClickedNumber } = this.state;
 
     if (colorTextDisplay) {
-      if (parseInt(colorClickedNmber) === colordata.shoecolor__id) {
+      if (parseInt(colorClickedNumber) === colordata.shoecolor__id) {
         return "hidden selected";
       } else {
         return "hidden";
       }
     } else if (!colorTextDisplay) {
-      if (parseInt(colorClickedNmber) === colordata.shoecolor__id) {
+      if (parseInt(colorClickedNumber) === colordata.shoecolor__id) {
         return `colorCircle ${colordata.color_category__name} selected`;
       } else {
         return `colorCircle ${colordata.color_category__name}`;
@@ -62,9 +61,8 @@ class ItemBox extends React.Component {
   };
 
   render() {
-    const { data } = this.props;
-    const { colorTextDisplay } = this.state;
-    // console.log(colorClickedNmber);
+    const { data, optionImgs } = this.props;
+    const { colorTextDisplay, colorClickedNumber } = this.state;
 
     return (
       <div className="ItemBox">
@@ -77,14 +75,22 @@ class ItemBox extends React.Component {
             <img
               className="productImg"
               alt="제품 이미지"
-              src={data.productDetail.image__image}
+              src={
+                optionImgs && optionImgs.id === parseInt(colorClickedNumber)
+                  ? optionImgs.imgUrl
+                  : data.productDetail.image__image
+              }
             />
           </div>
           <div className="hover">
             <img
               className="productImg"
               alt="제품 이미지"
-              src={data.productDetail.subimage__image}
+              src={
+                optionImgs && optionImgs.id === parseInt(colorClickedNumber)
+                  ? optionImgs.hoverUrl
+                  : data.productDetail.subimage__image
+              }
             />
           </div>
           <svg id="icon-heart" viewBox="0 0 38 34">

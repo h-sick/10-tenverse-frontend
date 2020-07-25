@@ -61,7 +61,7 @@ class Shoes extends React.Component {
                 color_category__name: "green",
               },
               {
-                shoecolor__id: 200,
+                shoecolor__id: 3,
                 color_category__name: "indigo",
               },
             ],
@@ -83,7 +83,7 @@ class Shoes extends React.Component {
                 color_category__name: "black",
               },
               {
-                shoecolor__id: 153,
+                shoecolor__id: 2,
                 color_category__name: "white",
               },
             ],
@@ -111,35 +111,6 @@ class Shoes extends React.Component {
 
   handleColorNumber = (e) => {
     this.setState({ clickedColorNumber: e });
-
-    // for (let i = 0; i < products.length; i++) {
-    //   if (products[i][0].id === parseInt(clickedColorNumber)) {
-    //     this.setState({
-    //       changedImg: {
-    //         img: products[i][0].image__image,
-    //         hoverImg: products[i][0].subimage__image,
-    //       },
-    //     });
-    //   }
-    // }
-  };
-
-  handleColorImg = () => {
-    // const { clickedColorNumber } = this.state;
-    // const { products } = this.state.itemDatas;
-    // for (let i = 0; i < products.length; i++) {
-    //   if (products[i][0].id === parseInt(clickedColorNumber)) {
-    //     this.setState({
-    //       changedImg: {
-    //         img: products[i][0].image__image,
-    //         hoverimg: products[i][0].subimage__image,
-    //       },
-    //     });
-    //   }
-    // }
-    // itemDatas.products.filter((product) => {
-    //   product[0].shoe__id === clickedColorNumber;
-    // });
   };
 
   render() {
