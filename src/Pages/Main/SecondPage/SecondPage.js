@@ -1,11 +1,7 @@
 import React from "react";
 import "../FirstPage/FirstPage.scss";
 import ItemList from "../Components/ItemList";
-import ItemBox from "../Components/ItemBox";
 
-const secondImg = {
-  backgroundImage: `url(${"https://image.converse.co.kr/cmsstatic/structured-content/17531/KakaoTalk_20200709_134326255.jpg?gallery"})`,
-};
 class SecondPage extends React.Component {
   constructor(props) {
     super(props);
@@ -63,7 +59,15 @@ class SecondPage extends React.Component {
     return (
       <div className="pageWrapper">
         <div className="pageContainer">
-          <div className="largeBox" style={secondImg}></div>
+          <div className="largeBox">
+            <div className="hoverCover">
+              <p className="hoverText">더 알아보기</p>
+            </div>
+            <img
+              src="https://image.converse.co.kr/cmsstatic/structured-content/17531/KakaoTalk_20200709_134326255.jpg?gallery"
+              className="hoverImg"
+            ></img>
+          </div>
 
           <div className="smallBox">
             <div className="img">

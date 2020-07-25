@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-=======
 import Slider from "react-slick";
->>>>>>> master
 import ConverseLogo from "./svg/ConverseLogo";
 import NavProfile from "./svg/NavProfile";
 import NavCart from "./svg/NavCart";
@@ -11,13 +8,10 @@ import NavHeart from "./svg/NavHeart";
 import NavCs from "./svg/NavCs";
 import NavSearch from "./svg/NavSearch";
 import "./Nav.scss";
-<<<<<<< HEAD
-=======
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import Footer from "../Footer/Footer";
->>>>>>> master
 
 class Nav extends Component {
   constructor() {
@@ -28,46 +22,6 @@ class Nav extends Component {
   }
 
   handleNavSearchBtn = () => {
-<<<<<<< HEAD
-    const { navSearchBtnActive } = this.state;
-    this.setState({ navSearchBtnActive: !navSearchBtnActive });
-  };
-
-  render() {
-    const { navSearchBtnActive } = this.state;
-
-    return (
-      <nav>
-        <div className="navLeft">
-          <Link to="/">
-            <ConverseLogo />
-          </Link>
-          <ul>
-            <li>신발</li>
-            <li>의류</li>
-            <li>아동</li>
-            <li>런칭캘린더</li>
-            <li>회원전용</li>
-          </ul>
-        </div>
-        <div className="navRight">
-          <NavProfile />
-          <NavCart />
-          <NavHeart />
-          <NavCs />
-          <button
-            className={
-              navSearchBtnActive ? "navSearchBtnChanged" : "navSearchBtn"
-            }
-            onClick={this.handleNavSearchBtn}
-          >
-            <div class="navSearchText">검색</div>
-            <div class="navSearchClose">X</div>
-            <NavSearch />
-          </button>
-        </div>
-      </nav>
-=======
     let currentState = this.state.navSearchBtnActive;
     this.setState({ navSearchBtnActive: !currentState });
   };
@@ -141,7 +95,11 @@ class Nav extends Component {
               <NavHeart />
               <NavCs />
               <button
-                className={this.state.navSearchBtnActive ? "navSearchBtnChanged" : "navSearchBtn"}
+                className={
+                  this.state.navSearchBtnActive
+                    ? "navSearchBtnChanged"
+                    : "navSearchBtn"
+                }
                 onClick={this.handleNavSearchBtn}
               >
                 <div class="navSearchText">검색</div>
@@ -153,7 +111,6 @@ class Nav extends Component {
         </div>
         <Footer />
       </>
->>>>>>> master
     );
   }
 }

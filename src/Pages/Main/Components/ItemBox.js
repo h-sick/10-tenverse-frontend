@@ -9,20 +9,13 @@ class ItemBox extends React.Component {
       colorTextDisplay: true,
     };
   }
-  handleColorText = (e) => {
-    const { colorTextDisplay } = this.state;
-    this.setState({ colorTextDisplay: !colorTextDisplay });
-  };
+
   render() {
     const { price, name, imgUrl, hoverImgUrl } = this.props;
 
     return (
       <div className="ItemBox">
-        <div
-          className="imgBox"
-          onMouseEnter={this.handleColorText}
-          onMouseLeave={this.handleColorText}
-        >
+        <div className="imgBox">
           <div className="unhovered">
             <img className="productImg" alt="제품 이미지" src={imgUrl} />
           </div>

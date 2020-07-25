@@ -1,11 +1,6 @@
 import React from "react";
 import "../FourthPage/FourthPage.scss";
 import ItemList from "../Components/ItemList";
-import ItemBox from "../Components/ItemBox";
-
-const FourthImg = {
-  backgroundImage: `url(${"https://image.converse.co.kr/cmsstatic/structured-content/17541/01_Home_01_Template_1440x1800.jpg?gallery"})`,
-};
 
 class FourthPage extends React.Component {
   constructor(props) {
@@ -42,8 +37,15 @@ class FourthPage extends React.Component {
     return (
       <div className="pageWrapper">
         <div className="pageContainer">
-          <div className="largeBox" style={FourthImg}></div>
-
+          <div className="largeBox">
+            <div className="hoverCover">
+              <p className="hoverText">EVERYONE HAS A PLACE HERE</p>
+            </div>
+            <img
+              src="https://image.converse.co.kr/cmsstatic/structured-content/17541/01_Home_01_Template_1440x1800.jpg?gallery"
+              className="hoverImg"
+            ></img>
+          </div>
           <div className="smallBox">
             <div className="video">
               <video
