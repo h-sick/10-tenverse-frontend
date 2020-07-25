@@ -11,8 +11,6 @@ import "./Nav.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Footer from "../Footer/Footer";
-
 class Nav extends Component {
   constructor() {
     super();
@@ -95,7 +93,11 @@ class Nav extends Component {
               <NavHeart />
               <NavCs />
               <button
-                className={this.state.navSearchBtnActive ? "navSearchBtnChanged" : "navSearchBtn"}
+                className={
+                  this.state.navSearchBtnActive
+                    ? "navSearchBtnChanged"
+                    : "navSearchBtn"
+                }
                 onClick={this.handleNavSearchBtn}
               >
                 <div class="navSearchText">검색</div>
@@ -105,7 +107,6 @@ class Nav extends Component {
             </div>
           </nav>
         </div>
-        <Footer />
       </>
     );
   }
