@@ -11,8 +11,6 @@ import "./Nav.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Footer from "../Footer/Footer";
-
 class Nav extends Component {
   constructor() {
     super();
@@ -109,7 +107,6 @@ class Nav extends Component {
             </div>
           </nav>
         </div>
-        <Footer />
       </>
     );
   }

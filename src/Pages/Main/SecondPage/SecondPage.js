@@ -1,5 +1,5 @@
 import React from "react";
-import "../FirstPage/FirstPage.scss";
+import "../SecondPage/SecondPage.scss";
 import ItemList from "../Components/ItemList";
 
 class SecondPage extends React.Component {
@@ -55,10 +55,9 @@ class SecondPage extends React.Component {
 
   render() {
     const { itemDatas, shoeLists } = this.state;
-    let secondRow1 = itemDatas.filter((item, index) => index < 2);
     return (
-      <div className="pageWrapper">
-        <div className="pageContainer">
+      <div className="SecondPage">
+        <div className="boxContainer">
           <div className="largeBox">
             <div className="hoverCover">
               <p className="hoverText">더 알아보기</p>
@@ -76,9 +75,10 @@ class SecondPage extends React.Component {
                 src="https://image.converse.co.kr/cmsstatic/structured-content/17530/01_1440x900.jpg?gallery"
               />
             </div>
-            <ItemList itemDatas={secondRow1} />
+            <ItemList itemDatas={itemDatas} />
           </div>
         </div>
+
         <div className="connectingBox">
           <p className="chooseIcon">CHOOSE YOUR ICON</p>
           <div className="flex">

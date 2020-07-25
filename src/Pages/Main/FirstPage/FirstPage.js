@@ -1,6 +1,7 @@
 import React from "react";
 import "./FirstPage.scss";
 import ItemList from "../Components/ItemList";
+import ItemBox from "../Components/ItemBox";
 
 const firstImg = {
   backgroundImage: `url(${"https://image.converse.co.kr/cmsstatic/structured-content/17636/KakaoTalk_20200721_172805223.jpg?gallery"})`,
@@ -57,22 +58,21 @@ class FirstPage extends React.Component {
 
   render() {
     const { itemDatas } = this.state;
-    let firstRow1 = itemDatas.filter((item, index) => index < 2);
-    let firstRow2 = itemDatas.filter((item, index) => index > 1 && index < 4);
+    // let firstRow1 = itemDatas.filter((item, index) => index < 2);
+    // let firstRow2 = itemDatas.filter((item, index) => index > 1 && index < 4);
 
     return (
-      <div className="pageWrapper">
-        <div className="pageContainer">
-          <div className="smallBox">
-            <ItemList itemDatas={firstRow1} />
-            <ItemList itemDatas={firstRow2} />
-          </div>
-          <div className="largeBox" style={firstImg}>
-            <div className="textContainer">
-              <p className="title">WOMEN'S COLLECTION</p>
-              <p className="sub">유니크한 연출이 가능한 스타일링의 완성</p>
-              <button className="btn">더 알아보기</button>
-            </div>
+      <div className="FirstPage">
+        <div className="smallBox">
+          {/* <ItemList itemDatas={firstRow1} />
+          <ItemList itemDatas={firstRow2} /> */}
+          <ItemList itemDatas={itemDatas} />
+        </div>
+        <div className="largeBox" style={firstImg}>
+          <div className="textContainer">
+            <p className="title">WOMEN'S COLLECTION</p>
+            <p className="sub">유니크한 연출이 가능한 스타일링의 완성</p>
+            <button className="btn">더 알아보기</button>
           </div>
         </div>
       </div>

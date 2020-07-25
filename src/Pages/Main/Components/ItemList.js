@@ -12,7 +12,6 @@ class ItemList extends Component {
               id={item.idx}
               name={item.name}
               price={item.price}
-              colors={item.colors}
               imgUrl={item.imgs.imgUrl}
               hoverImgUrl={item.imgs.hoverImgUrl}
             />

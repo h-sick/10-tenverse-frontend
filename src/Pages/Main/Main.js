@@ -5,6 +5,8 @@ import SecondPage from "./SecondPage/SecondPage";
 import ThirdPage from "./ThirdPage/ThirdPage";
 import FourthPage from "./FourthPage/FourthPage";
 import FifthPage from "./FifthPage/FifthPage";
+import Nav from "../../Components/Nav/Nav";
+import Footer from "../../Components/Footer/Footer";
 import "../../Components/Nav/Nav.scss";
 
 class Main extends React.Component {
@@ -24,15 +26,17 @@ class Main extends React.Component {
 
   render() {
     return (
-      <>
-        <div className="entireWrapper">
+      <div className="entireWrapper">
+        <Nav />
+        <div className="pageWrapper">
           <FirstPage />
           <SecondPage />
           <ThirdPage />
           <FourthPage />
           <FifthPage />
         </div>
-      </>
+        <Footer />
+      </div>
     );
   }
 }
