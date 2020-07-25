@@ -3,7 +3,7 @@ import { iconHeart } from "../../../../config";
 import "./ItemBox.scss";
 import "../../../../Styles/Common.scss";
 
-const colors = {
+const colorValues = {
   black: "#000000",
   blue: "#0600FF",
   green: "#009900",
@@ -25,6 +25,8 @@ class ItemBox extends React.Component {
     super();
     this.state = {
       colorTextDisplay: true,
+      colorClickedNmber: "",
+      images: {},
     };
   }
 
@@ -36,9 +38,33 @@ class ItemBox extends React.Component {
     this.setState({ colorTextDisplay: true });
   };
 
+  handleColorNumber = (e) => {
+    this.props.handleColorNumber(e.target.id);
+    this.setState({ colorClickedNmber: e.target.id });
+  };
+
+  handleColorName = (colordata) => {
+    const { colorTextDisplay, colorClickedNmber } = this.state;
+
+    if (colorTextDisplay) {
+      if (parseInt(colorClickedNmber) === colordata.shoecolor__id) {
+        return "hidden selected";
+      } else {
+        return "hidden";
+      }
+    } else if (!colorTextDisplay) {
+      if (parseInt(colorClickedNmber) === colordata.shoecolor__id) {
+        return `colorCircle ${colordata.color_category__name} selected`;
+      } else {
+        return `colorCircle ${colordata.color_category__name}`;
+      }
+    }
+  };
+
   render() {
     const { data } = this.props;
     const { colorTextDisplay } = this.state;
+    // console.log(colorClickedNmber);
 
     return (
       <div className="ItemBox">
@@ -51,16 +77,14 @@ class ItemBox extends React.Component {
             <img
               className="productImg"
               alt="제품 이미지"
-              // src={data.imgs.imgUrl}
-              src={data.image}
+              src={data.productDetail.image__image}
             />
           </div>
           <div className="hover">
             <img
               className="productImg"
               alt="제품 이미지"
-              // src={data.imgs.hoverImgUrl}
-              src={data.hover_image}
+              src={data.productDetail.subimage__image}
             />
           </div>
           <svg id="icon-heart" viewBox="0 0 38 34">
@@ -72,21 +96,22 @@ class ItemBox extends React.Component {
           onMouseEnter={this.handleHover}
           onMouseLeave={this.handleLeave}
         >
-          <p className="name">{data.name}</p>
-          <p className="price">{data.price} 원</p>
+          <p className="name">{data.productDetail.shoe__detail__name}</p>
+          <p className="price">{data.productDetail.shoe__price} 원</p>
           <p className={colorTextDisplay ? "colors" : "hidden"}>
-            {data.colors.length} 컬러
+            {data.options.length} 컬러
           </p>
           <div className="colorBox">
-            {data.colors.map((color) => {
+            {data.options.map((colordata) => {
               return (
                 <div
-                  className={
-                    colorTextDisplay ? "hidden" : `colorCircle ${color.color}`
-                  }
+                  className={this.handleColorName(colordata)}
                   style={{
-                    backgroundColor: colors[color.color],
+                    backgroundColor:
+                      colorValues[colordata.color_category__name],
                   }}
+                  onClick={this.handleColorNumber}
+                  id={colordata.shoecolor__id}
                 />
               );
             })}

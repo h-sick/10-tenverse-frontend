@@ -3,6 +3,10 @@ import { iconFilter } from "../../../../config";
 import "./TopFilterBar.scss";
 
 class TopFilterBar extends React.Component {
+  handlePriceSort = (e) => {
+    this.props.sortedByPrice(e.target.options.selectedIndex);
+  };
+
   render() {
     return (
       <div className="TopFilterBar">
@@ -16,7 +20,7 @@ class TopFilterBar extends React.Component {
           <div className="productsCount">
             <p>총 {this.props.dataNumber}개의 상품</p>
           </div>
-          <select name="priceFilter">
+          <select name="priceFilter" onChange={this.handlePriceSort}>
             <option value="높은 가격순">높은 가격순</option>
             <option value="낮은 가격순">낮은 가격순</option>
           </select>

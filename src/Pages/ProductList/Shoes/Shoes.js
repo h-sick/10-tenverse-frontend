@@ -20,22 +20,132 @@ class Shoes extends React.Component {
         imgUrl:
           "https://image.converse.co.kr/cmsstatic/structured-content/15400/D-Converse-SP20-PWH-Best-Sellers-.jpg",
       },
-      itemDatas: [],
+      itemDatas: {
+        products: [
+          {
+            productDetail: {
+              id: 1,
+              shoe__id: 1,
+              shoe__detail__name: "척 70 시그니처",
+              shoe__price: 95000,
+              image__image:
+                "https://image.converse.co.kr/cmsstatic/product/167698C_167698C_pdp-primary.jpg?gallery=",
+              subimage__image:
+                "https://image.converse.co.kr/cmsstatic/product/167698C_167698C_3.jpg?browse=",
+            },
+            options: [
+              {
+                shoecolor__id: 1,
+                color_category__name: "black",
+              },
+              {
+                shoecolor__id: 2,
+                color_category__name: "green",
+              },
+            ],
+          },
+          {
+            productDetail: {
+              id: 2,
+              shoe__id: 2,
+              shoe__detail__name: "원스타 프로 피그 스킨",
+              shoe__price: 99000,
+              image__image:
+                "https://image.converse.co.kr/cmsstatic/product/168654C_168654C_pdp-primary.jpg?gallery=",
+              subimage__image:
+                "https://image.converse.co.kr/cmsstatic/product/168654C_168654C_03.jpg?browse=",
+            },
+            options: [
+              {
+                shoecolor__id: 2,
+                color_category__name: "green",
+              },
+              {
+                shoecolor__id: 200,
+                color_category__name: "indigo",
+              },
+            ],
+          },
+          {
+            productDetail: {
+              id: 3,
+              shoe__id: 3,
+              shoe__detail__name: "척테일러 올스타 핵트 패션",
+              shoe__price: 79000,
+              image__image:
+                "https://image.converse.co.kr/cmsstatic/product/168745C_168745C_pdp-primary.jpg?gallery=",
+              subimage__image:
+                "https://image.converse.co.kr/cmsstatic/product/168745C_168745C_03.jpg?browse=",
+            },
+            options: [
+              {
+                shoecolor__id: 3,
+                color_category__name: "black",
+              },
+              {
+                shoecolor__id: 153,
+                color_category__name: "white",
+              },
+            ],
+          },
+        ],
+      },
       filterLables: [],
+      sortedByHighPrice: true,
     };
   }
 
-  componentDidMount() {
-    fetch("http://10.58.0.114:8000/product")
-      .then((res) => res.json())
-      .then((json) => {
-        this.setState({ itemDatas: json });
-      });
-  }
+  handleList = (i) => {
+    i === 0
+      ? this.setState({ sortedByHighPrice: true })
+      : this.setState({ sortedByHighPrice: false });
+  };
+
+  // componentDidMount() {
+  //   fetch("http://10.58.0.114:8000/product")
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       this.setState({ itemDatas: json });
+  //     });
+  // }
+
+  handleColorNumber = (e) => {
+    this.setState({ clickedColorNumber: e });
+
+    // for (let i = 0; i < products.length; i++) {
+    //   if (products[i][0].id === parseInt(clickedColorNumber)) {
+    //     this.setState({
+    //       changedImg: {
+    //         img: products[i][0].image__image,
+    //         hoverImg: products[i][0].subimage__image,
+    //       },
+    //     });
+    //   }
+    // }
+  };
+
+  handleColorImg = () => {
+    // const { clickedColorNumber } = this.state;
+    // const { products } = this.state.itemDatas;
+    // for (let i = 0; i < products.length; i++) {
+    //   if (products[i][0].id === parseInt(clickedColorNumber)) {
+    //     this.setState({
+    //       changedImg: {
+    //         img: products[i][0].image__image,
+    //         hoverimg: products[i][0].subimage__image,
+    //       },
+    //     });
+    //   }
+    // }
+    // itemDatas.products.filter((product) => {
+    //   product[0].shoe__id === clickedColorNumber;
+    // });
+  };
 
   render() {
-    const products = this.state.itemDatas.products;
-    console.log(products);
+    const { products } = this.state.itemDatas;
+    const { sortedByHighPrice } = this.state;
+
     return (
       <section className="Shoes">
         <Nav />
@@ -44,11 +154,18 @@ class Shoes extends React.Component {
           title={this.state.headerData.title}
           imgUrl={this.state.headerData.imgUrl}
         />
-        {products && <TopFilterBar dataNumber={products.length} />}
+        {products && (
+          <TopFilterBar
+            dataNumber={products.length}
+            sortedByPrice={this.handleList}
+          />
+        )}
         <main>
           <div className="mainBox">
             <SideFilterBar filterLables={this.state.filterLables} />
-            {products && <ItemList datas={products} />}
+            {products && (
+              <ItemList datas={products} handleSort={sortedByHighPrice} />
+            )}
           </div>
         </main>
         <Footer />
