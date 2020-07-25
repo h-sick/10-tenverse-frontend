@@ -1,5 +1,4 @@
 import React from "react";
-import "./Main.scss";
 import FirstPage from "./FirstPage/FirstPage";
 import SecondPage from "./SecondPage/SecondPage";
 import ThirdPage from "./ThirdPage/ThirdPage";
@@ -7,33 +6,37 @@ import FourthPage from "./FourthPage/FourthPage";
 import FifthPage from "./FifthPage/FifthPage";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
+import "./Main.scss";
 import "../../Components/Nav/Nav.scss";
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
+      product: [],
     };
   }
-
   componentDidMount() {
-    fetch("") // api 주소 data 가져옴
+    fetch("http://localhost:3000/data/main.json")
       .then((res) => res.json())
-      .then((res) => console.log(res))
-      .then((res) => this.setState({ products: res }));
+      .then((res) => {
+        this.setState({
+          product: res.product,
+        });
+      });
   }
 
   render() {
+    const { product } = this.state;
     return (
       <div className="entireWrapper">
         <Nav />
         <div className="pageWrapper">
-          <FirstPage />
-          <SecondPage />
-          <ThirdPage />
-          <FourthPage />
-          <FifthPage />
+          <FirstPage product={product} />
+          <SecondPage product={product} />
+          <ThirdPage product={product} />
+          <FourthPage product={product} />
+          <FifthPage product={product} />
         </div>
         <Footer />
       </div>

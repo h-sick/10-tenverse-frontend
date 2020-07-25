@@ -3,13 +3,6 @@ import { iconHeart } from "../../../config";
 import "./ItemBox.scss";
 
 class ItemBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      colorTextDisplay: true,
-    };
-  }
-
   render() {
     const { price, name, imgUrl, hoverImgUrl } = this.props;
 
@@ -27,7 +20,7 @@ class ItemBox extends React.Component {
           </svg>
           <div className="productText">
             <p className="name">{name}</p>
-            <p className="price">{price}</p>
+            <p className="price">{price}원</p>
           </div>
         </div>
       </div>

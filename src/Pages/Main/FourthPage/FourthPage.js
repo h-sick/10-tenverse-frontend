@@ -3,36 +3,10 @@ import "../FourthPage/FourthPage.scss";
 import ItemList from "../Components/ItemList";
 
 class FourthPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      itemDatas: [
-        {
-          name: "컨버스 X 로킷 프로레더",
-          price: "129,000 원",
-          imgs: {
-            imgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/27380/169217C_169217C_primary-1.jpg?browse",
-            hoverImgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/27380/169217C_169217C_hover.jpg?browse",
-          },
-        },
-        {
-          name: "컨버스 X 로킷후디",
-          price: "99,000 원",
-          imgs: {
-            imgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/26762/10020773-A01_10020773-A01_primary.jpg?browse",
-            hoverImgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/26762/10020773-A01_10020773-A01_hover.jpg?browse",
-          },
-        },
-      ],
-    };
-  }
-
   render() {
-    const { itemDatas } = this.state;
+    const { product } = this.props;
+    let fourthPageShoe = product.filter((item, index) => index > 5);
+
     return (
       <div className="FourthPage">
         <div className="largeBox">
@@ -57,7 +31,7 @@ class FourthPage extends React.Component {
               muted
             />
           </div>
-          <ItemList itemDatas={itemDatas} />
+          <ItemList product={fourthPageShoe} />
         </div>
       </div>
     );

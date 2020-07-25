@@ -6,28 +6,6 @@ class SecondPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemDatas: [
-        {
-          name: "잭퍼셀 컬러블록",
-          price: "89,000 원",
-          imgs: {
-            imgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/168976C_168976C_primary.jpg?browse",
-            hoverImgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/168976C_168976C_hover.jpg?browse",
-          },
-        },
-        {
-          name: "척 70 핵트패션",
-          price: "99,000 원",
-          imgs: {
-            imgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/168695C_168695C_primary.jpg?browse",
-            hoverImgUrl:
-              "https://image.converse.co.kr/cmsstatic/product/168695C_168695C_hover.jpg?browse",
-          },
-        },
-      ],
       shoeLists: [
         {
           name: "척테일러 올스타",
@@ -54,7 +32,12 @@ class SecondPage extends React.Component {
   }
 
   render() {
-    const { itemDatas, shoeLists } = this.state;
+    const { shoeLists } = this.state;
+    const { product } = this.props;
+    let secondPageShoe = product.filter(
+      (item, index) => index > 3 && index < 6
+    );
+
     return (
       <div className="SecondPage">
         <div className="boxContainer">
@@ -75,7 +58,7 @@ class SecondPage extends React.Component {
                 src="https://image.converse.co.kr/cmsstatic/structured-content/17530/01_1440x900.jpg?gallery"
               />
             </div>
-            <ItemList itemDatas={itemDatas} />
+            <ItemList product={secondPageShoe} />
           </div>
         </div>
 
@@ -90,7 +73,7 @@ class SecondPage extends React.Component {
             <p className="viewAllShoe">신발 전체 보기</p>
           </div>
           <div className="shoeLists">
-            {this.state.shoeLists.map((shoe) => {
+            {shoeLists.map((shoe) => {
               return (
                 <div className="shoeBox">
                   <img src={shoe.img} />
