@@ -1,6 +1,6 @@
 import React from "react";
 import "./SignUp.scss";
-import { kakaoLogo } from "../../config";
+import { iconKaKao } from "../../config";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -203,7 +203,7 @@ class SignUp extends React.Component {
             <div className="innerBox">
               <div className="kakaoSignUpBox">
                 <svg viewBox="0 0 24 22">
-                  <path d={kakaoLogo}></path>
+                  <path d={iconKaKao}></path>
                 </svg>
                 <a href="#" className="kakaoBtn">
                   카카오 계정으로 1초 회원가입
