@@ -26,6 +26,7 @@ class ItemBox extends React.Component {
     this.state = {
       colorTextDisplay: true,
       colorClickedNumber: "",
+      colorClicked: false,
     };
   }
 
@@ -40,6 +41,8 @@ class ItemBox extends React.Component {
   handleColorNumber = (e) => {
     this.props.handleColorNumber(e.target.id);
     this.setState({ colorClickedNumber: e.target.id });
+    this.setState({ colorClicked: true });
+    console.log(e.target.id);
   };
 
   handleColorName = (colordata) => {

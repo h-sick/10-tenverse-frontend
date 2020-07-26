@@ -83,7 +83,7 @@ class Shoes extends React.Component {
                 color_category__name: "black",
               },
               {
-                shoecolor__id: 2,
+                shoecolor__id: 5,
                 color_category__name: "white",
               },
             ],
@@ -115,15 +115,15 @@ class Shoes extends React.Component {
 
   render() {
     const { products } = this.state.itemDatas;
-    const { sortedByHighPrice } = this.state;
+    const { sortedByHighPrice, headerData, filterLables } = this.state;
 
     return (
       <section className="Shoes">
         <Nav />
         <Header
-          links={this.state.headerData.links}
-          title={this.state.headerData.title}
-          imgUrl={this.state.headerData.imgUrl}
+          links={headerData.links}
+          title={headerData.title}
+          imgUrl={headerData.imgUrl}
         />
         {products && (
           <TopFilterBar
@@ -133,7 +133,7 @@ class Shoes extends React.Component {
         )}
         <main>
           <div className="mainBox">
-            <SideFilterBar filterLables={this.state.filterLables} />
+            <SideFilterBar filterLables={filterLables} />
             {products && (
               <ItemList datas={products} handleSort={sortedByHighPrice} />
             )}

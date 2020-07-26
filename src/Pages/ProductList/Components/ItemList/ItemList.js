@@ -24,8 +24,9 @@ class ItemList extends React.Component {
         imgUrl: optionImgs.productDetail.image__image,
         hoverUrl: optionImgs.productDetail.subimage__image,
       };
+    } else {
+      return null;
     }
-    return optionImgs;
   };
 
   render() {
