@@ -19,7 +19,7 @@ class SignUp extends React.Component {
       // incorrectName: false,
       // incorrectNumber: false,
       // incorrectBirthDate: false,
-      incorrectGender: false,
+      // incorrectGender: false,
       entireCheck: false,
       firstCheck: false,
       secondCheck: false,
@@ -56,7 +56,7 @@ class SignUp extends React.Component {
       !incorrectGender &&
       !incorrectEntireCheck
     ) {
-      fetch("http://10.58.0.114:8000/user/signup", {
+      fetch("http://10.58.0.114:8000/user/ignup", {
         method: "POST",
         body: JSON.stringify({
           email: userEmail,
@@ -116,24 +116,26 @@ class SignUp extends React.Component {
     }
   };
 
-  checkingPw = (e) => {
-    const { userPw } = this.state;
+  checkingPw = () => {
+    const { userPw, userRePw } = this.state;
     // this.setState({
     //   incorrectPw: !(userPw === e.target.value),
     // });
     console.log(userPw);
-    // return userPw === e.target.value;
+    return userPw === userRePw;
   };
 
   checkingName = (e) => {
-    return e.target.value.length > 0;
+    const { userName } = this.state;
+    return userName.length > 0;
     // this.setState({
     //   incorrectName: e.target.value.length < 0,
     // });
   };
 
-  checkingNumber = (e) => {
-    return e.target.value.length === 11 && parseInt(e.target.value[0]) === 0;
+  checkingNumber = () => {
+    const { userNumber } = this.state;
+    return userNumber.length === 11 && parseInt(userNumber.value[0]) === 0;
     // this.setState({
     //   incorrectNumber: !(
     //     e.target.value.length === 11 && parseInt(e.target.value[0]) === 0
@@ -141,7 +143,8 @@ class SignUp extends React.Component {
   };
 
   checkingBirth = (e) => {
-    return e.target.value.length === 10;
+    const { userBirthDate } = this.state;
+    return userBirthDate.length === 10;
     // this.setState({
     //   incorrectBirthDate:
     //     e.target.value.length < 10 || e.target.value.length > 10,
