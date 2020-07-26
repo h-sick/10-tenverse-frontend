@@ -84,7 +84,7 @@ class SignUp extends React.Component {
 
   handleId = (e) => {
     const { userEmail } = this.state;
-    return userEmail.includes("@");
+    return userEmail.length !== 0 && userEmail.includes("@");
     // const incorrectEmail = userEmail.includes("@");
 
     // this.setState({
