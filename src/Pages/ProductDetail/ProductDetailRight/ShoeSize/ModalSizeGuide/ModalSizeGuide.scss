@@ -1,0 +1,85 @@
+@import "../../../../../Styles/Common.scss";
+
+.ModalSizeGuide {
+  background: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 730px;
+  @extend %flexCenter;
+  z-index: 20;
+  padding-top: 30px;
+
+  .modalContent {
+    overflow: scroll;
+    width: 680px;
+    height: 100%;
+    background: $white;
+    padding: 30px 30px 45px 30px;
+    z-index: 200;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .modalTop {
+      margin-bottom: 40px;
+    }
+
+    button {
+      display: block;
+      margin-left: auto;
+      margin-right: 0;
+      background-color: $white;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .modalSizeGuideTitle {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .sizeMeasure {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    table {
+      width: 100%;
+      font-size: 14px;
+
+      tr {
+        height: 50px;
+
+        &:nth-child(odd) {
+          background-color: #f4f4f4;
+        }
+
+        th {
+          width: 25%;
+          color: #a9a9a9;
+          border-bottom: $border;
+          font-size: 1;
+        }
+
+        td {
+          width: 25%;
+          text-align: center;
+
+          &:hover {
+            background-color: #00ffff;
+          }
+        }
+      }
+    }
+  }
+}

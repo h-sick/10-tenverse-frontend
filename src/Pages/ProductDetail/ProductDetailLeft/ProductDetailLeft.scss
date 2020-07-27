@@ -1,0 +1,16 @@
+@import "../../../Styles/Common.scss";
+
+.ProductDetailLeft {
+  width: 950px;
+
+  .border {
+    width: 810px;
+    height: 0.5px;
+    margin-left: 70px;
+    background-color: #e5e5e5;
+
+    &.black {
+      background-color: black;
+    }
+  }
+}

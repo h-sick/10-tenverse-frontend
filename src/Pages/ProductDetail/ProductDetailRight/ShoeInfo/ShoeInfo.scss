@@ -1,0 +1,49 @@
+@import "../../../../Styles/Common.scss";
+
+.ShoeInfo {
+  height: 200px;
+  border-bottom: $border;
+
+  div {
+    margin: 14px 0;
+
+    .grey {
+      margin-left: 7px;
+      font-size: 14px;
+      color: grey;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .iconStarWrap {
+    margin: 14px 0;
+    cursor: pointer;
+
+    .IconStar {
+      width: 17px;
+      margin: 0 3px;
+    }
+
+    .starPoint {
+      margin: 0 5px 0 1px;
+      font-weight: bold;
+      font-size: 14px;
+      color: grey;
+    }
+  }
+
+  .shoeName {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .shoePrice {
+    font-size: 18px;
+  }
+
+  .gender {
+    font-weight: bold;
+    color: #757575;
+  }
+}

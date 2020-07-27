@@ -1,0 +1,43 @@
+@import "../../../../Styles/Common.scss";
+
+.SocialInsta {
+  padding-left: 70px;
+
+  .socialTitle {
+    padding-top: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 32px;
+  }
+
+  .socialSubtitle {
+    font-size: 13px;
+    margin-bottom: 30px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .instaContainer {
+    width: 810px;
+    height: 380px;
+    margin-bottom: 10px;
+    border: $border;
+  }
+
+  button {
+    width: 810px;
+    height: 40px;
+    background-color: white;
+    border: $border;
+    color: $gray;
+    font-size: 15px;
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+      background-color: #444;
+    }
+  }
+}

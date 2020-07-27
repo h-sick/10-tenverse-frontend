@@ -1,5 +1,6 @@
 * {
-  font-family: "proxima nova", "proxima-nova", "Nanum Gothic", Arial, Helvetica, sans-serif;
+  font-family: "proxima nova", "proxima-nova", "Nanum Gothic", Arial, Helvetica,
+    sans-serif;
 
   &:focus {
     outline: none;
@@ -11,13 +12,15 @@ a {
   text-decoration: none;
 }
 
+$border: 1px solid #e5e5e5;
 %flexCenter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-$borderColor: #e5e5e5;
+$border: 1px solid #e5e5e5;
+
 $black: #000000;
 $blue: #0600ff;
 $green: #009900;
