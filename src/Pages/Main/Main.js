@@ -19,7 +19,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/data/main.json")
+    fetch("http://10.58.3.38:8000/product/mainpage")
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
@@ -31,25 +31,26 @@ class Main extends React.Component {
 
   render() {
     const { product } = this.state;
-    let page1 = product && product.filter((item, index) => index === 0);
-    let page2 = product && product.filter((item, index) => index === 1);
+    console.log(product);
+    // let page1 = product && product.filter((item, index) => index === 0);
+    // let page2 = product && product.filter((item, index) => index === 1);
     // let page3 = product && product.filter((item, index) => index === 2);
-    let page4 = product && product.filter((item, index) => index === 2);
+    // let page4 = product && product.filter((item, index) => index === 2);
     // let page5 = product && product.filter((item, index) => index === 4);
 
     return (
       <div className="entireWrapper">
         <Nav />
-        {product.length && (
-          <div className="pageWrapper">
-            <FirstPage product={page1[0].page_one} />
-            <SecondPage product={page2[0].page_two} />
-            <ThirdPage product={product} />
-            <FourthPage product={page4[0].page_three} />
-            <FifthPage product={product} />
-            <InstaPage />
-          </div>
-        )}
+        {/* {product.length > 0 ? ( */}
+        <div className="pageWrapper">
+          <FirstPage product={product.womens_collection} />
+          <SecondPage product={product.jack_purcell} />
+          <ThirdPage product={product} />
+          <FourthPage product={product.pro_leather} />
+          <FifthPage product={product} />
+          <InstaPage />
+        </div>
+        {/* ) : null} */}
         <Footer />
       </div>
     );

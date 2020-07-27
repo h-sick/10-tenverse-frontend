@@ -9,7 +9,7 @@ const firstImg = {
 class FirstPage extends React.Component {
   render() {
     const { product } = this.props;
-    console.log(product[0].page_one);
+    console.log("fistPage :", product);
     // let firstPageShoe = product.filter((item, index) => index < 4);
     return (
       <div className="FirstPage">
