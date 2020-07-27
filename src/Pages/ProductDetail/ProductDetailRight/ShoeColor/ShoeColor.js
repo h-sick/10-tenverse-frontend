@@ -17,7 +17,6 @@ class ShoeColor extends Component {
         return (
           <>
             {shoeColorList.map((_, k) => {
-              console.log(shoeIdList[k]);
               return (
                 <div className="shoeColorImageEach">
                   <ShoeColorList shoeColorList={shoeColorList[k]} shoeIdList={shoeIdList[k]} />
