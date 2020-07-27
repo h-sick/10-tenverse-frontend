@@ -281,12 +281,9 @@ class Shoes extends React.Component {
       fetch(`${shoesListAPI}?page=${this.state.offset}`)
         .then((res) => res.json())
         .then((json) => {
-          this.setState(
-            { itemDatas: this.state.itemDatas.concat(json.products) },
-            () => {
-              console.log("hey", this.state.itemDatas);
-            }
-          );
+          this.setState({
+            itemDatas: this.state.itemDatas.concat(json.products),
+          });
         });
     }
   };
@@ -295,9 +292,7 @@ class Shoes extends React.Component {
     fetch(`${shoesListAPI}?page=${this.state.offset}`)
       .then((res) => res.json())
       .then((json) => {
-        this.setState({ itemDatas: json.products }, () => {
-          console.log("first", this.state.itemDatas);
-        });
+        this.setState({ itemDatas: json.products });
       });
     window.addEventListener("scroll", this.onScroll);
   }
@@ -305,8 +300,6 @@ class Shoes extends React.Component {
   render() {
     const { itemDatas } = this.state;
     const { sortedByHighPrice, filterLables } = this.state;
-    console.log(this.state.scroll);
-    console.log(itemDatas);
 
     return (
       <section className="Shoes">
