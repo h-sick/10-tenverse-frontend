@@ -17,17 +17,29 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    // const queryId = this.props.location.search.split("tail/")[1];
-
-    // fetch(`http://10.58.3.38:8000/product/detail/1`);
-    // fetch(`http://10.58.3.38:8000/product/detail/${this.props.match.params.id}`);
+    const urlId = this.props.match.params.id;
     fetch("http://localhost:3000/data/shoe.json")
+      // fetch(`http://10.58.3.38:8000/product/detail/${urlId}`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
           product: res.product,
         });
       });
+  }
+
+  componentDidUpdate(prevProps) {
+    const urlId = this.props.match.params.id;
+    const prevUrlId = prevProps.match.params.id;
+    if (urlId !== prevUrlId) {
+      fetch(`http://10.58.3.38:8000/product/detail/${urlId}`)
+        .then((res) => res.json())
+        .then((res) => {
+          this.setState({
+            product: res.product,
+          });
+        });
+    }
   }
 
   scrollTo = (ref) => {
@@ -47,6 +59,7 @@ class ProductDetail extends Component {
               scrollTo={this.scrollTo}
               refArr={[this.shoeDetailRef, this.reviewRef]}
               product={product}
+              urlId={this.urlId}
             />
           </div>
           <Footer />

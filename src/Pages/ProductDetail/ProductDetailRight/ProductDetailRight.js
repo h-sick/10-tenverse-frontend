@@ -6,15 +6,12 @@ import "./ProductDetailRight.scss";
 
 class ProductDetailRight extends Component {
   render() {
+    const { scrollTo, refArr, product } = this.props;
     return (
       <div className="ProductDetailRight">
-        <ShoeInfo
-          scrollTo={this.props.scrollTo}
-          refArr={this.props.refArr}
-          product={this.props.product}
-        />
-        <ShoeColor product={this.props.product} />
-        <ShoeSize product={this.props.product} />
+        <ShoeInfo scrollTo={scrollTo} refArr={refArr} product={product} />
+        <ShoeColor product={product} />
+        <ShoeSize product={product} />
       </div>
     );
   }

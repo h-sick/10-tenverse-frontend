@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import ShoeColorList from "./ShoeColorList";
 import "./ShoeColor.scss";
 
 class ShoeColor extends Component {
   render() {
-    const product = this.props.product;
-    const changeShoeColor = (e) => {
-      let endPoint = e.target.name;
-      this.props.history.push(`/product/detail/${endPoint}`);
-    };
+    const { product } = this.props;
 
     const listShoeColor = product.map((_, i) => {
       if (i % 2 === 1) {
@@ -23,29 +18,12 @@ class ShoeColor extends Component {
           <>
             {shoeColorList.map((_, k) => {
               console.log(shoeIdList[k]);
-              if (k === 0) {
-                return (
-                  <div className="shoeColorImageEach">
-                    <ShoeColorList
-                      changeShoeColor={changeShoeColor}
-                      shoeColorList={shoeColorList[k]}
-                      shoeIdList={shoeIdList[k]}
-                    />
-                    <div className="underShoeColorImage first"></div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div className="shoeColorImageEach">
-                    <ShoeColorList
-                      changeShoeColor={changeShoeColor}
-                      shoeColorList={shoeColorList[k]}
-                      shoeIdList={shoeIdList[k]}
-                    />
-                    <div className="underShoeColorImage"></div>
-                  </div>
-                );
-              }
+              return (
+                <div className="shoeColorImageEach">
+                  <ShoeColorList shoeColorList={shoeColorList[k]} shoeIdList={shoeIdList[k]} />
+                  <div className="underShoeColorImage"></div>
+                </div>
+              );
             })}
           </>
         );
@@ -64,4 +42,4 @@ class ShoeColor extends Component {
   }
 }
 
-export default withRouter(ShoeColor);
+export default ShoeColor;

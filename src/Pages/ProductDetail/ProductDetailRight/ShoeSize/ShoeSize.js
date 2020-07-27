@@ -38,31 +38,33 @@ class ShoeSize extends Component {
   };
 
   render() {
-    const { count } = this.state;
+    const { product } = this.props;
+    const { modal, count } = this.state;
+    const { handleModal, handleCount, moveToLogin } = this;
     return (
       <div className="ShoeSize">
         <div className="sizeGuide">
           <div className="sizeConsider">사이즈가 고민되면 클릭하세요!</div>
-          <button onClick={this.handleModal}>사이즈 가이드</button>
+          <button onClick={handleModal}>사이즈 가이드</button>
         </div>
-        <SizeTable product={this.props.product} />
+        <SizeTable product={product} />
         <div className="countWrap">
           <div className="count num">{count}</div>
-          <button onClick={() => this.handleCount(-1)} value="-" className="count minus">
+          <button onClick={() => handleCount(-1)} value="-" className="count minus">
             -
           </button>
-          <button onClick={() => this.handleCount(1)} value="+" className="count plus">
+          <button onClick={() => handleCount(1)} value="+" className="count plus">
             +
           </button>
         </div>
-        <button onClick={this.moveToLogin} className="loginBtn">
+        <button onClick={moveToLogin} className="loginBtn">
           로그인
         </button>
         <div className="infoDelivery">5만원 이상 구매시 무료배송</div>
         <div className="infoDeliveryText">
           <span>배송정보</span>
         </div>
-        {this.state.modal && <ModalSizeGuide handleModal={this.handleModal} />}
+        {modal && <ModalSizeGuide handleModal={handleModal} />}
       </div>
     );
   }

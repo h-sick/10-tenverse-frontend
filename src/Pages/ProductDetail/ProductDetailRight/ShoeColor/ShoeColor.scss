@@ -27,8 +27,10 @@
       .underShoeColorImage {
         height: 1.5px;
         background-color: lightgrey;
+      }
 
-        &.first {
+      &:first-child {
+        .underShoeColorImage {
           background-color: black;
         }
       }
