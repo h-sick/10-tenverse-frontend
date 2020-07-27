@@ -39,23 +39,21 @@ class ItemBox extends React.Component {
   };
 
   handleColorNumber = (e) => {
-    this.props.handleColorNumber(e.target.id);
     this.setState({ colorClickedNumber: e.target.id });
     this.setState({ colorClicked: true });
-    console.log(e.target.id);
   };
 
   handleColorName = (colordata) => {
     const { colorTextDisplay, colorClickedNumber } = this.state;
 
     if (colorTextDisplay) {
-      if (parseInt(colorClickedNumber) === colordata.shoe__id) {
+      if (parseInt(colorClickedNumber) === colordata.shoe_id) {
         return "hidden selected";
       } else {
         return "hidden";
       }
     } else if (!colorTextDisplay) {
-      if (parseInt(colorClickedNumber) === colordata.shoe__id) {
+      if (parseInt(colorClickedNumber) === colordata.shoe_id) {
         return `colorCircle ${colordata.color_filter} selected`;
       } else {
         return `colorCircle ${colordata.color_filter}`;
@@ -64,7 +62,7 @@ class ItemBox extends React.Component {
   };
 
   render() {
-    const { data, optionImgs } = this.props;
+    const { data } = this.props;
     const { colorTextDisplay, colorClickedNumber } = this.state;
 
     return (
@@ -79,8 +77,10 @@ class ItemBox extends React.Component {
               className="productImg"
               alt="제품 이미지"
               src={
-                optionImgs && optionImgs.id === parseInt(colorClickedNumber)
-                  ? optionImgs.imgUrl
+                colorClickedNumber
+                  ? data.color_list.find((item) => {
+                      return item.shoe_id === parseInt(colorClickedNumber);
+                    }).main_image
                   : data.product_detail.main_image
               }
             />
@@ -90,8 +90,10 @@ class ItemBox extends React.Component {
               className="productImg"
               alt="제품 이미지"
               src={
-                optionImgs && optionImgs.id === parseInt(colorClickedNumber)
-                  ? optionImgs.hoverUrl
+                colorClickedNumber
+                  ? data.color_list.find((item) => {
+                      return item.shoe_id === parseInt(colorClickedNumber);
+                    }).sub_image
                   : data.product_detail.sub_image
               }
             />
