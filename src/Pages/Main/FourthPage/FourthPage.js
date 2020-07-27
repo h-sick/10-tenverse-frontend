@@ -5,7 +5,7 @@ import ItemList from "../Components/ItemList";
 class FourthPage extends React.Component {
   render() {
     const { product } = this.props;
-    let fourthPageShoe = product.filter((item, index) => index > 5);
+    // let fourthPageShoe = product.filter((item, index) => index > 5);
 
     return (
       <div className="FourthPage">
@@ -31,7 +31,7 @@ class FourthPage extends React.Component {
               muted
             />
           </div>
-          <ItemList product={fourthPageShoe} />
+          <ItemList product={product} />
         </div>
       </div>
     );

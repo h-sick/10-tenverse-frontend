@@ -9,11 +9,12 @@ const firstImg = {
 class FirstPage extends React.Component {
   render() {
     const { product } = this.props;
-    let firstPageShoe = product.filter((item, index) => index < 4);
+    console.log(product[0].page_one);
+    // let firstPageShoe = product.filter((item, index) => index < 4);
     return (
       <div className="FirstPage">
         <div className="smallBox">
-          <ItemList product={firstPageShoe} />
+          <ItemList product={product} />
         </div>
         <div className="largeBox" style={firstImg}>
           <div className="textContainer">

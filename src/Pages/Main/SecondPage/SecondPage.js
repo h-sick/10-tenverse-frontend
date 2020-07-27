@@ -34,9 +34,9 @@ class SecondPage extends React.Component {
   render() {
     const { shoeLists } = this.state;
     const { product } = this.props;
-    let secondPageShoe = product.filter(
-      (item, index) => index > 3 && index < 6
-    );
+    // let secondPageShoe = product.filter(
+    //   (item, index) => index > 3 && index < 6
+    // );
 
     return (
       <div className="SecondPage">
@@ -58,7 +58,7 @@ class SecondPage extends React.Component {
                 src="https://image.converse.co.kr/cmsstatic/structured-content/17530/01_1440x900.jpg?gallery"
               />
             </div>
-            <ItemList product={secondPageShoe} />
+            <ItemList product={product} />
           </div>
         </div>
 

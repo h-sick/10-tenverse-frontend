@@ -21,7 +21,7 @@ class InstaPage extends React.Component {
   }
 
   render() {
-    console.log(this.state.posts);
+    // console.log(this.state.posts);
     const { posts } = this.state;
 
     return (
