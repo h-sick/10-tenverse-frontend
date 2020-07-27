@@ -12,7 +12,7 @@ class SignUp extends React.Component {
       userName: "",
       userNumber: "",
       userBirthDate: "",
-      gender: "여성",
+      gender: "",
       entireCheck: false,
       firstCheck: false,
       secondCheck: false,
@@ -38,10 +38,10 @@ class SignUp extends React.Component {
       this.checkingName() &&
       this.checkingNumber() &&
       this.checkingBirth() &&
-      (this.checkingFeMale() || this.checkingMale()) &&
+      gender.length !== 0 &&
       !incorrectEntireCheck
     ) {
-      fetch("http://10.58.0.114:8000/user/ignup", {
+      fetch("http://10.58.0.114:8000/user/signup", {
         method: "POST",
         body: JSON.stringify({
           email: userEmail,
@@ -110,7 +110,7 @@ class SignUp extends React.Component {
     const { userNumber } = this.state;
     return (
       userNumber.length === 0 ||
-      (userNumber.length === 11 && parseInt(userNumber.value[0]) === 0)
+      (userNumber.length === 11 && parseInt(userNumber[0]) === 0)
     );
   };
 
@@ -123,14 +123,12 @@ class SignUp extends React.Component {
     this.setState({
       gender: "여성",
     });
-    return e.target.checked;
   };
 
   checkingMale = (e) => {
     this.setState({
       gender: "남성",
     });
-    return e.target.checked;
   };
 
   checkingState = (e) => {
@@ -143,8 +141,14 @@ class SignUp extends React.Component {
   };
 
   render() {
-    console.log(this.state);
-    const { firstCheck, secondCheck, thirdCheck, fourthCheck } = this.state;
+    const {
+      firstCheck,
+      secondCheck,
+      thirdCheck,
+      fourthCheck,
+      gender,
+    } = this.state;
+    console.log(gender);
     return (
       <div className="SignUp">
         <div className="signUpHeader">
@@ -261,8 +265,18 @@ class SignUp extends React.Component {
                   </span>
                 </div>
                 <div className="genderBtn">
-                  <button onClick={this.checkingFeMale}>여성</button>
-                  <button onClick={this.checkingMale}>남성</button>
+                  <button
+                    className={gender === "여성" ? "click" : ""}
+                    onClick={this.checkingFeMale}
+                  >
+                    여성
+                  </button>
+                  <button
+                    className={gender === "남성" ? "click" : ""}
+                    onClick={this.checkingMale}
+                  >
+                    남성
+                  </button>
                 </div>
               </div>
             </div>

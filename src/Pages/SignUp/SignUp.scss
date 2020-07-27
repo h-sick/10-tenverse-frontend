@@ -119,7 +119,7 @@
               border: 1px solid #e5e5e5;
               background-color: #f4f4f4;
 
-              &:focus-within {
+              &.click {
                 background-color: white;
                 border: 1px solid black;
               }
