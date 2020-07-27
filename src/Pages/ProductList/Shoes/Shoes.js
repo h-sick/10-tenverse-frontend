@@ -275,7 +275,7 @@ class Shoes extends React.Component {
 
   onScroll = (e) => {
     this.setState({ scroll: e.srcElement.scrollingElement.scrollTop });
-    if (parseInt(this.state.scroll) === 1031) {
+    if (parseInt(this.state.scroll) === 1031 + 300 * this.state.offset) {
       this.setState({ offset: this.state.offset + 1 });
       fetch(`${shoesListAPI}?page=${this.state.offset}`)
         .then((res) => res.json())
@@ -283,8 +283,6 @@ class Shoes extends React.Component {
           this.setState({ itemDatas: { ...this.state.itemDatas, json } });
         });
     }
-    // if (this.state.scroll === 2282) {
-    // }
   };
 
   componentDidMount() {

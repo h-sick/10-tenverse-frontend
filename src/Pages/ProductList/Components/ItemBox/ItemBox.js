@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { iconHeart, colorValues } from "../../../../config";
-import { colorsValues } from "../../../../config";
 import "./ItemBox.scss";
 import "../../../../Styles/Common.scss";
 
