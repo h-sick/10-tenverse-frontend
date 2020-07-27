@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MdClose } from "react-icons/md";
 import "./SideBar.scss";
 
 class SideBar extends React.Component {
@@ -40,32 +41,50 @@ class SideBar extends React.Component {
   }
   render() {
     const { navDatas, recommendDatas } = this.state;
+    const { sideBarDisplay } = this.props;
+    console.log(sideBarDisplay);
     return (
-      <div className="SideBar">
-        <main className="main">
-          <ul>
-            {navDatas.map((navData) => {
-              return (
-                <Link to={navData.url}>
-                  <li className="navTitle">{navData.title}</li>
-                </Link>
-              );
-            })}
-          </ul>
-          <div className="recommendBox">
-            <header>추천상품</header>
+      <div className={sideBarDisplay ? "SideBar" : "HiddenSideBar"}>
+        <div className="sideBarOverlay">
+          <div className="positionBox">
+            <svg
+              id="icon-close"
+              viewBox="0 0 37 37"
+              onClick={this.props.handleSideBar}
+            >
+              <path
+                fill-rule="nonzero"
+                d="M36.533 3.533L33 0 18.267 14.733 3.533 0 0 3.533l14.733 14.734L0 33l3.533 3.533L18.267 21.8 33 36.533 36.533 33 21.8 18.267z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div className="sideBarInner">
+          <main className="main">
             <ul>
-              {recommendDatas.map((recommendData) => {
+              {navDatas.map((navData) => {
                 return (
-                  <li>
-                    <img alt="추천상품 이미지" src={recommendData.url} />
-                    <p>{recommendData.title}</p>
-                  </li>
+                  <Link to={navData.url}>
+                    <li className="navTitle">{navData.title}</li>
+                  </Link>
                 );
               })}
             </ul>
-          </div>
-        </main>
+            <div className="recommendBox">
+              <header>추천상품</header>
+              <ul>
+                {recommendDatas.map((recommendData) => {
+                  return (
+                    <li>
+                      <img alt="추천상품 이미지" src={recommendData.url} />
+                      <p>{recommendData.title}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </main>
+        </div>
       </div>
     );
   }
