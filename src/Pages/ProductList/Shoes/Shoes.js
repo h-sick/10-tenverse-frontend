@@ -259,6 +259,7 @@ class Shoes extends React.Component {
       },
       filterLables: [],
       sortedByHighPrice: true,
+      offset: 0,
     };
   }
 
@@ -274,10 +275,20 @@ class Shoes extends React.Component {
 
   onScroll = (e) => {
     this.setState({ scroll: e.srcElement.scrollingElement.scrollTop });
+    if (parseInt(this.state.scroll) === 1031) {
+      this.setState({ offset: this.state.offset + 1 });
+      fetch(`${shoesListAPI}?page=${this.state.offset}`)
+        .then((res) => res.json())
+        .then((json) => {
+          this.setState({ itemDatas: { ...this.state.itemDatas, json } });
+        });
+    }
+    // if (this.state.scroll === 2282) {
+    // }
   };
 
   componentDidMount() {
-    fetch(shoesListAPI)
+    fetch(`${shoesListAPI}?page=${this.state.offset}`)
       .then((res) => res.json())
       .then((json) => {
         this.setState({ itemDatas: json });
@@ -288,6 +299,7 @@ class Shoes extends React.Component {
   render() {
     const { products } = this.state.itemDatas;
     const { sortedByHighPrice, headerData, filterLables } = this.state;
+    console.log(this.state.scroll);
 
     return (
       <section className="Shoes">
