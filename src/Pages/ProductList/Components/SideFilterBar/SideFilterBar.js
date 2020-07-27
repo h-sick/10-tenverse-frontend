@@ -23,14 +23,14 @@ class SideFilterBar extends React.Component {
   }
 
   render() {
-    const { category } = this.state;
+    const { filters } = this.state.category || [];
 
     return (
       <aside className="SideFilterBar">
-        <GenderFilterBox filters={category.filters} />
-        <TypeFilterBox filters={category.filters} />
-        <ColorFilterBox filters={category.filters} />
-        <SizeFilterBox filters={category.filters} />
+        <GenderFilterBox filters={filters && filters.gender_filters} />
+        <TypeFilterBox filters={filters && filters.type_filters} />
+        <ColorFilterBox filters={filters && filters.color_filters} />
+        <SizeFilterBox filters={filters && filters.size_filters} />
       </aside>
     );
   }

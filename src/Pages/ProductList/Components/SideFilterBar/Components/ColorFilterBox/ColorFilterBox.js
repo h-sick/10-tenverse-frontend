@@ -1,24 +1,8 @@
 import React from "react";
 import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
+import { colorValues } from "../../../../../../config";
 import "./ColorFilterBox.scss";
-
-const colors = {
-  black: "#000000",
-  blue: "#0600ff",
-  green: "#009900",
-  indigo: "#141936",
-  purple: "#6600cc",
-  brown: "#986633",
-  gray: "#999999",
-  khaki: "#a39263",
-  beige: "#f0e4d2",
-  red: "#ff0400",
-  orange: "#ff6600",
-  pink: "#ffb6c1",
-  yellow: "#ffcc00",
-  white: "#ffffff",
-};
 
 class ColorFilterBox extends React.Component {
   constructor() {
@@ -46,19 +30,19 @@ class ColorFilterBox extends React.Component {
           </header>
           <ul>
             {filters &&
-              filters.color_filters.map((colorFilter) => {
+              filters.map((filter) => {
                 return (
                   <li>
                     <div
-                      value={colorFilter}
+                      value={filter}
                       className={(() => {
-                        if (colorFilter === "white") {
+                        if (filter === "white") {
                           return "white";
                         } else {
                           return null;
                         }
                       })()}
-                      style={{ backgroundColor: colors[colorFilter] }}
+                      style={{ backgroundColor: colorValues[filter] }}
                     ></div>
                   </li>
                 );

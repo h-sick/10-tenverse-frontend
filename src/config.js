@@ -10,3 +10,20 @@ export const signinAPI = "http://10.58.3.38:8000/user/signin";
 export const signupAPI = "http://10.58.3.38:8000/user/signup";
 export const shoesListAPI = "http://10.58.3.38:8000/product";
 export const categoryAPI = "http://10.58.3.38:8000/product/category";
+
+export const colorValues = {
+  black: "#000000",
+  blue: "#0600FF",
+  green: "#009900",
+  indigo: "#141936",
+  purple: "#6600CC",
+  brown: "#986633",
+  gray: "#999999",
+  khaki: "#A39263",
+  beige: "#F0E4D2",
+  red: "#FF0400",
+  orange: "#FF6600",
+  pink: "#FFB6C1",
+  yellow: "#FFCC00",
+  white: "#FFFFFF",
+};

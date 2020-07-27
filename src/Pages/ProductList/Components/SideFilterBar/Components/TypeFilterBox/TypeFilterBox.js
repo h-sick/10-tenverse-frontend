@@ -29,18 +29,18 @@ class TypeFilterBox extends React.Component {
           </header>
           <ul>
             {filters &&
-              filters.type_filters.map((typefilter) => {
+              filters.map((filter) => {
                 return (
                   <li className="typeList">
-                    <label for={typefilter}>
+                    <label for={filter}>
                       <input
                         type="checkbox"
                         name="type"
-                        id={typefilter}
-                        value={typefilter}
-                        className={typefilter}
+                        id={filter}
+                        value={filter}
+                        className={filter}
                       />
-                      {typefilter}
+                      {filter}
                     </label>
                   </li>
                 );

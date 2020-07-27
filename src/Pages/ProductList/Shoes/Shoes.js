@@ -5,7 +5,7 @@ import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
 import Footer from "../../../Components/Footer/Footer";
-// import shoesListAPI from "../../../config";
+import { shoesListAPI } from "../../../config";
 import "./Shoes.scss";
 
 class Shoes extends React.Component {
@@ -268,17 +268,22 @@ class Shoes extends React.Component {
       : this.setState({ sortedByHighPrice: false });
   };
 
-  // componentDidMount() {
-  //   fetch("http://10.58.3.38:8000/product")
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       this.setState({ itemDatas: json });
-  //     });
-  // }
-
   handleColorNumber = (e) => {
     this.setState({ clickedColorNumber: e });
   };
+
+  onScroll = (e) => {
+    this.setState({ scroll: e.srcElement.scrollingElement.scrollTop });
+  };
+
+  componentDidMount() {
+    // fetch(shoesListAPI)
+    //   .then((res) => res.json())
+    //   .then((json) => {
+    //     this.setState({ itemDatas: json });
+    //   });
+    window.addEventListener("scroll", this.onScroll);
+  }
 
   render() {
     const { products } = this.state.itemDatas;

@@ -53,30 +53,28 @@
     }
   }
 
-  ul {
-    li {
-      height: 30px;
+  li {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    transition: all ease 0.5s;
+
+    label {
+      width: 100px;
+      font-size: 14px;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      list-style: none;
-      transition: all ease 0.5s;
+      color: #c2bebe;
 
-      label {
-        width: 100px;
-        font-size: 14px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        color: #c2bebe;
+      &:hover {
+        text-decoration: underline;
+      }
 
-        &:hover {
-          text-decoration: underline;
-        }
-
-        input {
-          margin-right: 10px;
-          display: inline;
-        }
+      input {
+        margin-right: 10px;
+        display: inline;
       }
     }
   }

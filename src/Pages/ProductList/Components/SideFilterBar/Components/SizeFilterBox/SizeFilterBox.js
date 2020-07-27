@@ -25,8 +25,8 @@ class SizeFilterBox extends React.Component {
     const { filters } = this.props;
 
     return (
-      <div className="SizeFilterBox">
-        <section className={fold ? "fold" : "display"}>
+      <section className="SizeFilterBox">
+        <div className={fold ? "SizeFilterBox fold" : "SizeFilterBox display"}>
           <header onClick={this.handleFolder}>
             <p>사이즈</p>
             <FiMinus className={fold ? "hidden" : "minusIcon"} />
@@ -34,19 +34,19 @@ class SizeFilterBox extends React.Component {
           </header>
           <ul className="box">
             {filters &&
-              filters.size_filters.map((sizeFilter) => {
+              filters.map((filter) => {
                 return (
                   <li
                     onclick={this.handleSizeClick}
                     name={clicked ? "sizeBtnClicked" : null}
                   >
-                    {sizeFilter}
+                    {filter}
                   </li>
                 );
               })}
           </ul>
-        </section>
-      </div>
+        </div>
+      </section>
     );
   }
 }

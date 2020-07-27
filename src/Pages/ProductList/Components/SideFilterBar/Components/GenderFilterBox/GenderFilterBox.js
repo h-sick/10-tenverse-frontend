@@ -29,18 +29,18 @@ class GenderFilterBox extends React.Component {
           </header>
           <ul>
             {filters &&
-              filters.gender_filters.map((genderFilter) => {
+              filters.map((filter) => {
                 return (
                   <li className="typeList">
-                    <label for={genderFilter}>
+                    <label for={filter}>
                       <input
                         type="checkbox"
                         name="gender"
-                        id={genderFilter}
-                        value={genderFilter}
-                        className={genderFilter}
+                        id={filter}
+                        value={filter}
+                        className={filter}
                       />
-                      {genderFilter}
+                      {filter}
                     </label>
                   </li>
                 );
