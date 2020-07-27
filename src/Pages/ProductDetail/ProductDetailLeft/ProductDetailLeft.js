@@ -10,9 +10,9 @@ class ProductDetailLeft extends Component {
     const [shoeDetailRef, reviewRef] = this.props.refArr;
     return (
       <div className="ProductDetailLeft">
-        <ShoeImage />
+        <ShoeImage product={this.props.product} />
         <div className="border"></div>
-        <DetailShoeImage shoeDetailRef={shoeDetailRef} />
+        <DetailShoeImage shoeDetailRef={shoeDetailRef} product={this.props.product} />
         <div className="border black"></div>
         <ShoeReview reviewRef={reviewRef} />
         <div className="border black"></div>

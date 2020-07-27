@@ -4,14 +4,24 @@
   padding: 20px 0 30px 0;
 
   .sizeGuide {
-    height: 20px;
+    height: 30px;
     position: relative;
     margin-bottom: 20px;
-    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+
+    .sizeConsider {
+      width: 250px;
+      height: 100%;
+      background-color: $black;
+      color: $white;
+      font-size: 12px;
+      @extend %flexCenter;
+      cursor: pointer;
+    }
 
     button {
-      position: absolute;
-      right: 0;
+      cursor: pointer;
       background-color: white;
       text-decoration: underline;
       font-size: 14px;

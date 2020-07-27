@@ -5,7 +5,6 @@ class SizeTable extends Component {
   constructor() {
     super();
     this.state = {
-      shoeSizeStart: 220,
       isBtnActive: null,
     };
   }
@@ -17,22 +16,25 @@ class SizeTable extends Component {
   };
 
   render() {
-    const { shoeSizeStart, isBtnActive } = this.state;
-    let shoeSizeArr = Array(17).fill(shoeSizeStart);
+    const product = this.props.product;
+    const { isBtnActive } = this.state;
+    let sizeList = product.length !== 0 ? product[1].size_list.sort() : null;
 
     return (
       <div className="SizeTable">
         <ul>
-          {shoeSizeArr.map((size, i) => {
-            return (
-              <li
-                onClick={() => this.sizeTableBtn(i)}
-                className={isBtnActive === i ? "sizeBtnClicked" : null}
-              >
-                {(size += 5 * i)}
-              </li>
-            );
-          })}
+          {product.length !== 0
+            ? sizeList.map((size, i) => {
+                return (
+                  <li
+                    onClick={() => this.sizeTableBtn(i)}
+                    className={isBtnActive === i ? "sizeBtnClicked" : null}
+                  >
+                    {size}
+                  </li>
+                );
+              })
+            : null}
         </ul>
       </div>
     );

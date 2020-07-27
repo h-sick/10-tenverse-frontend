@@ -17,6 +17,7 @@
     height: 100%;
     background: $white;
     padding: 30px 30px 45px 30px;
+    z-index: 101;
 
     &::-webkit-scrollbar {
       display: none;

@@ -18,17 +18,18 @@ class ShoeSize extends Component {
     this.setState({
       modal: !modal,
     });
-    modal ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset");
+    document.body.style.overflow = modal ? "hidden" : "unset";
   };
 
   handleCount = (num) => {
-    if (num === -1 && this.state.count === 0) {
+    const { count } = this.state;
+    if (num === -1 && count === 1) {
       return;
-    } else if (num === 1 && this.state.count >= 5) {
+    } else if (num === 1 && count >= 5) {
       return alert("5개");
     }
     this.setState({
-      count: this.state.count + num,
+      count: count + num,
     });
   };
 
@@ -41,9 +42,10 @@ class ShoeSize extends Component {
     return (
       <div className="ShoeSize">
         <div className="sizeGuide">
+          <div className="sizeConsider">사이즈가 고민되면 클릭하세요!</div>
           <button onClick={this.handleModal}>사이즈 가이드</button>
         </div>
-        <SizeTable />
+        <SizeTable product={this.props.product} />
         <div className="countWrap">
           <div className="count num">{count}</div>
           <button onClick={() => this.handleCount(-1)} value="-" className="count minus">

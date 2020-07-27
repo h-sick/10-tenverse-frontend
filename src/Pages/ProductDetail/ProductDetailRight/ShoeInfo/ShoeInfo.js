@@ -6,14 +6,16 @@ class ShoeInfo extends Component {
   listIconStar = new Array(5).fill().map((num) => <IconStar />);
 
   render() {
+    const product = this.props.product;
     const [shoeDetailRef, reviewRef] = this.props.refArr;
+    // console.log(product);
     return (
       <div className="ShoeInfo">
-        <div className="shoeName">척테일러 올스타 리프트 캔버스</div>
-        <div className="shoePrice">75,000 원</div>
-        <div className="gender">여성</div>
+        <div className="shoeName">{product.length !== 0 ? product[0].name : null}</div>
+        <div className="shoePrice">{product.length !== 0 ? product[0].price : null} 원</div>
+        <div className="gender">{product.length !== 0 ? product[0].gender : null}</div>
         <div>
-          베스트셀링 플랫폼 스니커즈
+          {product.length !== 0 ? product[0].main_detail : null}
           <span onClick={() => this.props.scrollTo(shoeDetailRef)} className="grey">
             더보기
           </span>
@@ -21,7 +23,7 @@ class ShoeInfo extends Component {
         <div onClick={() => this.props.scrollTo(reviewRef)} className="iconStarWrap">
           {this.listIconStar}
           <span className="starPoint text">별점</span>
-          <span className="starPoint num">4.57</span>
+          <span className="starPoint num">4.5</span>
         </div>
       </div>
     );

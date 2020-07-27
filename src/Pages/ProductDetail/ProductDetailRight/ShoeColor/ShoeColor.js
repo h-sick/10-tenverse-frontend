@@ -1,51 +1,64 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import ShoeColorList from "./ShoeColorList";
 import "./ShoeColor.scss";
 
 class ShoeColor extends Component {
-  constructor() {
-    super();
-    this.state = {
-      shoeNumber: "123",
-    };
-  }
-
-  shoeColorArr = [
-    "https://image.converse.co.kr/cmsstatic/product/560250C_560250C_pdp-option.jpg?browse=",
-    "https://image.converse.co.kr/cmsstatic/product/560251C_560251C_pdp-option.jpg?browse=",
-  ];
-
-  moveToShoeDetail = (e) => {
-    let shoeSrc = e.target.src;
-    this.props.history.push(`/ProductDetail/${shoeSrc}`);
-  };
-
-  listShoeColor = this.shoeColorArr.map((shoe, i) => {
-    if (i === 0) {
-      return (
-        <div className="shoeColorImageEach">
-          <img onClick={this.moveToShoeDetail} alt="신발 이미지 색상" src={shoe} />
-          <div className="underShoeColorImage first"></div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="shoeColorImageEach">
-          <img onClick={this.moveToShoeDetail} alt="신발 이미지 색상" src={shoe} />
-          <div className="underShoeColorImage"></div>
-        </div>
-      );
-    }
-  });
-
   render() {
+    const product = this.props.product;
+    const changeShoeColor = (e) => {
+      let endPoint = e.target.name;
+      this.props.history.push(`/product/detail/${endPoint}`);
+    };
+
+    const listShoeColor = product.map((_, i) => {
+      if (i % 2 === 1) {
+        const shoeColorList = product[i].color_list.map((color, j) => {
+          return color.main_image;
+        });
+        const shoeIdList = product[i].color_list.map((color, j) => {
+          return color.id;
+        });
+        return (
+          <>
+            {shoeColorList.map((_, k) => {
+              console.log(shoeIdList[k]);
+              if (k === 0) {
+                return (
+                  <div className="shoeColorImageEach">
+                    <ShoeColorList
+                      changeShoeColor={changeShoeColor}
+                      shoeColorList={shoeColorList[k]}
+                      shoeIdList={shoeIdList[k]}
+                    />
+                    <div className="underShoeColorImage first"></div>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="shoeColorImageEach">
+                    <ShoeColorList
+                      changeShoeColor={changeShoeColor}
+                      shoeColorList={shoeColorList[k]}
+                      shoeIdList={shoeIdList[k]}
+                    />
+                    <div className="underShoeColorImage"></div>
+                  </div>
+                );
+              }
+            })}
+          </>
+        );
+      }
+    });
+
     return (
       <div className="ShoeColor">
         <div className="shoeColorText">
           <span className="grey">컬러</span>
-          <span className="shoeColor">블랙</span>
+          <span className="shoeColor">{product.length !== 0 ? product[0].color_name : null}</span>
         </div>
-        <div className="shoeColorImage">{this.listShoeColor}</div>
+        <div className="shoeColorImage">{listShoeColor}</div>
       </div>
     );
   }

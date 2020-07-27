@@ -8,9 +8,13 @@ class ProductDetailRight extends Component {
   render() {
     return (
       <div className="ProductDetailRight">
-        <ShoeInfo scrollTo={this.props.scrollTo} refArr={this.props.refArr} />
-        <ShoeColor />
-        <ShoeSize />
+        <ShoeInfo
+          scrollTo={this.props.scrollTo}
+          refArr={this.props.refArr}
+          product={this.props.product}
+        />
+        <ShoeColor product={this.props.product} />
+        <ShoeSize product={this.props.product} />
       </div>
     );
   }

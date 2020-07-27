@@ -20,16 +20,20 @@ class DetailShoeImage extends Component {
 
   render() {
     const { showMoreActive, showMoreText } = this.state;
+    const { shoeDetailRef, product } = this.props;
+    const featureList = product.length !== 0 ? product[0].features.split(", ") : null;
+    const feature =
+      product.length !== 0
+        ? featureList.map((feat, i) => {
+            return <li>{feat}</li>;
+          })
+        : null;
     return (
-      <div className="DetailShoeImage" ref={this.props.shoeDetailRef}>
+      <div className="DetailShoeImage" ref={shoeDetailRef}>
         <div className="detailShoeInfo">
-          <div className="title">척테일러 올스타 리프트 캔버스</div>
-          <div className="subTitle">아이코닉 척테일러 올스타를 플랫폼 솔과 함께 만나보세요.</div>
-          <ul>
-            <li>가볍고 견고한 캠퍼스 어퍼</li>
-            <li>시즌리스, 타임리스한 실루엣</li>
-            <li>기존 제품보다 높은 고무 플랫폼 미드솔</li>
-          </ul>
+          <div className="title">{product.length !== 0 ? product[0].name : null}</div>
+          <div className="subTitle">{product.length !== 0 ? product[0].main_detail : null}</div>
+          <ul>{product.length !== 0 ? feature : null}</ul>
           <div className="subImage">
             <img
               alt="readMust"
@@ -38,7 +42,7 @@ class DetailShoeImage extends Component {
             <img
               className={showMoreActive ? null : "hideImage"}
               alt="상품 사진 모음"
-              src="https://image.converse.co.kr/cmsstatic/product/21552/560250C-2.jpg"
+              src={product.length !== 0 ? product[0].feature_image : null}
             />
           </div>
           <button onClick={this.handleShowMore}>{showMoreText}</button>
