@@ -12,7 +12,7 @@ class SignUp extends React.Component {
       userName: "",
       userNumber: "",
       userBirthDate: "",
-      gender: "",
+      gender: false,
       entireCheck: false,
       firstCheck: false,
       secondCheck: false,
@@ -49,14 +49,14 @@ class SignUp extends React.Component {
           name: userName,
           phone_number: userNumber,
           birth_date: userBirthDate,
-          gender: gender,
+          gender: gender ? "남성" : "여성",
         }),
       })
         .then((res) => {
           if (!res.ok) throw new Error();
           return res.json();
         })
-        .then((res) => this.props.history.push("/"))
+        .then(() => this.props.history.push("/"))
         .catch((error) => console.error("Error:", error));
     }
   };
@@ -66,12 +66,12 @@ class SignUp extends React.Component {
     this.setState({ [name]: value });
   };
 
-  handleId = (e) => {
+  handleId = () => {
     const { userEmail } = this.state;
     return userEmail.length === 0 || userEmail.includes("@");
   };
 
-  handlePw = (e) => {
+  handlePw = () => {
     const numbers = /[0-9]/;
     const spellings = /[a-zA-Z]/;
     const specialCharacters = /[~!@#$%<>^&*]/;
@@ -101,7 +101,7 @@ class SignUp extends React.Component {
     return userRePw.length === 0 || userPw === userRePw;
   };
 
-  checkingName = (e) => {
+  checkingName = () => {
     const { userName } = this.state;
     return userName.length === 0 || userName.length > 0;
   };
@@ -114,20 +114,14 @@ class SignUp extends React.Component {
     );
   };
 
-  checkingBirth = (e) => {
+  checkingBirth = () => {
     const { userBirthDate } = this.state;
     return userBirthDate.length === 0 || userBirthDate.length === 10;
   };
 
-  checkingFeMale = (e) => {
+  checkingGender = (e) => {
     this.setState({
-      gender: "여성",
-    });
-  };
-
-  checkingMale = (e) => {
-    this.setState({
-      gender: "남성",
+      gender: e.target.value === "남성",
     });
   };
 
@@ -148,7 +142,7 @@ class SignUp extends React.Component {
       fourthCheck,
       gender,
     } = this.state;
-    console.log(gender);
+
     return (
       <div className="SignUp">
         <div className="signUpHeader">
@@ -267,13 +261,13 @@ class SignUp extends React.Component {
                 <div className="genderBtn">
                   <button
                     className={gender === "여성" ? "click" : ""}
-                    onClick={this.checkingFeMale}
+                    onClick={this.checkingGender}
                   >
                     여성
                   </button>
                   <button
                     className={gender === "남성" ? "click" : ""}
-                    onClick={this.checkingMale}
+                    onClick={this.checkingGender}
                   >
                     남성
                   </button>
