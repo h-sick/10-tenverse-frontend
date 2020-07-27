@@ -1,26 +1,3 @@
-.HiddenSideBar {
-  width: 0;
-  left: 0;
-  overflow: hidden;
-  animation: activeMenu;
-  animation-duration: 0.4s;
-  animation-iteration-count: initial;
-  animation-timing-function: ease;
-
-  @keyframes activeMenu {
-    0% {
-      width: 0;
-      left: 0;
-      transform: scaleX(0);
-    }
-    100% {
-      width: 100%;
-      left: 0;
-      transform: scaleX(1);
-    }
-  }
-}
-
 .SideBar {
   position: relative;
 
@@ -34,26 +11,17 @@
     left: 0;
     background-color: black;
     z-index: 1;
+    transition: all 0.2s;
 
     &:not(.sideBarInner) {
       opacity: 0.7;
     }
 
-    .iconBox {
-      width: 50px;
-      height: 50px;
-      position: relative;
-
-      .closeIcon {
-        width: 14px;
-        height: 14px;
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        color: white;
-        cursor: pointer;
-        z-index: 5;
-      }
+    &.hidden {
+      width: 0;
+      left: 0;
+      overflow: hidden;
+      transition: all 0.3s;
     }
   }
 
@@ -66,6 +34,14 @@
     background-color: #fff;
     opacity: 1;
     z-index: 2;
+    transition: all 0.3s;
+
+    &.hidden {
+      width: 0;
+      left: 0;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
 
     .main {
       height: 80%;
