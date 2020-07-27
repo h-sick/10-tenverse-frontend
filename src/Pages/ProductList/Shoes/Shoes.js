@@ -5,6 +5,7 @@ import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
 import Footer from "../../../Components/Footer/Footer";
+// import shoesListAPI from "../../../config";
 import "./Shoes.scss";
 
 class Shoes extends React.Component {
@@ -21,74 +22,80 @@ class Shoes extends React.Component {
           "https://image.converse.co.kr/cmsstatic/structured-content/15400/D-Converse-SP20-PWH-Best-Sellers-.jpg",
       },
       itemDatas: {
-        products: [
-          {
-            productDetail: {
-              id: 1,
-              shoe__id: 1,
-              shoe__detail__name: "척 70 시그니처",
-              shoe__price: 95000,
-              image__image:
-                "https://image.converse.co.kr/cmsstatic/product/167698C_167698C_pdp-primary.jpg?gallery=",
-              subimage__image:
-                "https://image.converse.co.kr/cmsstatic/product/167698C_167698C_3.jpg?browse=",
-            },
-            options: [
-              {
-                shoecolor__id: 1,
-                color_category__name: "black",
-              },
-              {
-                shoecolor__id: 2,
-                color_category__name: "green",
-              },
-            ],
-          },
-          {
-            productDetail: {
-              id: 2,
-              shoe__id: 2,
-              shoe__detail__name: "원스타 프로 피그 스킨",
-              shoe__price: 99000,
-              image__image:
-                "https://image.converse.co.kr/cmsstatic/product/168654C_168654C_pdp-primary.jpg?gallery=",
-              subimage__image:
-                "https://image.converse.co.kr/cmsstatic/product/168654C_168654C_03.jpg?browse=",
-            },
-            options: [
-              {
-                shoecolor__id: 2,
-                color_category__name: "green",
-              },
-              {
-                shoecolor__id: 3,
-                color_category__name: "indigo",
-              },
-            ],
-          },
-          {
-            productDetail: {
-              id: 3,
-              shoe__id: 3,
-              shoe__detail__name: "척테일러 올스타 핵트 패션",
-              shoe__price: 79000,
-              image__image:
-                "https://image.converse.co.kr/cmsstatic/product/168745C_168745C_pdp-primary.jpg?gallery=",
-              subimage__image:
-                "https://image.converse.co.kr/cmsstatic/product/168745C_168745C_03.jpg?browse=",
-            },
-            options: [
-              {
-                shoecolor__id: 3,
-                color_category__name: "black",
-              },
-              {
-                shoecolor__id: 5,
-                color_category__name: "white",
-              },
-            ],
-          },
-        ],
+        // products: [
+        //   [
+        //     {
+        //       id: 1,
+        //       shoe__id: 1,
+        //       name: "척 70 시그니처",
+        //       price: 95000,
+        //       main_image:
+        //         "https://image.converse.co.kr/cmsstatic/product/167698C_167698C_pdp-primary.jpg?gallery=",
+        //       sub_image:
+        //         "https://image.converse.co.kr/cmsstatic/product/167698C_167698C_3.jpg?browse=",
+        //     },
+        //     {
+        //       color_list: [
+        //         {
+        //           shoe_id: 1,
+        //           color_filter: "black",
+        //         },
+        //         {
+        //           shoe_id: 219,
+        //           color_filter: "green",
+        //         },
+        //       ],
+        //     },
+        //   ],
+        //   [
+        //     {
+        //       id: 2,
+        //       shoe__id: 2,
+        //       name: "원스타 프로 피그 스킨",
+        //       price: 99000,
+        //       main_image:
+        //         "https://image.converse.co.kr/cmsstatic/product/168654C_168654C_pdp-primary.jpg?gallery=",
+        //       sub_image:
+        //         "https://image.converse.co.kr/cmsstatic/product/168654C_168654C_03.jpg?browse=",
+        //     },
+        //     {
+        //       color_list: [
+        //         {
+        //           shoe_id: 2,
+        //           color_filter: "green",
+        //         },
+        //         {
+        //           shoe_id: 71,
+        //           color_filter: "indigo",
+        //         },
+        //       ],
+        //     },
+        //   ],
+        //   [
+        //     {
+        //       id: 3,
+        //       shoe__id: 3,
+        //       name: "척테일러 올스타 핵트 패션",
+        //       price: 79000,
+        //       main_image:
+        //         "https://image.converse.co.kr/cmsstatic/product/168745C_168745C_pdp-primary.jpg?gallery=",
+        //       sub_image:
+        //         "https://image.converse.co.kr/cmsstatic/product/168745C_168745C_03.jpg?browse=",
+        //     },
+        //     {
+        //       color_list: [
+        //         {
+        //           shoe_id: 3,
+        //           color_filter: "black",
+        //         },
+        //         {
+        //           shoe_id: 153,
+        //           color_filter: "white",
+        //         },
+        //       ],
+        //     },
+        //   ],
+        // ],
       },
       filterLables: [],
       sortedByHighPrice: true,
@@ -101,13 +108,13 @@ class Shoes extends React.Component {
       : this.setState({ sortedByHighPrice: false });
   };
 
-  // componentDidMount() {
-  //   fetch("http://10.58.0.114:8000/product")
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       this.setState({ itemDatas: json });
-  //     });
-  // }
+  componentDidMount() {
+    fetch("http://10.58.3.38:8000/product")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ itemDatas: json });
+      });
+  }
 
   handleColorNumber = (e) => {
     this.setState({ clickedColorNumber: e });

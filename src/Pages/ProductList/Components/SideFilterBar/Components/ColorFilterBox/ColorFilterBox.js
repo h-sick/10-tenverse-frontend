@@ -3,26 +3,27 @@ import { FiMinus } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
 import "./ColorFilterBox.scss";
 
+const colors = {
+  black: "#000000",
+  blue: "#0600ff",
+  green: "#009900",
+  indigo: "#141936",
+  purple: "#6600cc",
+  brown: "#986633",
+  gray: "#999999",
+  khaki: "#a39263",
+  beige: "#f0e4d2",
+  red: "#ff0400",
+  orange: "#ff6600",
+  pink: "#ffb6c1",
+  yellow: "#ffcc00",
+  white: "#ffffff",
+};
+
 class ColorFilterBox extends React.Component {
   constructor() {
     super();
     this.state = {
-      colors: {
-        black: "#000000",
-        blue: "#0600ff",
-        green: "#009900",
-        indigo: "#141936",
-        purple: "#6600cc",
-        brown: "#986633",
-        gray: "#999999",
-        khaki: "#a39263",
-        beige: "#f0e4d2",
-        red: "#ff0400",
-        orange: "#ff6600",
-        pink: "#ffb6c1",
-        yellow: "#ffcc00",
-        white: "#ffffff",
-      },
       fold: false,
     };
   }
@@ -32,7 +33,7 @@ class ColorFilterBox extends React.Component {
   };
 
   render() {
-    const { colors, fold } = this.state;
+    const { fold } = this.state;
     const { filters } = this.props;
 
     return (

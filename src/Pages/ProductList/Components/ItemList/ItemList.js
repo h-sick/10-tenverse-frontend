@@ -16,13 +16,13 @@ class ItemList extends React.Component {
   handleOptionImgs = () => {
     const { datas } = this.props;
     const optionImgs = datas.find((data) => {
-      return data.productDetail.id === parseInt(this.state.clickedColorId);
+      return data.product_detail.id === parseInt(this.state.clickedColorId);
     });
     if (optionImgs) {
       return {
-        id: optionImgs.productDetail.id,
-        imgUrl: optionImgs.productDetail.image__image,
-        hoverUrl: optionImgs.productDetail.subimage__image,
+        id: optionImgs.product_detail.id,
+        imgUrl: optionImgs.product_detail.main_image,
+        hoverUrl: optionImgs.product_detail.sub_image,
       };
     } else {
       return null;
@@ -38,9 +38,7 @@ class ItemList extends React.Component {
           {handleSort
             ? datas
                 .sort(function (a, b) {
-                  return (
-                    b.productDetail.shoe__price - a.productDetail.shoe__price
-                  );
+                  return b.product_detail.price - a.product_detail.price;
                 })
                 .map((data) => {
                   return (
@@ -53,9 +51,7 @@ class ItemList extends React.Component {
                 })
             : datas
                 .sort(function (a, b) {
-                  return (
-                    a.productDetail.shoe__price - b.productDetail.shoe__price
-                  );
+                  return a.product_detail.price - b.product_detail.price;
                 })
                 .map((data) => {
                   return (
