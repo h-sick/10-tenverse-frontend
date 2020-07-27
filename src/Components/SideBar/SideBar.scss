@@ -39,8 +39,12 @@
       opacity: 0.7;
     }
 
-    .positionBox {
-      svg {
+    .iconBox {
+      width: 50px;
+      height: 50px;
+      position: relative;
+
+      .closeIcon {
         width: 14px;
         height: 14px;
         position: absolute;
@@ -48,13 +52,14 @@
         top: 20px;
         color: white;
         cursor: pointer;
+        z-index: 5;
       }
     }
   }
 
   .sideBarInner {
     width: 960px;
-    max-height: 100%;
+    height: 100%;
     padding-left: 230px;
     position: fixed;
     left: 0;
@@ -63,6 +68,7 @@
     z-index: 2;
 
     .main {
+      height: 80%;
       padding: 70px 0 32px 70px;
       display: flex;
       flex-direction: column;
