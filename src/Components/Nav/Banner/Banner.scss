@@ -1,0 +1,39 @@
+.Banner {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background-color: #e5e5e5;
+
+  .slider {
+    width: 33%;
+    margin: 0 auto;
+    position: relative;
+
+    .left {
+      width: 15px;
+      position: absolute;
+      top: 10px;
+      z-index: 2;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .right {
+      width: 15px;
+      position: absolute;
+      right: 0;
+      top: 10px;
+      z-index: 2;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .eachSlider {
+      text-align: center;
+    }
+  }
+}
