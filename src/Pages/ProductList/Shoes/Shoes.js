@@ -277,11 +277,11 @@ class Shoes extends React.Component {
   };
 
   componentDidMount() {
-    // fetch(shoesListAPI)
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     this.setState({ itemDatas: json });
-    //   });
+    fetch(shoesListAPI)
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ itemDatas: json });
+      });
     window.addEventListener("scroll", this.onScroll);
   }
 
