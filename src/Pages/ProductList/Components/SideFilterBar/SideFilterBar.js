@@ -14,6 +14,14 @@ class SideFilterBar extends React.Component {
     };
   }
 
+  handleGenderChange = (value) => {
+    fetch(`${categoryAPI}/${value}`)
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ category: json });
+      });
+  };
+
   componentDidMount() {
     fetch(categoryAPI)
       .then((res) => res.json())
@@ -27,7 +35,10 @@ class SideFilterBar extends React.Component {
 
     return (
       <aside className="SideFilterBar">
-        <GenderFilterBox filters={filters && filters.gender_filters} />
+        <GenderFilterBox
+          filters={filters && filters.gender_filters}
+          onGenderFilterChange={this.handleGenderChange}
+        />
         <TypeFilterBox filters={filters && filters.type_filters} />
         <ColorFilterBox filters={filters && filters.color_filters} />
         <SizeFilterBox filters={filters && filters.size_filters} />
