@@ -19,7 +19,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://10.58.3.38:8000/product/mainpage")
+    fetch("http://localhost:3000/data/main.json")
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
@@ -31,17 +31,9 @@ class Main extends React.Component {
 
   render() {
     const { product } = this.state;
-    console.log(product);
-    // let page1 = product && product.filter((item, index) => index === 0);
-    // let page2 = product && product.filter((item, index) => index === 1);
-    // let page3 = product && product.filter((item, index) => index === 2);
-    // let page4 = product && product.filter((item, index) => index === 2);
-    // let page5 = product && product.filter((item, index) => index === 4);
-
     return (
       <div className="entireWrapper">
         <Nav />
-        {/* {product.length > 0 ? ( */}
         <div className="pageWrapper">
           <FirstPage product={product.womens_collection} />
           <SecondPage product={product.jack_purcell} />
@@ -50,7 +42,6 @@ class Main extends React.Component {
           <FifthPage product={product} />
           <InstaPage />
         </div>
-        {/* ) : null} */}
         <Footer />
       </div>
     );

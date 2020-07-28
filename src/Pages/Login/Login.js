@@ -71,7 +71,7 @@ class Login extends React.Component {
         })
         .then((res) => {
           if (res.access_token) {
-            this.props.history.push("/");
+            this.props.history.push("/main");
           }
         })
         .catch(

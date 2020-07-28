@@ -1,72 +1,66 @@
 {
-  "products": [
-    {
-      "page_one": [
-        {
-          "id": 166,
-          "name": "척테일러 올스타 리프트 EVA",
-          "price": 109000,
-          "main_image": "https://image.converse.co.kr/cmsstatic/product/565829C_565829C_pdp-primary.jpg?gallery=",
-          "sub_image": "https://image.converse.co.kr/cmsstatic/product/565829C_565829C_03.jpg?browse="
-        },
-        {
-          "id": 29,
-          "name": "척테일러 올스타 리프트 캔버스",
-          "price": 75000,
-          "main_image": "https://image.converse.co.kr/cmsstatic/product/21553/560251C_560251C_primary.jpg?gallery=",
-          "sub_image": "https://image.converse.co.kr/cmsstatic/product/560251C_560251C_03.jpg?browse="
-        },
-        {
-          "id": 173,
-          "name": "척테일러 올스타 리프트 캔버스",
-          "price": 75000,
-          "main_image": "https://image.converse.co.kr/cmsstatic/product/560250C_560250C_pdp-primary.jpg?gallery=",
-          "sub_image": "https://image.converse.co.kr/cmsstatic/product/560250C_560250C_03.jpg?browse="
-        },
-        {
-          "id": 112,
-          "name": "척테일러 올스타 리프트 캔버스",
-          "price": 79000,
-          "main_image": "https://image.converse.co.kr/cmsstatic/product/27379/560846C_560846C_pdp-primary.jpg?gallery=",
-          "sub_image": "https://image.converse.co.kr/cmsstatic/product/27379/560846C_560846C_03.jpg?browse="
-        }
-      ]
-    },
-    {
-      "page_two": [
-        {
-          "id": 15,
-          "name": "잭퍼셀 컬러블록",
-          "price": 89000,
-          "main_image": "https://image.converse.co.kr/cmsstatic/product/168976C_168976C_pdp-primary.jpg?gallery=",
-          "sub_image": "https://image.converse.co.kr/cmsstatic/product/168976C_168976C_03.jpg?browse="
-        },
-        {
-          "id": 74,
-          "name": "척 70 핵트 패션",
-          "price": 99000,
-          "main_image": "https://image.converse.co.kr/cmsstatic/product/168695C_168695C_pdp-primary.jpg?gallery=",
-          "sub_image": "https://image.converse.co.kr/cmsstatic/product/168695C_168695C_03.jpg?browse="
-        }
-      ]
-    },
-    {
-      "page_three": [
-        {
-          "id": 211,
-          "name": "잭퍼셀 트레일 투 코브",
-          "price": 85000,
-          "main_image": "https://image.converse.co.kr/cmsstatic/product/168140C_168140C_pdp-primary.jpg?gallery=",
-          "sub_image": "https://image.converse.co.kr/cmsstatic/product/168140C_168140C_03.jpg?browse="
-        },
-        {
-          "id": 187,
-          "name": "잭퍼셀 샤이니 레더",
-          "price": 95000,
-          "main_image": "https://image.converse.co.kr/cmsstatic/product/168135C_168135C_pdp-primary.jpg?gallery=",
-          "sub_image": "https://image.converse.co.kr/cmsstatic/product/168135C_168135C_03.jpg?browse="
-        }
-      ]
-    }
-  ]
+  "products": {
+    "womens_collection": [
+      {
+        "id": 166,
+        "name": "척테일러 올스타 리프트 EVA",
+        "price": 109000,
+        "main_image": "https://image.converse.co.kr/cmsstatic/product/565829C_565829C_pdp-primary.jpg?gallery=",
+        "sub_image": "https://image.converse.co.kr/cmsstatic/product/565829C_565829C_03.jpg?browse="
+      },
+      {
+        "id": 29,
+        "name": "척테일러 올스타 리프트 캔버스",
+        "price": 75000,
+        "main_image": "https://image.converse.co.kr/cmsstatic/product/21553/560251C_560251C_primary.jpg?gallery=",
+        "sub_image": "https://image.converse.co.kr/cmsstatic/product/560251C_560251C_03.jpg?browse="
+      },
+      {
+        "id": 173,
+        "name": "척테일러 올스타 리프트 캔버스",
+        "price": 75000,
+        "main_image": "https://image.converse.co.kr/cmsstatic/product/560250C_560250C_pdp-primary.jpg?gallery=",
+        "sub_image": "https://image.converse.co.kr/cmsstatic/product/560250C_560250C_03.jpg?browse="
+      },
+      {
+        "id": 112,
+        "name": "척테일러 올스타 리프트 캔버스",
+        "price": 79000,
+        "main_image": "https://image.converse.co.kr/cmsstatic/product/27379/560846C_560846C_pdp-primary.jpg?gallery=",
+        "sub_image": "https://image.converse.co.kr/cmsstatic/product/27379/560846C_560846C_03.jpg?browse="
+      }
+    ],
+    "jack_purcell": [
+      {
+        "id": 15,
+        "name": "잭퍼셀 컬러블록",
+        "price": 89000,
+        "main_image": "https://image.converse.co.kr/cmsstatic/product/168976C_168976C_pdp-primary.jpg?gallery=",
+        "sub_image": "https://image.converse.co.kr/cmsstatic/product/168976C_168976C_03.jpg?browse="
+      },
+      {
+        "id": 74,
+        "name": "척 70 핵트 패션",
+        "price": 99000,
+        "main_image": "https://image.converse.co.kr/cmsstatic/product/168695C_168695C_pdp-primary.jpg?gallery=",
+        "sub_image": "https://image.converse.co.kr/cmsstatic/product/168695C_168695C_03.jpg?browse="
+      }
+    ],
+    "pro_leather": [
+      {
+        "id": 211,
+        "name": "잭퍼셀 트레일 투 코브",
+        "price": 85000,
+        "main_image": "https://image.converse.co.kr/cmsstatic/product/168140C_168140C_pdp-primary.jpg?gallery=",
+        "sub_image": "https://image.converse.co.kr/cmsstatic/product/168140C_168140C_03.jpg?browse="
+      },
+      {
+        "id": 187,
+        "name": "잭퍼셀 샤이니 레더",
+        "price": 95000,
+        "main_image": "https://image.converse.co.kr/cmsstatic/product/168135C_168135C_pdp-primary.jpg?gallery=",
+        "sub_image": "https://image.converse.co.kr/cmsstatic/product/168135C_168135C_03.jpg?browse="
+      }
+    ]
+  }
 }
