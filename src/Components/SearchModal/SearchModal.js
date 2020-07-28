@@ -7,16 +7,17 @@ class SearchModal extends React.Component {
   render() {
     return (
       <section className="SearchModal">
-        <div className="serchBoxes">
+        <div className="searchBox">
           <div className="boxLeft">
-            <div className="colectionBox imgBox">
+            <div className="collectionBox imgBox box">
               <img
                 alt="썸머 티 컬렉션 이미지"
                 src="https://www.converse.com/on/demandware.static/-/Library-Sites-SharedLibrary/default/dw079e7f00/firstspirit/media/09_global_elements/2020_fall/search_nav_5/07_35/D-Converse-SearchModule-JULY-20-Converse-CLASSICS.jpg"
+                className="colectionImg"
               />
               <p>썸머 티 컬렉션</p>
             </div>
-            <div>
+            <div className="box">
               <div className="bestSeller textBox">
                 <h2>베스트셀러</h2>
                 <div>
@@ -28,11 +29,12 @@ class SearchModal extends React.Component {
                 <img
                   alt="회원전용상품 이미지"
                   src="https://www.converse.com/on/demandware.static/-/Library-Sites-SharedLibrary/default/dw8b1211a2/firstspirit/media/09_global_elements/2020_fall/search_nav_5/07_35/D-Converse-SearchModule-JULY-20-Converse-CUSTOM.jpg"
+                  className="smallImg"
                 />
                 <p>회원전용상품</p>
               </div>
             </div>
-            <div>
+            <div className="box">
               <div className="qeustion textBox">
                 <h2>무엇을 도와드릴까요?</h2>
                 <div>
@@ -40,18 +42,20 @@ class SearchModal extends React.Component {
                   <p>FAQ에서 궁금한 내용을 찾아보세요.</p>
                 </div>
               </div>
-              <div className="jackpurcell">
+              <div className="jackpurcell imgBox">
                 <img
                   alt="잭퍼셀 상품이미지"
                   src="https://image.converse.co.kr/cmsstatic/product/164057C_164057C_pdp-primary.jpg?gallery="
+                  className="smallImg"
                 />
                 <p>잭퍼셀 클래식 화이트</p>
               </div>
             </div>
-            <div className="chuckBox">
+            <div className="chuckBox imgBox box">
               <img
                 alt="척70 상품 이미지"
                 src="https://image.converse.co.kr/cmsstatic/product/168508C_168508C_hover.jpg?browse="
+                className="collectionImg"
               />
               <p>척 70 뉴컬러</p>
             </div>
@@ -59,11 +63,13 @@ class SearchModal extends React.Component {
           <div className="boxRight">
             <div className="search">
               <h1>검색</h1>
-              <input type="text" placeholder="검색어를 입력해주세요">
+              <div className="inputBox">
+                <input type="text" placeholder="검색어를 입력해주세요" />
                 <svg id="nav-search" viewBox="0 0 32 32">
                   <path d={magnifier}></path>
                 </svg>
-              </input>
+              </div>
+              <div className="searchResult"></div>
             </div>
             <div className="popularWords">
               <h1>인기 검색어</h1>
