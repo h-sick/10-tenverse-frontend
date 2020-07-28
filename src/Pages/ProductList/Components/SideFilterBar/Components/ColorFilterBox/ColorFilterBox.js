@@ -9,11 +9,29 @@ class ColorFilterBox extends React.Component {
     super();
     this.state = {
       fold: false,
+      colorFilterValue: "",
     };
   }
 
   handleFolder = () => {
     this.setState({ fold: !this.state.fold });
+  };
+
+  handleFilterChange = (e) => {
+    this.props.handleFilterChange(e.target.name, e.target.value);
+    this.setState({ colorFilterNumber: e.target.value });
+  };
+
+  handleClassName = (filter) => {
+    const { colorFilterValue } = this.state;
+    if (colorFilterValue === filter) {
+      if (filter === "white") {
+        return "white selected";
+      }
+      return "selected";
+    } else if (filter === "white" && colorFilterValue !== filter) {
+      return "white";
+    }
   };
 
   render() {
@@ -33,17 +51,13 @@ class ColorFilterBox extends React.Component {
               filters.map((filter) => {
                 return (
                   <li>
-                    <div
+                    <button
+                      name="color"
                       value={filter}
-                      className={(() => {
-                        if (filter === "white") {
-                          return "white";
-                        } else {
-                          return null;
-                        }
-                      })()}
+                      className={this.handleClassName(filter)}
                       style={{ backgroundColor: colorValues[filter] }}
-                    ></div>
+                      onClick={this.handleFilterChange}
+                    ></button>
                   </li>
                 );
               })}

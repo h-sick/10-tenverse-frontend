@@ -63,13 +63,15 @@
     display: flex;
     flex-wrap: wrap;
 
-    li {
+    button {
       width: 44.4px;
       height: 48px;
       border: $border;
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
+      background-color: white;
     }
 
     .sizeBtnClicked {

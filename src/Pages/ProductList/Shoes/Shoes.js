@@ -6,6 +6,7 @@ import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
 import Footer from "../../../Components/Footer/Footer";
 import { shoesListAPI } from "../../../config";
+import { filterAPI } from "../../../config";
 import "./Shoes.scss";
 
 const headerData = {
@@ -17,6 +18,7 @@ const headerData = {
   imgUrl:
     "https://image.converse.co.kr/cmsstatic/structured-content/15400/D-Converse-SP20-PWH-Best-Sellers-.jpg",
 };
+let filterQueryString = [];
 
 class Shoes extends React.Component {
   constructor() {
@@ -257,7 +259,7 @@ class Shoes extends React.Component {
         // },
       ],
 
-      filterLables: [],
+      filterDatas: [],
       sortedByHighPrice: true,
       offset: 0,
       loading: false,
@@ -274,32 +276,92 @@ class Shoes extends React.Component {
     this.setState({ clickedColorNumber: e });
   };
 
-  onScroll = (e) => {
-    this.setState({ scroll: e.srcElement.scrollingElement.scrollTop });
+  onScroll = (e, prevProps) => {
+    let queryString = this.props.location.search;
+    const index = queryString.indexOf("&");
+    queryString = queryString.substring(index, queryString.length - 1);
+
+    this.setState({
+      scroll: e.srcElement.scrollingElement.scrollTop,
+    });
+
     if (parseInt(this.state.scroll) > 1500 + 2000 * this.state.offset) {
       this.setState({ offset: this.state.offset + 1 });
-      fetch(`${shoesListAPI}?page=${this.state.offset}`)
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState({
-            itemDatas: this.state.itemDatas.concat(json.products),
+
+      if (prevProps.location.search !== queryString) {
+        fetch(`${shoesListAPI}?page={this.state.offset}&limit=20${queryString}`)
+          .then((res) => res.json())
+          .then((json) => {
+            this.setState({
+              itemDatas: this.state.itemDatas.concat(json.products),
+            });
           });
-        });
+      }
+      // fetch(`${shoesListAPI}?page=${this.state.offset}&limit=20`)
+      //   .then((res) => res.json())
+      //   .then((json) => {
+      //     this.setState({
+      //       itemDatas: this.state.itemDatas.concat(json.products),
+      //     });
+      //   });
     }
   };
 
+  // onScroll = (e) => {
+  //   this.setState({ scroll: e.srcElement.scrollingElement.scrollTop });
+  //   if (parseInt(this.state.scroll) > 1500 + 2000 * this.state.offset) {
+  //     this.setState({ offset: this.state.offset + 1 });
+  //     fetch(`${shoesListAPI}?page=${this.state.offset}`)
+  //       .then((res) => res.json())
+  //       .then((json) => {
+  //         this.setState({
+  //           itemDatas: this.state.itemDatas.concat(json.products),
+  //         });
+  //       });
+  //   }
+  // };
+
+  handleFilterUrl = (name, value) => {
+    const newString = `&${name}=${value}`;
+
+    filterQueryString.includes(newString)
+      ? filterQueryString.splice(filterQueryString.indexOf(newString), 1)
+      : filterQueryString.push(`${newString}`);
+    console.log(filterQueryString);
+
+    const joinString = filterQueryString.join("");
+    const newUrl = `?page=0&limit=20${joinString}`;
+    this.props.history.push(`/category/shoes${newUrl}`);
+  };
+
   componentDidMount() {
-    fetch(`${shoesListAPI}?page=${this.state.offset}`)
+    fetch(`${shoesListAPI}?page=${this.state.offset}&limit=20`)
       .then((res) => res.json())
       .then((json) => {
-        this.setState({ itemDatas: json.products });
+        this.setState({ itemDatas: json.products, filterDatas: json.filters });
       });
     window.addEventListener("scroll", this.onScroll);
   }
 
+  componentDidUpdate(prevProps) {
+    const queryString = this.props.location.search;
+
+    if (prevProps.location.search !== queryString) {
+      fetch(`${shoesListAPI}/filter${queryString}`)
+        .then((res) => res.json())
+        .then((json) => {
+          this.setState({
+            itemDatas: json.products,
+            filterDatas: json.filters,
+          });
+        });
+      window.addEventListener("scroll", this.onScroll);
+    }
+  }
+
   render() {
     const { itemDatas } = this.state;
-    const { sortedByHighPrice, filterLables } = this.state;
+    const { sortedByHighPrice, filterDatas } = this.state;
 
     return (
       <section className="Shoes">
@@ -317,7 +379,10 @@ class Shoes extends React.Component {
         )}
         <main>
           <div className="mainBox">
-            <SideFilterBar filterLables={filterLables} />
+            <SideFilterBar
+              filterDatas={filterDatas}
+              handleFilterChange={this.handleFilterUrl}
+            />
             {itemDatas && (
               <ItemList datas={itemDatas} handleSort={sortedByHighPrice} />
             )}

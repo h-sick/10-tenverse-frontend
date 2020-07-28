@@ -9,7 +9,7 @@ export const iconKaKao =
 export const signinAPI = "http://10.58.3.38:8000/user/signin";
 export const signupAPI = "http://10.58.3.38:8000/user/signup";
 export const shoesListAPI = "http://10.58.3.38:8000/product";
-export const categoryAPI = "http://10.58.3.38:8000/product/category";
+export const filterAPI = "http://10.58.3.38:8000/product/filter";
 
 export const colorValues = {
   black: "#000000",

@@ -15,8 +15,8 @@ class GenderFilterBox extends React.Component {
     this.setState({ fold: !this.state.fold });
   };
 
-  handleClickFilter = (e) => {
-    this.props.onGenderFilterChange(e.target.value);
+  handleFilterChange = (e) => {
+    this.props.handleFilterChange(e.target.name, e.target.value);
   };
 
   render() {
@@ -43,7 +43,7 @@ class GenderFilterBox extends React.Component {
                         id={filter}
                         value={filter}
                         className={filter}
-                        onClick={this.handleClickFilter}
+                        onClick={this.handleFilterChange}
                       />
                       {filter}
                     </label>

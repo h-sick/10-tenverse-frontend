@@ -51,50 +51,54 @@ class ItemBox extends React.Component {
 
     return (
       <div className="ItemBox">
-        <Link to={`/product/detail/${data.product_detail.id}`}>
-          <div
-            className="imgBox"
-            onMouseEnter={this.handleHover}
-            onMouseLeave={this.handleLeave}
-          >
-            <div className="unhovered">
-              <img
-                className="productImg"
-                alt="제품 이미지"
-                src={
-                  colorClickedNumber
-                    ? data.color_list.find((item) => {
-                        return item.shoe_id === parseInt(colorClickedNumber);
-                      }).main_image
-                    : data.product_detail.main_image
-                }
-              />
-            </div>
-            <div className="hover">
-              <img
-                className="productImg"
-                alt="제품 이미지"
-                src={
-                  colorClickedNumber
-                    ? data.color_list.find((item) => {
-                        return item.shoe_id === parseInt(colorClickedNumber);
-                      }).sub_image
-                    : data.product_detail.sub_image
-                }
-              />
-            </div>
-            <svg id="icon-heart" viewBox="0 0 38 34">
-              <path fill-rule="nonzero" d={iconHeart}></path>
-            </svg>
+        <div
+          className="imgBox"
+          onMouseEnter={this.handleHover}
+          onMouseLeave={this.handleLeave}
+          onClick={() => this.props.history.push(`/productDetail/${data.id}`)}
+        >
+          <div className="unhovered">
+            <img
+              className="productImg"
+              alt="제품 이미지"
+              src={
+                colorClickedNumber
+                  ? data.color_list.find((item) => {
+                      return item.shoe_id === parseInt(colorClickedNumber);
+                    }).main_image
+                  : data.product_detail.main_image
+              }
+            />
           </div>
-        </Link>
+          <div className="hover">
+            <img
+              className="productImg"
+              alt="제품 이미지"
+              src={
+                colorClickedNumber
+                  ? data.color_list.find((item) => {
+                      return item.shoe_id === parseInt(colorClickedNumber);
+                    }).sub_image
+                  : data.product_detail.sub_image
+              }
+            />
+          </div>
+          <svg id="icon-heart" viewBox="0 0 38 34">
+            <path fill-rule="nonzero" d={iconHeart}></path>
+          </svg>
+        </div>
         <div
           className="productText"
           onMouseEnter={this.handleHover}
           onMouseLeave={this.handleLeave}
         >
-          <p className="name">{data.product_detail.name}</p>
-          <p className="price">{data.product_detail.price} 원</p>
+          <p
+            className="name"
+            onClick={() => this.props.history.push(`/productDetail/${data.id}`)}
+          >
+            {data.product_detail.name}
+          </p>
+          <p className="price">{Math.floor(data.product_detail.price)} 원</p>
           <p className={colorTextDisplay ? "colors" : "hidden"}>
             {data.color_list.length} 컬러
           </p>

@@ -67,7 +67,7 @@
       justify-content: center;
       align-items: center;
 
-      div {
+      button {
         width: 20px;
         height: 20px;
         border-radius: 10px;
@@ -81,6 +81,12 @@
 
       .white {
         border: $border;
+      }
+
+      .selected {
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
       }
     }
   }

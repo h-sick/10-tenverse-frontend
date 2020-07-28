@@ -15,6 +15,10 @@ class TypeFilterBox extends React.Component {
     this.setState({ fold: !this.state.fold });
   };
 
+  handleFilterChange = (e) => {
+    this.props.handleFilterChange(e.target.name, e.target.value);
+  };
+
   render() {
     const { fold } = this.state;
     const { filters } = this.props;
@@ -39,6 +43,7 @@ class TypeFilterBox extends React.Component {
                         id={filter}
                         value={filter}
                         className={filter}
+                        onClick={this.handleFilterChange}
                       />
                       {filter}
                     </label>

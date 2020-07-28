@@ -8,7 +8,7 @@ class SizeFilterBox extends React.Component {
     super();
     this.state = {
       fold: false,
-      clicked: false,
+      isBtnActive: null,
     };
   }
 
@@ -16,12 +16,13 @@ class SizeFilterBox extends React.Component {
     this.setState({ fold: !this.state.fold });
   };
 
-  handleSizeClick = () => {
-    this.setState({ clicked: !this.state.clicked });
+  handleSizeClick = (e, i) => {
+    this.setState({ isBtnActive: i });
+    this.props.handleFilterChange(e.target.name, e.target.value);
   };
 
   render() {
-    const { fold, clicked } = this.state;
+    const { fold, isBtnActive } = this.state;
     const { filters } = this.props;
 
     return (
@@ -34,14 +35,16 @@ class SizeFilterBox extends React.Component {
           </header>
           <ul className="box">
             {filters &&
-              filters.map((filter) => {
+              filters.map((size, i) => {
                 return (
-                  <li
-                    onclick={this.handleSizeClick}
-                    name={clicked ? "sizeBtnClicked" : null}
+                  <button
+                    onClick={(e) => this.handleSizeClick(e, i)}
+                    name="size"
+                    value={size}
+                    className={isBtnActive === i ? "sizeBtnClicked" : null}
                   >
-                    {filter}
-                  </li>
+                    {size}
+                  </button>
                 );
               })}
           </ul>
