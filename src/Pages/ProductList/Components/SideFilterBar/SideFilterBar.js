@@ -3,8 +3,6 @@ import GenderFilterBox from "./Components/GenderFilterBox/GenderFilterBox";
 import TypeFilterBox from "./Components/TypeFilterBox/TypeFilterBox";
 import ColorFilterBox from "./Components/ColorFilterBox/ColorFilterBox";
 import SizeFilterBox from "./Components/SizeFilterBox/SizeFilterBox";
-import { shoesListAPI } from "../../../../config";
-import { filterAPI } from "../../../../config";
 import "./SideFilterBar.scss";
 
 class SideFilterBar extends React.Component {

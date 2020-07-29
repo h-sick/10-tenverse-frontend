@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import "./svg/FooterFacebook";
-import "./svg/FooterInsta";
-import "./Footer.scss";
 import FooterFacebook from "./svg/FooterFacebook";
 import FooterInsta from "./svg/FooterInsta";
+import "./Footer.scss";
 
 class Footer extends Component {
   render() {
@@ -13,21 +11,9 @@ class Footer extends Component {
           <div className="footerLinkSection">
             <p>FOLLOW US</p>
             <div className="footerSocial">
-              <a
-                href="https://www.facebook.com/converse.kr"
-                target="blank"
-                rel="noopener noreferrer"
-              >
-                <FooterFacebook />
-              </a>
+              <FooterFacebook />
               <div className="footerSocialBorder"></div>
-              <a
-                href="https://www.instagram.com/converse_kr"
-                target="blank"
-                rel="noopener noreferrer"
-              >
-                <FooterInsta />
-              </a>
+              <FooterInsta />
             </div>
           </div>
           <div className="footerLinkBorder"></div>

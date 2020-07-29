@@ -1,0 +1,173 @@
+@import "../../../../Styles/Common.scss";
+
+.Review {
+  padding: 30px 70px 50px 70px;
+  position: relative;
+
+  .reviewTop {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
+
+    .reviewCount {
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .ReviewArrowLeft {
+      filter: fliph();
+      transform: rotate(180deg);
+      width: 18px;
+      height: 14px;
+      cursor: pointer;
+    }
+
+    .ReviewArrowRight {
+      width: 18px;
+      height: 14px;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .reviews {
+    display: flex;
+    justify-content: space-between;
+
+    .reviewAverage {
+      border: $border;
+      width: 250px;
+      height: 380px;
+      padding: 20px 10px 10px 10px;
+      text-align: center;
+
+      .reviewScore {
+        font-size: 80px;
+      }
+
+      .reviewStarScore {
+        margin-bottom: 5px;
+
+        .IconStar {
+          width: 20px;
+          margin: 0 2px;
+        }
+      }
+
+      .reviewCountText {
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      .reviewColorText,
+      .reviewColorSize {
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .reviewBar {
+        width: 180px;
+        height: 8px;
+        border: 0.5px solid black;
+        margin: 0 auto 5px;
+
+        &.color {
+          position: relative;
+
+          .colorBrightness {
+            width: 20%;
+            height: 100%;
+            position: absolute;
+            background-color: black;
+          }
+        }
+
+        &.size {
+          position: relative;
+        }
+
+        .sizeCorrectness {
+          width: 20%;
+          height: 100%;
+          position: absolute;
+          background-color: black;
+        }
+      }
+
+      .how {
+        width: 180px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        font-size: 10px;
+        color: $gray;
+      }
+
+      button {
+        margin-top: 30px;
+        width: 180px;
+        height: 50px;
+        border: 1px solid black;
+        background-color: white;
+
+        &:hover {
+          background-color: black;
+          color: white;
+        }
+      }
+    }
+
+    .reviewSlide {
+      display: flex;
+      margin-bottom: 30px;
+
+      .slider {
+        border: $border;
+        width: 250px;
+        height: 380px;
+        margin-left: 30px;
+        padding: 20px;
+        position: relative;
+
+        .sliderImage {
+          width: 210px;
+          height: 160px;
+          margin-bottom: 20px;
+          background-size: 210px;
+          background-repeat: no-repeat;
+
+          &.first {
+            background-image: url("https://image.converse.co.kr/cmsstatic/reviewAssetFile/20200514/C93B89B2-466E-4D4B-8D8F-8F6637D537CE.jpeg?reviewthumbnail");
+          }
+
+          &.second {
+            background-image: url("https://image.converse.co.kr/cmsstatic/reviewAssetFile/20200512/1589290819225.jpg?reviewthumbnail");
+          }
+        }
+
+        .reviewComment {
+          font-weight: bold;
+          font-size: 13px;
+        }
+
+        .reviewStar {
+          position: absolute;
+          bottom: 10px;
+
+          .IconStar {
+            width: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  .seeAll {
+    direction: rtl;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
