@@ -1,218 +1,232 @@
 .SearchModal {
-  position: fixed;
-  top: 130px;
-  left: 0;
-  bottom: 0;
-  color: #000;
-  z-index: 3;
-  background-color: rgba(0, 0, 0, 0.6);
+  position: relative;
 
-  &.hidden {
-    width: 0;
+  .modalOverlay {
+    position: absolute;
+    height: 100vh;
+    top: 0;
     left: 0;
-    overflow: hidden;
-    transition: all 0.3s;
+    bottom: 0;
+    right: 0;
+    color: #000;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all 0.5s;
+
+    &.hidden,
+    &.hidden ~ .searchBox {
+      width: 0;
+      left: 0;
+      overflow: hidden;
+      transition: all 0.5s;
+    }
   }
 
   .searchBox {
     width: 100vw;
     background-color: #fff;
-    z-index: 200;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
     opacity: 1;
+    transition: all 0.5s;
 
     .searchContainer {
       display: flex;
       justify-content: center;
-    }
+      min-width: 1440px;
 
-    .boxLeft {
-      width: 720px;
-      display: flex;
-      flex-wrap: wrap;
-
-      .box {
-        width: 360px;
-        height: 370px;
-      }
-
-      .imgBox {
-        height: 370px;
-        width: 360px;
-        position: relative;
-
-        .darknessBig {
-          height: 370px;
-          width: 360px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: #000000;
-          opacity: 0;
-          transition: all 0.6s linear;
-          cursor: pointer;
-
-          &:hover {
-            opacity: 0.7;
-          }
-
-          p {
-            font-size: 30px;
-            font-weight: 600;
-            color: white;
-          }
-        }
-
-        .darknessSmall {
-          height: 185px;
-          width: 360px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: #000000;
-          opacity: 0;
-          transition: all 0.6s linear;
-          cursor: pointer;
-
-          &:hover {
-            opacity: 0.7;
-          }
-
-          p {
-            font-size: 30px;
-            font-weight: 600;
-            color: white;
-          }
-        }
-
-        p {
-          position: absolute;
-          top: 20px;
-          left: 20px;
-          color: white;
-          font-size: 14px;
-        }
-      }
-
-      .textBox {
-        width: 360px;
-        height: 185px;
-        padding: 20px;
+      .boxLeft {
+        width: 720px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-wrap: wrap;
 
-        h2 {
-          padding-bottom: 15px;
-        }
-
-        div {
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-
-          &:hover {
-            opacity: 0.6;
-          }
-
-          p {
-            margin-left: 5px;
-            font-size: 14px;
-            font-weight: 600;
-          }
-        }
-      }
-
-      .chuckBox {
-        .collectionImg {
+        .box {
           width: 360px;
           height: 370px;
         }
 
-        p {
-          color: black;
-          font-weight: 600;
-        }
-      }
-
-      .jackpurcell p {
-        color: black;
-        font-weight: 600;
-      }
-
-      .colectionImg {
-        height: 370px;
-        width: 360px;
-        // min-width: 320px;
-        font-size: 14px;
-        color: #000000;
-      }
-
-      .smallImg {
-        width: 360px;
-        height: 185px;
-      }
-    }
-
-    .boxRight {
-      width: 720px;
-      border-left: 1px solid black;
-
-      h1 {
-        font-size: 40px;
-        font-weight: 800;
-      }
-
-      .search {
-        height: 370px;
-        border-bottom: 1px solid black;
-        padding-top: 46px;
-        padding-left: 9.7%;
-        padding-right: 13%;
-
-        .inputBox {
-          width: 500px;
+        .imgBox {
+          height: 370px;
+          width: 360px;
           position: relative;
 
-          input {
-            width: 500px;
-            height: 64px;
-            padding: 26px 10px 10px 10px;
-            margin-top: 20px;
-            margin-left: 20px;
-            border-bottom: 1px solid black;
-            font-size: 20px;
+          .darknessBig {
+            height: 370px;
+            width: 360px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #000000;
+            opacity: 0;
+            transition: all 0.6s linear;
+            cursor: pointer;
 
-            &::placeholder {
-              font-size: 20px;
+            &:hover {
+              opacity: 0.7;
+            }
+
+            p {
+              font-size: 30px;
+              font-weight: 600;
+              color: white;
+            }
+          }
+
+          .darknessSmall {
+            height: 185px;
+            width: 360px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #000000;
+            opacity: 0;
+            transition: all 0.6s linear;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 0.7;
+            }
+
+            p {
+              font-size: 30px;
+              font-weight: 600;
+              color: white;
+            }
+          }
+
+          p {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 14px;
+          }
+        }
+
+        .textBox {
+          width: 360px;
+          height: 185px;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          h2 {
+            padding-bottom: 15px;
+          }
+
+          div {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 0.6;
+            }
+
+            p {
+              margin-left: 5px;
+              font-size: 14px;
               font-weight: 600;
             }
           }
-          svg,
-          path {
-            width: 14px;
-            height: 14px;
-            position: absolute;
-            right: 0px;
-            top: 55px;
+        }
+
+        .chuckBox {
+          .collectionImg {
+            width: 360px;
+            height: 370px;
           }
+
+          p {
+            color: black;
+            font-weight: 600;
+          }
+        }
+
+        .jackpurcell p {
+          color: black;
+          font-weight: 600;
+        }
+
+        .colectionImg {
+          height: 370px;
+          width: 360px;
+          // min-width: 320px;
+          font-size: 14px;
+          color: #000000;
+        }
+
+        .smallImg {
+          width: 360px;
+          height: 185px;
         }
       }
 
-      .popularWords {
-        height: 370px;
-        padding-top: 46px;
-        padding-left: 9.7%;
-        padding-right: 13%;
+      .boxRight {
+        width: 720px;
+        border-left: 1px solid black;
 
-        ul {
+        h1 {
+          font-size: 40px;
+          font-weight: 800;
+        }
+
+        .search {
+          height: 370px;
+          width: 720px;
+          border-bottom: 1px solid black;
           padding-top: 46px;
-          padding-left: 46px;
+          padding-left: 9.7%;
+          padding-right: 13%;
 
-          li {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            cursor: pointer;
+          .inputBox {
+            width: 500px;
+            position: relative;
+
+            input {
+              width: 500px;
+              height: 64px;
+              padding: 26px 10px 10px 10px;
+              margin-top: 20px;
+              margin-left: 20px;
+              border-bottom: 1px solid black;
+              font-size: 20px;
+
+              &::placeholder {
+                font-size: 20px;
+                font-weight: 600;
+              }
+            }
+            svg,
+            path {
+              width: 14px;
+              height: 14px;
+              position: absolute;
+              right: 0px;
+              top: 55px;
+            }
+          }
+        }
+
+        .popularWords {
+          height: 370px;
+          padding-top: 46px;
+          padding-left: 9.7%;
+          padding-right: 13%;
+
+          ul {
+            padding-top: 46px;
+            padding-left: 46px;
+
+            li {
+              font-size: 18px;
+              font-weight: 600;
+              margin-bottom: 20px;
+              cursor: pointer;
+            }
           }
         }
       }

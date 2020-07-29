@@ -11,6 +11,11 @@ class Main extends Component {
     };
   }
 
+  handleNavSearchBtn = () => {
+    // const { activatedBtn } = this.state;
+    this.setState({ activatedBtn: !this.state.activatedBtn });
+  };
+
   render() {
     const { activatedBtn } = this.state;
     return (

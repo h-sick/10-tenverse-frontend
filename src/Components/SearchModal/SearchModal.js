@@ -1,6 +1,12 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
-import { magnifier } from "../../config";
+import {
+  magnifier,
+  collectionImg,
+  memberOnlyImg,
+  jackpurcellImg,
+  chuckImg,
+} from "../../config";
 import "./SearchModal.scss";
 
 class SearchModal extends React.Component {
@@ -12,7 +18,8 @@ class SearchModal extends React.Component {
     const { handleSearchModal } = this.props;
 
     return (
-      <section className={`SearchModal ${handleSearchModal ? "" : "hidden"}`}>
+      <section className="SearchModal">
+        <div className={`modalOverlay ${handleSearchModal ? "" : "hidden"}`} />
         <div className="searchBox">
           <div className="searchContainer">
             <div className="boxLeft">
@@ -22,7 +29,7 @@ class SearchModal extends React.Component {
                 </div>
                 <img
                   alt="썸머 티 컬렉션 이미지"
-                  src="https://www.converse.com/on/demandware.static/-/Library-Sites-SharedLibrary/default/dw079e7f00/firstspirit/media/09_global_elements/2020_fall/search_nav_5/07_35/D-Converse-SearchModule-JULY-20-Converse-CLASSICS.jpg"
+                  src={collectionImg}
                   className="colectionImg"
                 />
                 <p>썸머 티 컬렉션</p>
@@ -41,7 +48,7 @@ class SearchModal extends React.Component {
                   </div>
                   <img
                     alt="회원전용상품 이미지"
-                    src="https://www.converse.com/on/demandware.static/-/Library-Sites-SharedLibrary/default/dw8b1211a2/firstspirit/media/09_global_elements/2020_fall/search_nav_5/07_35/D-Converse-SearchModule-JULY-20-Converse-CUSTOM.jpg"
+                    src={memberOnlyImg}
                     className="smallImg"
                   />
                   <p>회원전용상품</p>
@@ -61,7 +68,7 @@ class SearchModal extends React.Component {
                   </div>
                   <img
                     alt="잭퍼셀 상품이미지"
-                    src="https://image.converse.co.kr/cmsstatic/product/164057C_164057C_pdp-primary.jpg?gallery="
+                    src={jackpurcellImg}
                     className="smallImg"
                   />
                   <p>잭퍼셀 클래식 화이트</p>
@@ -73,7 +80,7 @@ class SearchModal extends React.Component {
                 </div>
                 <img
                   alt="척70 상품 이미지"
-                  src="https://image.converse.co.kr/cmsstatic/product/168508C_168508C_hover.jpg?browse="
+                  src={chuckImg}
                   className="collectionImg"
                 />
                 <p>척 70 뉴컬러</p>
