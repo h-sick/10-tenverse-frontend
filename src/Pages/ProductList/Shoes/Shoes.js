@@ -281,38 +281,39 @@ class Shoes extends React.Component {
     });
 
     const { scroll, offset } = this.state;
+
     let queryString = this.props.location.search;
     let splitString = queryString.split("&");
     splitString.splice(0, 2);
-    splitString.join("&");
-    splitString.unshift("&");
+    splitString = splitString.join("&");
+    splitString = "&".concat(splitString);
 
     if (parseInt(scroll) > 1500 + 2000 * offset) {
-      this.setState({ offset: offset + 1 });
+      if (queryString.length > 0) {
+        this.setState({ offset: offset + 1 });
 
-      fetch(`${shoesListAPI}?page={this.state.offset}&limit=20${splitString}`)
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState({
-            itemDatas: this.state.itemDatas.concat(json.products),
+        fetch(
+          `${shoesListAPI}?page=${this.state.offset}&limit=20${splitString}`
+        )
+          .then((res) => res.json())
+          .then((json) => {
+            this.setState({
+              itemDatas: this.state.itemDatas.concat(json.products),
+            });
           });
-        });
+      } else {
+        this.setState({ offset: offset + 1 });
+
+        fetch(`${shoesListAPI}?page=${this.state.offset}&limit=20`)
+          .then((res) => res.json())
+          .then((json) => {
+            this.setState({
+              itemDatas: this.state.itemDatas.concat(json.products),
+            });
+          });
+      }
     }
   };
-
-  // onScroll = (e) => {
-  //   this.setState({ scroll: e.srcElement.scrollingElement.scrollTop });
-  //   if (parseInt(this.state.scroll) > 1500 + 2000 * this.state.offset) {
-  //     this.setState({ offset: this.state.offset + 1 });
-  //     fetch(`${shoesListAPI}?page=${this.state.offset}`)
-  //       .then((res) => res.json())
-  //       .then((json) => {
-  //         this.setState({
-  //           itemDatas: this.state.itemDatas.concat(json.products),
-  //         });
-  //       });
-  //   }
-  // };
 
   handleFilterUrl = (name, value) => {
     const newString = `&${name}=${value}`;
