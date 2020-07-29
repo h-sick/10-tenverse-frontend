@@ -44,7 +44,9 @@ class Nav extends Component {
           <NavHeart />
           <NavCs />
           <button
-            className={navSearchBtnActive ? "navSearchBtn Changed" : "navSearchBtn"}
+            className={
+              navSearchBtnActive ? "navSearchBtn Changed" : "navSearchBtn"
+            }
             onClick={this.handleNavSearchBtn}
           >
             <div class="navSearchText">검색</div>
