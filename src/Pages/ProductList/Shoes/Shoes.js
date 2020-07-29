@@ -6,7 +6,6 @@ import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
 import Footer from "../../../Components/Footer/Footer";
 import { shoesListAPI } from "../../../config";
-import { filterAPI } from "../../../config";
 import "./Shoes.scss";
 
 const headerData = {
@@ -277,33 +276,27 @@ class Shoes extends React.Component {
   };
 
   onScroll = (e, prevProps) => {
-    let queryString = this.props.location.search;
-    const index = queryString.indexOf("&");
-    queryString = queryString.substring(index, queryString.length - 1);
-
     this.setState({
       scroll: e.srcElement.scrollingElement.scrollTop,
     });
 
-    if (parseInt(this.state.scroll) > 1500 + 2000 * this.state.offset) {
-      this.setState({ offset: this.state.offset + 1 });
+    const { scroll, offset } = this.state;
+    let queryString = this.props.location.search;
+    let splitString = queryString.split("&");
+    splitString.splice(0, 2);
+    splitString.join("&");
+    splitString.unshift("&");
 
-      if (prevProps.location.search !== queryString) {
-        fetch(`${shoesListAPI}?page={this.state.offset}&limit=20${queryString}`)
-          .then((res) => res.json())
-          .then((json) => {
-            this.setState({
-              itemDatas: this.state.itemDatas.concat(json.products),
-            });
+    if (parseInt(scroll) > 1500 + 2000 * offset) {
+      this.setState({ offset: offset + 1 });
+
+      fetch(`${shoesListAPI}?page={this.state.offset}&limit=20${splitString}`)
+        .then((res) => res.json())
+        .then((json) => {
+          this.setState({
+            itemDatas: this.state.itemDatas.concat(json.products),
           });
-      }
-      // fetch(`${shoesListAPI}?page=${this.state.offset}&limit=20`)
-      //   .then((res) => res.json())
-      //   .then((json) => {
-      //     this.setState({
-      //       itemDatas: this.state.itemDatas.concat(json.products),
-      //     });
-      //   });
+        });
     }
   };
 
@@ -327,7 +320,6 @@ class Shoes extends React.Component {
     filterQueryString.includes(newString)
       ? filterQueryString.splice(filterQueryString.indexOf(newString), 1)
       : filterQueryString.push(`${newString}`);
-    console.log(filterQueryString);
 
     const joinString = filterQueryString.join("");
     const newUrl = `?page=0&limit=20${joinString}`;

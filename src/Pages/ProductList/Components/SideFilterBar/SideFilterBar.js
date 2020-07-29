@@ -54,8 +54,7 @@ class SideFilterBar extends React.Component {
   }
 
   render() {
-    // const { category } = this.state || [];
-    const { filterDatas } = this.props;
+    const { filterDatas } = this.props || [];
 
     return (
       <aside className="SideFilterBar">
