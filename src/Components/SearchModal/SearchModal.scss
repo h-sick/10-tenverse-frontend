@@ -28,9 +28,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 1;
     opacity: 1;
     transition: all 0.5s;
+    overflow: hidden;
 
     .searchContainer {
       display: flex;
