@@ -37,14 +37,12 @@ const recommendDatas = [
 class SideBar extends React.Component {
   render() {
     const { sideBarDisplay } = this.props;
-    console.log(sideBarDisplay);
+
     return (
       <div className="SideBar">
-        <div
-          className={`sideBarOverlay ${sideBarDisplay ? "" : "hidden"}`}
-        ></div>
-        <div className={`sideBarInner ${sideBarDisplay ? "" : "hidden"}`}>
-          <main className="main">
+        <div className={`sideBarOverlay ${sideBarDisplay ? "" : "hidden"}`} />
+        <div className="sideBarInner">
+          <main>
             <ul>
               {navDatas.map((navData) => {
                 return (
