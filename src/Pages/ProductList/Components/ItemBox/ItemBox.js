@@ -93,9 +93,7 @@ class ItemBox extends React.Component {
           >
             {product_detail.name}
           </p>
-          <p className="price">
-            {product_detail.price.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,")}원
-          </p>
+          <p className="price">{product_detail.price}원</p>
           <p className={colorTextDisplay ? "colors" : "hidden"}>
             {product_detail.color_list && product_detail.color_list.length} 컬러
           </p>
