@@ -4,12 +4,20 @@ import Nav from "../../Components/Nav/Nav";
 import SearchModal from "../../Components/SearchModal/SearchModal";
 
 class Main extends Component {
+  constructor() {
+    super();
+    this.state = {
+      activatedBtn: false,
+    };
+  }
+
   render() {
+    const { activatedBtn } = this.state;
     return (
       <nav className="Main">
         <Banner />
-        <Nav />
-        <SearchModal />
+        <Nav handleNavSearchBtn={this.handleNavSearchBtn} />
+        <SearchModal handleSearchModal={activatedBtn} />
       </nav>
     );
   }

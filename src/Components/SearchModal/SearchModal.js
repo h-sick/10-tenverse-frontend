@@ -9,8 +9,10 @@ class SearchModal extends React.Component {
   };
 
   render() {
+    const { handleSearchModal } = this.props;
+
     return (
-      <section className="SearchModal">
+      <section className={`SearchModal ${handleSearchModal ? "" : "hidden"}`}>
         <div className="searchBox">
           <div className="searchContainer">
             <div className="boxLeft">
