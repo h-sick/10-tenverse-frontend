@@ -4,20 +4,22 @@ import "./Header.scss";
 
 class Header extends React.Component {
   render() {
+    const { links, imgUrl, title } = this.props;
+
     return (
       <header className="Header">
         <div className="headerNav">
-          {this.props.links.map((link) => {
+          {links.map((link) => {
             return <Link to={link.linkTo}>{link.linkText}</Link>;
           })}
         </div>
         <div
           style={{
-            backgroundImage: `url(${this.props.imgUrl})`,
+            backgroundImage: `url(${imgUrl})`,
           }}
           className="headerImg"
         >
-          <p>{this.props.title}</p>
+          <p>{title}</p>
         </div>
       </header>
     );

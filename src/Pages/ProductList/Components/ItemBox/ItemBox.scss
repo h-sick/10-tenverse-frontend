@@ -11,16 +11,13 @@
     height: 315px;
     cursor: pointer;
 
-    &:hover > .unhovered {
+    &:hover > .unhovered,
+    &:hover > .colors {
       opacity: 0;
     }
 
     &:hover > .hover {
       opacity: 1;
-    }
-
-    &:hover > .colors {
-      opacity: 0;
     }
 
     .unhovered {

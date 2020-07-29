@@ -9,7 +9,7 @@ class ItemBox extends React.Component {
     super();
     this.state = {
       colorTextDisplay: true,
-      colorClickedNumber: "",
+      colorClickedNumber: 0,
       colorClicked: false,
     };
   }
@@ -23,42 +23,31 @@ class ItemBox extends React.Component {
   };
 
   handleColorNumber = (e) => {
-    this.setState({ colorClickedNumber: e.target.id });
-    this.setState({ colorClicked: true });
+    this.setState({ colorClickedNumber: e.target.id, colorClicked: true });
   };
 
-  handleColorName = (colordata) => {
+  handleColorName = ({ shoe_id, color_filter }) => {
     const { colorTextDisplay, colorClickedNumber } = this.state;
+    const isSame = parseInt(colorClickedNumber) === shoe_id;
+    const activated = `hidden ${isSame ? "selected" : ""}`;
+    const unActivated = `colorCircle ${color_filter} ${
+      isSame ? "selected" : ""
+    }`;
 
-    if (colorTextDisplay) {
-      if (parseInt(colorClickedNumber) === colordata.shoe_id) {
-        return "hidden selected";
-      } else {
-        return "hidden";
-      }
-    } else if (!colorTextDisplay) {
-      if (parseInt(colorClickedNumber) === colordata.shoe_id) {
-        return `colorCircle ${colordata.color_filter} selected`;
-      } else {
-        return `colorCircle ${colordata.color_filter}`;
-      }
-    }
+    return colorTextDisplay ? activated : unActivated;
   };
 
   render() {
-    const { data } = this.props;
+    const { product_detail } = this.props.data;
     const { colorTextDisplay, colorClickedNumber } = this.state;
 
     return (
       <div className="ItemBox">
-        <Link to={`/product/detail/${data.id}`}>
+        <Link to={`/product/detail/${product_detail.id}`}>
           <div
             className="imgBox"
             onMouseEnter={this.handleHover}
             onMouseLeave={this.handleLeave}
-            // onClick={() =>
-            //   this.props.history.push(`/product/detail/${data.id}`)
-            // }
           >
             <div className="unhovered">
               <img
@@ -66,10 +55,10 @@ class ItemBox extends React.Component {
                 alt="제품 이미지"
                 src={
                   colorClickedNumber
-                    ? data.color_list.find((item) => {
+                    ? product_detail.color_list.find((item) => {
                         return item.shoe_id === parseInt(colorClickedNumber);
                       }).main_image
-                    : data.product_detail.main_image
+                    : product_detail.main_image
                 }
               />
             </div>
@@ -79,10 +68,10 @@ class ItemBox extends React.Component {
                 alt="제품 이미지"
                 src={
                   colorClickedNumber
-                    ? data.color_list.find((item) => {
+                    ? product_detail.color_list.find((item) => {
                         return item.shoe_id === parseInt(colorClickedNumber);
                       }).sub_image
-                    : data.product_detail.sub_image
+                    : product_detail.sub_image
                 }
               />
             </div>
@@ -98,27 +87,32 @@ class ItemBox extends React.Component {
         >
           <p
             className="name"
-            onClick={() => this.props.history.push(`/productDetail/${data.id}`)}
+            onClick={() =>
+              this.props.history.push(`/productDetail/${product_detail.id}`)
+            }
           >
-            {data.product_detail.name}
+            {product_detail.name}
           </p>
-          <p className="price">{Math.floor(data.product_detail.price)} 원</p>
+          <p className="price">
+            {product_detail.price.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,")}원
+          </p>
           <p className={colorTextDisplay ? "colors" : "hidden"}>
-            {data.color_list.length} 컬러
+            {product_detail.color_list && product_detail.color_list.length} 컬러
           </p>
           <div className="colorBox">
-            {data.color_list.map((colordata) => {
-              return (
-                <div
-                  className={this.handleColorName(colordata)}
-                  style={{
-                    backgroundColor: colorValues[colordata.color_filter],
-                  }}
-                  onClick={this.handleColorNumber}
-                  id={colordata.shoe_id}
-                />
-              );
-            })}
+            {product_detail.color_list &&
+              product_detail.color_list.map((colordata) => {
+                return (
+                  <div
+                    className={this.handleColorName(colordata)}
+                    style={{
+                      backgroundColor: colorValues[colordata.color_filter],
+                    }}
+                    onClick={this.handleColorNumber}
+                    id={colordata.shoe_id}
+                  />
+                );
+              })}
           </div>
         </div>
       </div>
