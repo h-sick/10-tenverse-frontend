@@ -1,11 +1,10 @@
 import React from "react";
 import "../FourthPage/FourthPage.scss";
-import ItemList from "../Components/ItemList";
+import ItemList from "../Components/Item/ItemList";
 
 class FourthPage extends React.Component {
   render() {
     const { product } = this.props;
-    // let fourthPageShoe = product.filter((item, index) => index > 5);
 
     return (
       <div className="FourthPage">

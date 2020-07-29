@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "../../Components/Nav/Nav";
+import Banner from "../../Components/Nav/Banner/Banner";
 import FirstPage from "./FirstPage/FirstPage";
 import SecondPage from "./SecondPage/SecondPage";
 import ThirdPage from "./ThirdPage/ThirdPage";
@@ -22,7 +23,6 @@ class Main extends React.Component {
     fetch("http://localhost:3000/data/main.json")
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         this.setState({
           product: res.products,
         });
@@ -33,9 +33,10 @@ class Main extends React.Component {
     const { product } = this.state;
     return (
       <div className="entireWrapper">
-        <Nav />
+        <Banner />
         <div className="pageWrapper">
-          <FirstPage product={product.womens_collection} />
+          <Nav />
+          <FirstPage product={product.women_collection} />
           <SecondPage product={product.jack_purcell} />
           <ThirdPage product={product} />
           <FourthPage product={product.pro_leather} />

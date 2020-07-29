@@ -1,5 +1,5 @@
 import React from "react";
-import ItemList from "../Components/ItemList";
+import ItemList from "../Components/Item/ItemList";
 import "./FirstPage.scss";
 
 const firstImg = {
@@ -9,7 +9,7 @@ const firstImg = {
 class FirstPage extends React.Component {
   render() {
     const { product } = this.props;
-    console.log("fistPage :", product);
+    // console.log("fistPage :", product);
     // let firstPageShoe = product.filter((item, index) => index < 4);
     return (
       <div className="FirstPage">

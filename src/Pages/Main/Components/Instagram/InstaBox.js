@@ -1,5 +1,4 @@
 import React from "react";
-// import { iconHeart } from "../../../config";
 import "./InstaBox.scss";
 
 class InstaBox extends React.Component {
@@ -17,13 +16,16 @@ class InstaBox extends React.Component {
     }));
   };
 
+  modalHandler = (e) => {
+    this.props.modalStateHandler(this.props.idx);
+  };
+
   render() {
     const { isHovered } = this.state;
-    console.log(isHovered);
     const { img, text } = this.props;
 
     return (
-      <div className="InstaBox">
+      <div className="InstaBox" onClick={this.modalHandler}>
         <div
           className="imgBox"
           onMouseEnter={this.hoverHandler}
@@ -37,7 +39,6 @@ class InstaBox extends React.Component {
           />
           <div className={isHovered ? "instaHoverOn" : "instaHoverOff"}>
             <img
-              // className={isHovered ? "instaHoverOn" : "instaHoverOff"}
               alt="호버 이미지"
               src={
                 "https://static.vecteezy.com/system/resources/thumbnails/000/097/181/small/free-black-leather-vector.jpg"

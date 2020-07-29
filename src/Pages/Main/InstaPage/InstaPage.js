@@ -1,5 +1,4 @@
 import React from "react";
-// import InstaList from "../Components/ItemList";
 import "./InstaPage.scss";
 import InstaList from "../Components/Instagram/InstaList";
 
@@ -21,7 +20,6 @@ class InstaPage extends React.Component {
   }
 
   render() {
-    // console.log(this.state.posts);
     const { posts } = this.state;
 
     return (

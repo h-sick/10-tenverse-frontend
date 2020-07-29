@@ -1,5 +1,5 @@
 import React from "react";
-import { iconHeart } from "../../../config";
+import { iconHeart } from "../../../../config";
 import "./ItemBox.scss";
 
 class ItemBox extends React.Component {

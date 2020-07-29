@@ -135,7 +135,7 @@ class SignUp extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const {
       firstCheck,
       secondCheck,

@@ -1,16 +1,16 @@
 .InstaBox {
-  width: 350px;
-  height: 355px;
+  width: 340px;
+  height: 350px;
   margin: 10px;
   position: relative;
   overflow: hidden;
 
   .imgBox {
     img {
-      width: 350px;
-      height: 355px;
+      width: 340px;
+      height: 350px;
       &:nth-of-type(3) {
-        height: 380px;
+        height: 400px;
       }
     }
     .icon {
@@ -37,23 +37,4 @@
       transition: all 0.3s ease-in-out;
     }
   }
-
-  // .hover {
-  //   width: 100%;
-  //   height: 100%;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   &:hover {
-  //     animation: floatItem 5s ease-in-out;
-  //   }
-  //   @keyframes floatItem {
-  //     from {
-  //       height: 0;
-  //     }
-  //     to {
-  //       height: 100%;
-  //     }
-  //   }
-  // }
 }

@@ -1,0 +1,39 @@
+@import "../../../../Styles/Common.scss";
+
+.ShoeColor {
+  padding: 20px 0 30px 0;
+  font-size: 14px;
+  border-bottom: $border;
+
+  .grey {
+    color: grey;
+    margin-right: 5px;
+  }
+
+  .shoeColorImage {
+    display: flex;
+    margin-top: 20px;
+
+    .shoeColorImageEach {
+      width: 68px;
+      margin-right: 2px;
+      cursor: pointer;
+
+      img {
+        width: 67px;
+        margin-right: 3px;
+      }
+
+      .underShoeColorImage {
+        height: 1.5px;
+        background-color: lightgrey;
+      }
+
+      &:first-child {
+        .underShoeColorImage {
+          background-color: black;
+        }
+      }
+    }
+  }
+}

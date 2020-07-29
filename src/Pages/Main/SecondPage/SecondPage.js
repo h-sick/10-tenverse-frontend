@@ -1,6 +1,6 @@
 import React from "react";
 import "../SecondPage/SecondPage.scss";
-import ItemList from "../Components/ItemList";
+import ItemList from "../Components/Item/ItemList";
 
 class SecondPage extends React.Component {
   constructor(props) {
@@ -34,9 +34,6 @@ class SecondPage extends React.Component {
   render() {
     const { shoeLists } = this.state;
     const { product } = this.props;
-    // let secondPageShoe = product.filter(
-    //   (item, index) => index > 3 && index < 6
-    // );
 
     return (
       <div className="SecondPage">
