@@ -1,11 +1,13 @@
 import React from "react";
 import Nav from "../../../Components/Nav/Nav";
+import Banner from "../../../Components/Nav/Banner/Banner";
 import Header from "../Components/Header/Header";
 import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
 import Footer from "../../../Components/Footer/Footer";
 import { shoesListAPI } from "../../../config";
+import { gif } from "../../../config";
 import "./Shoes.scss";
 
 const headerData = {
@@ -17,6 +19,7 @@ const headerData = {
   imgUrl:
     "https://image.converse.co.kr/cmsstatic/structured-content/15400/D-Converse-SP20-PWH-Best-Sellers-.jpg",
 };
+const limit = 20;
 let filterQueryString = [];
 
 class Shoes extends React.Component {
@@ -262,6 +265,7 @@ class Shoes extends React.Component {
       sortedByHighPrice: true,
       offset: 0,
       loading: false,
+      fetchErr: false,
     };
   }
 
@@ -289,28 +293,48 @@ class Shoes extends React.Component {
     splitString = "&".concat(splitString);
 
     if (parseInt(scroll) > 1500 + 2000 * offset) {
+      this.setState({ offset: offset + 1 });
+      this.setState({ loading: true });
+
       if (queryString.length > 0) {
-        this.setState({ offset: offset + 1 });
+        // this.setState({ offset: offset + 1 });
+        // this.setState({ loading: true });
 
         fetch(
-          `${shoesListAPI}?page=${this.state.offset}&limit=20${splitString}`
+          `${shoesListAPI}?page=${this.state.offset}&limit=${limit}${splitString}`
         )
           .then((res) => res.json())
           .then((json) => {
-            this.setState({
-              itemDatas: this.state.itemDatas.concat(json.products),
-            });
-          });
+            this.setState(
+              {
+                itemDatas: this.state.itemDatas.concat(json.products),
+              },
+              () => {
+                this.setState({ loading: false });
+              }
+            );
+          })
+          .catch(
+            (error) => console.error("Error:", error),
+            this.setState({ fetchErr: true })
+          );
       } else {
-        this.setState({ offset: offset + 1 });
+        // this.setState({ offset: offset + 1 });
+        // this.setState({ loading: true });
 
-        fetch(`${shoesListAPI}?page=${this.state.offset}&limit=20`)
+        fetch(`${shoesListAPI}?page=${this.state.offset}&limit=${limit}`)
           .then((res) => res.json())
           .then((json) => {
-            this.setState({
-              itemDatas: this.state.itemDatas.concat(json.products),
-            });
-          });
+            this.setState(
+              {
+                itemDatas: this.state.itemDatas.concat(json.products),
+              },
+              () => {
+                this.setState({ loading: false });
+              }
+            );
+          })
+          .catch((error) => console.error("Error:", error));
       }
     }
   };
@@ -328,7 +352,7 @@ class Shoes extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`${shoesListAPI}?page=${this.state.offset}&limit=20`)
+    fetch(`${shoesListAPI}?page=${this.state.offset}&limit=${limit}`)
       .then((res) => res.json())
       .then((json) => {
         this.setState({ itemDatas: json.products, filterDatas: json.filters });
@@ -353,11 +377,15 @@ class Shoes extends React.Component {
   }
 
   render() {
-    const { itemDatas } = this.state;
+    const { itemDatas, loading } = this.state;
     const { sortedByHighPrice, filterDatas } = this.state;
 
     return (
       <section className="Shoes">
+        <div className={`loadingModal ${loading ? "" : "hidden"}`}>
+          <img src={gif} alt="preloader gif" />
+        </div>
+        <Banner />
         <Nav />
         <Header
           links={headerData.links}

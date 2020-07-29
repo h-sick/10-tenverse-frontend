@@ -10,6 +10,8 @@ export const signinAPI = "http://10.58.3.38:8000/user/signin";
 export const signupAPI = "http://10.58.3.38:8000/user/signup";
 export const shoesListAPI = "http://10.58.3.38:8000/product";
 export const filterAPI = "http://10.58.3.38:8000/product/filter";
+export const gif =
+  "https://image.converse.co.kr/cmsstatic/theme/b-commerce/assets/images/preloader.gif";
 
 export const colorValues = {
   black: "#000000",
