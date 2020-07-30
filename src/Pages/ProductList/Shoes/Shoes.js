@@ -6,7 +6,7 @@ import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
 import Footer from "../../../Components/Footer/Footer";
-import { shoesListAPI, filterAPI, gif } from "../../../config";
+import { shoesListAPI, gif } from "../../../config";
 import "./Shoes.scss";
 
 const headerData = {
@@ -44,6 +44,7 @@ class Shoes extends React.Component {
   onScroll = (e) => {
     const { offset, itemDatas } = this.state;
     const scroll = e.srcElement.scrollingElement.scrollTop;
+    const urlId = this.props.match.params.id;
 
     let queryString = this.props.location.search;
     let splitString = queryString.split("&");
@@ -52,13 +53,13 @@ class Shoes extends React.Component {
     splitString = splitString.join("&");
     splitString = "&".concat(splitString);
 
-    const fetchUrl = queryString ? filterAPI : shoesListAPI;
+    const filterUrl = queryString ? "filter" : "";
     const scrollCondition = scroll > 1500 + 2000 * offset;
 
     if (scrollCondition) {
       this.setState({ offset: offset + 1, loading: true });
       fetch(
-        `${fetchUrl}?page=${offset}&limit=${limit}${
+        `${shoesListAPI}/${urlId}${filterUrl}?page=${offset}&limit=${limit}${
           queryString.length ? splitString : ""
         }`
       )
@@ -93,7 +94,9 @@ class Shoes extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`${shoesListAPI}?page=${this.state.offset}&limit=${limit}`)
+    const urlId = this.props.match.params.id;
+
+    fetch(`${shoesListAPI}/${urlId}?page=${this.state.offset}&limit=${limit}`)
       .then((res) => res.json())
       .then((json) => {
         this.setState({ itemDatas: json.products, filterDatas: json.filters });
@@ -107,9 +110,10 @@ class Shoes extends React.Component {
 
   componentDidUpdate(prevProps) {
     const queryString = this.props.location.search;
+    const urlId = this.props.match.params.id;
 
     if (prevProps.location.search !== queryString) {
-      fetch(`${shoesListAPI}/filter${queryString}`)
+      fetch(`${shoesListAPI}/${urlId}/filter${queryString}`)
         .then((res) => res.json())
         .then((json) => {
           this.setState({
