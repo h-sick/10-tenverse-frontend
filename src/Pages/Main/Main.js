@@ -33,7 +33,6 @@ class Main extends React.Component {
 
   render() {
     const { product } = this.state;
-    console.log("Main :", product);
     return (
       <div className="entireWrapper">
         <Banner />

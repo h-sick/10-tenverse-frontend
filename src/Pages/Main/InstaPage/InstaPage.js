@@ -54,7 +54,6 @@ class InstaPage extends React.Component {
 
   render() {
     const { posts, loading } = this.state;
-    console.log("InstaPage: ", posts);
 
     return (
       <div className="InstaPage">
