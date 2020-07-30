@@ -16,5 +16,3 @@ export const jackpurcellImg =
   "https://image.converse.co.kr/cmsstatic/product/164057C_164057C_pdp-primary.jpg?gallery=";
 export const chuckImg =
   "https://image.converse.co.kr/cmsstatic/product/168508C_168508C_hover.jpg?browse=";
-export const signinAPI = "http://10.58.3.38:8000/user/signin";
-export const signupAPI = "http://10.58.3.38:8000/user/signup";
