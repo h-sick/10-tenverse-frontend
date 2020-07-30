@@ -102,7 +102,7 @@ class Shoes extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll");
+    window.removeEventListener("scroll", this.onScroll);
   }
 
   componentDidUpdate(prevProps) {
@@ -124,7 +124,6 @@ class Shoes extends React.Component {
   render() {
     const { itemDatas, loading } = this.state;
     const { sortedByHighPrice, filterDatas } = this.state;
-    // console.log(this.state.scroll);
 
     return (
       <section className="Shoes">
