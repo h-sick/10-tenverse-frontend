@@ -12,7 +12,7 @@ class SignUp extends React.Component {
       userName: "",
       userNumber: "",
       userBirthDate: "",
-      gender: false,
+      gender: "",
       entireCheck: false,
       firstCheck: false,
       secondCheck: false,
@@ -41,7 +41,7 @@ class SignUp extends React.Component {
       gender.length !== 0 &&
       !incorrectEntireCheck
     ) {
-      fetch("http://10.58.0.114:8000/user/signup", {
+      fetch("http://10.58.3.38:8000/user/signup", {
         method: "POST",
         body: JSON.stringify({
           email: userEmail,
@@ -56,7 +56,7 @@ class SignUp extends React.Component {
           if (!res.ok) throw new Error();
           return res.json();
         })
-        .then(() => this.props.history.push("/"))
+        .then(() => this.props.history.push("/login"))
         .catch((error) => console.error("Error:", error));
     }
   };
@@ -121,7 +121,7 @@ class SignUp extends React.Component {
 
   checkingGender = (e) => {
     this.setState({
-      gender: e.target.value === "남성",
+      gender: e.target.name === "남성",
     });
   };
 
@@ -135,6 +135,7 @@ class SignUp extends React.Component {
   };
 
   render() {
+    // console.log(this.state);
     const {
       firstCheck,
       secondCheck,
@@ -260,14 +261,16 @@ class SignUp extends React.Component {
                 </div>
                 <div className="genderBtn">
                   <button
-                    className={gender === "여성" ? "click" : ""}
+                    className={gender === false ? "click" : ""}
                     onClick={this.checkingGender}
+                    name="여성"
                   >
                     여성
                   </button>
                   <button
-                    className={gender === "남성" ? "click" : ""}
+                    className={gender === true ? "click" : ""}
                     onClick={this.checkingGender}
+                    name="남성"
                   >
                     남성
                   </button>
