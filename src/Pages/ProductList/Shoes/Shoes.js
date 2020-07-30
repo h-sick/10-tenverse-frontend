@@ -53,7 +53,7 @@ class Shoes extends React.Component {
     splitString = splitString.join("&");
     splitString = "&".concat(splitString);
 
-    const filter = queryString ? "filter" : "";
+    const filter = queryString ? "/filter" : "";
     const scrollCondition = scroll > 1500 + 2000 * offset;
     console.log(scroll);
     console.log("조건", 1500 + 2000 * offset);
@@ -61,14 +61,14 @@ class Shoes extends React.Component {
     if (scrollCondition) {
       console.log(scroll);
       console.log(
-        `${shoesListAPI}/${urlId}/${filter}?page=${offset}&limit=${limit}${
+        `${shoesListAPI}/${urlId}${filter}?page=${offset}&limit=${limit}${
           queryString.length ? splitString : ""
         }`
       );
 
       this.setState({ offset: offset + 1, loading: true });
       fetch(
-        `${shoesListAPI}/${urlId}/${filter}?page=${offset}&limit=${limit}${
+        `${shoesListAPI}/${urlId}${filter}?page=${offset}&limit=${limit}${
           queryString.length ? splitString : ""
         }`
       )
@@ -124,6 +124,7 @@ class Shoes extends React.Component {
   componentDidUpdate(prevProps) {
     const queryString = this.props.location.search;
     const urlId = this.props.match.params.id;
+    console.log(this.state.filterDatas);
 
     if (prevProps.location.search !== queryString) {
       fetch(`${shoesListAPI}/${urlId}/filter${queryString}`)
