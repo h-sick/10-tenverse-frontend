@@ -6,12 +6,14 @@ class SizeTable extends Component {
     super();
     this.state = {
       isBtnActive: null,
+      shoeSize: 0,
     };
   }
 
-  sizeTableBtn = (i) => {
+  sizeTableBtn = (size, i) => {
     this.setState({
       isBtnActive: i,
+      shoeSize: size,
     });
   };
 
@@ -19,6 +21,7 @@ class SizeTable extends Component {
     const product = this.props.product;
     const { isBtnActive } = this.state;
     const { sizeTableBtn } = this;
+    // console.log(this.state.shoeSize);
 
     return (
       <div className="SizeTable">
@@ -27,7 +30,7 @@ class SizeTable extends Component {
             ? product[1].size_list.sort().map((size, i) => {
                 return (
                   <li
-                    onClick={() => sizeTableBtn(i)}
+                    onClick={() => sizeTableBtn(size, i)}
                     className={isBtnActive === i ? "sizeBtnClicked" : null}
                   >
                     {size}
