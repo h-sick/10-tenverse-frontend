@@ -131,12 +131,14 @@ class Shoes extends React.Component {
           <img src={gif} alt="preloader gif" />
         </div>
         <Banner />
-        <Nav />
-        <Header
-          links={headerData.links}
-          title={headerData.title}
-          imgUrl={headerData.imgUrl}
-        />
+        <div className="headerWrapper">
+          <Nav />
+          <Header
+            links={headerData.links}
+            title={headerData.title}
+            imgUrl={headerData.imgUrl}
+          />
+        </div>
         {itemDatas && (
           <TopFilterBar
             dataNumber={itemDatas.length}

@@ -1,13 +1,13 @@
 import React from "react";
 import { iconHeart } from "../../../../config";
-import "./ItemBox.scss";
+import "./MainItemBox.scss";
 
-class ItemBox extends React.Component {
+class MainItemBox extends React.Component {
   render() {
     const { price, name, imgUrl, hoverImgUrl } = this.props;
 
     return (
-      <div className="ItemBox">
+      <div className="MainItemBox">
         <div className="imgBox">
           <div className="unhovered">
             <img className="productImg" alt="제품 이미지" src={imgUrl} />
@@ -27,4 +27,4 @@ class ItemBox extends React.Component {
     );
   }
 }
-export default ItemBox;
+export default MainItemBox;

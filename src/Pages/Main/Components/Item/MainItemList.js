@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import ItemBox from "./ItemBox";
-import "./ItemList.scss";
+import MainItemBox from "./MainItemBox";
+import "./MainItemList.scss";
 
-class ItemList extends Component {
+class MainItemList extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div className="ItemList">
+      <div className="MainItemList">
         {product &&
           product.map((item, idx) => {
             return (
-              <ItemBox
+              <MainItemBox
                 id={item.id}
                 name={item.name}
                 price={item.price}
@@ -23,4 +23,4 @@ class ItemList extends Component {
     );
   }
 }
-export default ItemList;
+export default MainItemList;

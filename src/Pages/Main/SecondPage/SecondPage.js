@@ -1,6 +1,6 @@
 import React from "react";
 import "../SecondPage/SecondPage.scss";
-import ItemList from "../Components/Item/ItemList";
+import MainItemList from "../Components/Item/MainItemList";
 
 class SecondPage extends React.Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class SecondPage extends React.Component {
                 src="https://image.converse.co.kr/cmsstatic/structured-content/17530/01_1440x900.jpg?gallery"
               />
             </div>
-            <ItemList product={product} />
+            <MainItemList product={product} />
           </div>
         </div>
 
