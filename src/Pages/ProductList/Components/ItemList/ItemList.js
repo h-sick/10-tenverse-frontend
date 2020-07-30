@@ -1,5 +1,5 @@
 import React from "react";
-import ItemBox from "../ItemBox/ItemBox";
+import ListItemBox from "../ListItemBox/ListItemBox";
 import "./ItemList.scss";
 
 const handleLowPrice = function (a, b) {
@@ -18,10 +18,10 @@ class ItemList extends React.Component {
         <div className="box">
           {handleSort
             ? datas.sort(handleLowPrice).map((data) => {
-                return <ItemBox data={data} />;
+                return <ListItemBox data={data} />;
               })
             : datas.sort(handleHighPrice).map((data) => {
-                return <ItemBox data={data} />;
+                return <ListItemBox data={data} />;
               })}
 
           {/* {handleSort

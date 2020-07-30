@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { iconHeart, colorValues } from "../../../../config";
-import "./ItemBox.scss";
+import "./ListItemBox.scss";
 import "../../../../Styles/Common.scss";
 
-class ItemBox extends React.Component {
+class ListItemBox extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -42,7 +42,7 @@ class ItemBox extends React.Component {
     const { colorTextDisplay, colorClickedNumber } = this.state;
 
     return (
-      <div className="ItemBox">
+      <div className="ListItemBox">
         <Link to={`/product/detail/${product_detail.id}`}>
           <div
             className="imgBox"
@@ -123,4 +123,4 @@ class ItemBox extends React.Component {
   }
 }
 
-export default ItemBox;
+export default ListItemBox;
