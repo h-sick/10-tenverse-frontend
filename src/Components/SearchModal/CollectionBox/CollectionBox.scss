@@ -1,0 +1,44 @@
+.CollectionBox {
+  height: 370px;
+  width: 360px;
+  position: relative;
+
+  .darknessBig {
+    height: 370px;
+    width: 360px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0;
+    transition: all 0.6s linear;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:hover ~ p {
+      opacity: 0;
+    }
+
+    p {
+      font-size: 30px;
+      font-weight: 600;
+      color: white;
+    }
+  }
+
+  p {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .blackTitle {
+    color: black;
+  }
+}

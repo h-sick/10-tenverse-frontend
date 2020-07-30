@@ -51,122 +51,9 @@
           height: 370px;
         }
 
-        .imgBox {
-          height: 370px;
-          width: 360px;
-          position: relative;
-
-          .darknessBig {
-            height: 370px;
-            width: 360px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: #000000;
-            opacity: 0;
-            transition: all 0.6s linear;
-            cursor: pointer;
-
-            &:hover {
-              opacity: 0.7;
-            }
-
-            &:hover ~ p {
-              opacity: 0;
-            }
-
-            p {
-              font-size: 30px;
-              font-weight: 600;
-              color: white;
-            }
-          }
-
-          .darknessSmall {
-            height: 185px;
-            width: 360px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: #000000;
-            opacity: 0;
-            transition: all 0.6s linear;
-            cursor: pointer;
-
-            &:hover {
-              opacity: 0.7;
-            }
-
-            &:hover ~ p {
-              opacity: 0;
-            }
-
-            p {
-              font-size: 30px;
-              font-weight: 600;
-              color: white;
-            }
-          }
-
-          p {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            font-size: 14px;
-          }
-        }
-
-        .textBox {
-          width: 360px;
-          height: 185px;
-          padding: 20px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-
-          h2 {
-            padding-bottom: 15px;
-          }
-
-          div {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-
-            &:hover {
-              opacity: 0.6;
-            }
-
-            p {
-              margin-left: 5px;
-              font-size: 14px;
-              font-weight: 600;
-            }
-          }
-        }
-
-        .chuckBox {
-          .collectionImg {
-            width: 360px;
-            height: 370px;
-          }
-
-          p {
-            color: black;
-            font-weight: 600;
-          }
-        }
-
-        .jackpurcell p {
-          color: black;
-          font-weight: 600;
-        }
-
         .colectionImg {
           height: 370px;
           width: 360px;
-          // min-width: 320px;
           font-size: 14px;
           color: #000000;
         }
@@ -255,7 +142,6 @@
   }
 
   @media screen and (min-width: 768px) {
-    // height: 740px;
     border-top: 1px solid;
   }
 }
