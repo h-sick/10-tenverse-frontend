@@ -5,6 +5,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import Main from "./Pages/Main/Main";
 import Shoes from "./Pages/ProductList/Shoes/Shoes";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail";
+import InstaModal from "./Pages/Main/Components/Instagram/InstaModal";
 
 class Routes extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class Routes extends React.Component {
           <Route exact path="/product/detail/:id" component={ProductDetail} />
           <Route exact path="/category/shoes" component={Shoes} />
           <Route exact path="/category/shoes/:id" component={Shoes} />
+          <Route exact path="/modal" component={InstaModal} />
         </Switch>
       </Router>
     );

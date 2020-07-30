@@ -1,0 +1,32 @@
+.InstaPage {
+  .instaTitle {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .imgContainer {
+    height: 720px;
+    margin-top: 20px;
+    z-index: 1;
+  }
+
+  .viewMoreBox {
+    margin: 20px 0;
+    button {
+      width: 100%;
+      padding: 10px;
+      height: 40px;
+      font-size: 14px;
+      color: #999999;
+      background-color: white;
+      border: 1px solid #e5e5e5;
+
+      &:hover {
+        background-color: rgb(128, 128, 128);
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
+}
