@@ -82,11 +82,13 @@ class Shoes extends React.Component {
   // };
 
   onScroll = (e) => {
-    this.setState({
-      scroll: e.srcElement.scrollingElement.scrollTop,
-    });
+    // this.setState({
+    //   scroll: e.srcElement.scrollingElement.scrollTop,
+    // });
 
-    const { scroll, offset } = this.state;
+    const scroll = e.srcElement.scrollingElement.scrollTop;
+
+    const { offset } = this.state;
 
     let queryString = this.props.location.search;
     let splitString = queryString.split("&");
@@ -94,16 +96,18 @@ class Shoes extends React.Component {
     splitString = splitString.join("&");
     splitString = "&".concat(splitString);
 
-    if (parseInt(scroll) > 1500 + 2000 * offset) {
+    console.log("scroll: ", scroll);
+    console.log("조건: ", 1500 + 2000 * offset);
+
+    if (scroll > 1500 + 2000 * offset) {
       // this.setState({ offset: offset + 1 });
       // this.setState({ loading: true });
-      console.log(this.state.scroll);
 
       if (queryString.length > 0) {
         this.setState({ offset: offset + 1 });
         this.setState({ loading: true });
 
-        // console.log(this.state.offset);
+        // console.log("fetch");
 
         fetch(
           `${filterAPI}?page=${this.state.offset}&limit=${limit}${splitString}`
@@ -165,6 +169,10 @@ class Shoes extends React.Component {
     window.addEventListener("scroll", this.onScroll);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll");
+  }
+
   componentDidUpdate(prevProps) {
     const queryString = this.props.location.search;
 
@@ -177,7 +185,7 @@ class Shoes extends React.Component {
             filterDatas: json.filters,
           });
         });
-      window.addEventListener("scroll", this.onScroll);
+      this.setState({ offset: 0 });
     }
   }
 
