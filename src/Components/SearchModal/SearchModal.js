@@ -22,7 +22,7 @@ class SearchModal extends React.Component {
 
   handleInputChange = (e) => {
     const { nameDatas } = this.state;
-    const { value } = e.target;
+    const { value, keyCode } = e.target;
 
     let resultFunction = nameDatas
       .filter((name) => {
@@ -31,8 +31,8 @@ class SearchModal extends React.Component {
       .slice(0, 4);
 
     if (value.length) {
-      if (value.keyCode === 13) {
-        // this.props.history.push("/search?")
+      if (keyCode === 13) {
+        this.props.history.push(`/search?${value}`);
       }
       this.setState({ nameResult: resultFunction });
     } else this.setState({ nameResult: [] });
