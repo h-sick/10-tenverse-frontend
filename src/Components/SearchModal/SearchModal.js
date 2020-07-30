@@ -1,5 +1,6 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
+import { shoesListAPI } from "../../config";
 import {
   magnifier,
   collectionImg,
@@ -10,12 +11,49 @@ import {
 import "./SearchModal.scss";
 
 class SearchModal extends React.Component {
-  handleChange = (e) => {
-    console.log(e.target.value);
+  constructor() {
+    super();
+    this.state = {
+      nameInput: "",
+      nameDatas: [],
+      nameResult: [],
+    };
+  }
+
+  handleInputChange = (e) => {
+    const { nameDatas } = this.state;
+    const { value } = e.target;
+
+    let resultFunction = nameDatas
+      .filter((name) => {
+        return name.includes(value);
+      })
+      .slice(0, 4);
+
+    if (value.length) {
+      if (value.keyCode === 13) {
+        // this.props.history.push("/search?")
+      }
+      this.setState({ nameResult: resultFunction });
+    } else this.setState({ nameResult: [] });
+
+    this.setState({ nameInput: value });
   };
+
+  componentDidMount() {
+    const searchAPI = `${shoesListAPI}/search`;
+
+    fetch(searchAPI)
+      .then((res) => res.json())
+      .then(({ products }) => {
+        this.setState({ nameDatas: products });
+      });
+  }
 
   render() {
     const { handleSearchModal } = this.props;
+    const { nameResult } = this.state;
+    console.log(nameResult);
 
     return (
       <section className="SearchModal">
@@ -93,13 +131,17 @@ class SearchModal extends React.Component {
                   <input
                     type="text"
                     placeholder="검색어를 입력해주세요"
-                    onChange={this.handleChange}
+                    onChange={this.handleInputChange}
                   />
                   <svg id="nav-search" viewBox="0 0 32 32">
                     <path d={magnifier}></path>
                   </svg>
                 </div>
-                <div className="searchResult"></div>
+                <ul className="searchResult">
+                  {nameResult.map((name) => {
+                    return <li>{name}</li>;
+                  })}
+                </ul>
               </div>
               <div className="popularWords">
                 <h1>인기 검색어</h1>
