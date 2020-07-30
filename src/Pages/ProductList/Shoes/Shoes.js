@@ -53,13 +53,13 @@ class Shoes extends React.Component {
     splitString = splitString.join("&");
     splitString = "&".concat(splitString);
 
-    const filterUrl = queryString ? "filter" : "";
+    const filter = queryString ? "filter" : "";
     const scrollCondition = scroll > 1500 + 2000 * offset;
 
     if (scrollCondition) {
       this.setState({ offset: offset + 1, loading: true });
       fetch(
-        `${shoesListAPI}/${urlId}${filterUrl}?page=${offset}&limit=${limit}${
+        `${shoesListAPI}/${urlId}${filter}?page=${offset}&limit=${limit}${
           queryString.length ? splitString : ""
         }`
       )
