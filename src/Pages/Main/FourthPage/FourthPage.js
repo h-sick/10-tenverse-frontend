@@ -1,6 +1,6 @@
 import React from "react";
 import "../FourthPage/FourthPage.scss";
-import ItemList from "../Components/Item/ItemList";
+import MainItemList from "../Components/Item/MainItemList";
 
 class FourthPage extends React.Component {
   render() {
@@ -30,7 +30,7 @@ class FourthPage extends React.Component {
               muted
             />
           </div>
-          <ItemList product={product} />
+          <MainItemList product={product} />
         </div>
       </div>
     );

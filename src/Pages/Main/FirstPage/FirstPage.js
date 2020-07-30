@@ -1,5 +1,5 @@
 import React from "react";
-import ItemList from "../Components/Item/ItemList";
+import MainItemList from "../Components/Item/MainItemList";
 import "./FirstPage.scss";
 
 const firstImg = {
@@ -14,7 +14,7 @@ class FirstPage extends React.Component {
     return (
       <div className="FirstPage">
         <div className="smallBox">
-          <ItemList product={product} />
+          <MainItemList product={product} />
         </div>
         <div className="largeBox" style={firstImg}>
           <div className="textContainer">

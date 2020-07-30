@@ -1,0 +1,81 @@
+@import "../../../../../../Styles/Common.scss";
+
+.GenderFilterBox,
+.TypeFilterBox {
+  padding: 10px 0;
+  border-top: $border;
+
+  .fold {
+    height: 40px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+
+    ul {
+      opacity: 0;
+    }
+  }
+
+  .display {
+    height: inherit;
+    transition: height 0.3s ease-in-out;
+
+    ul {
+      opacity: 1;
+      transition: opacity 0.7s ease-in-out;
+    }
+  }
+
+  header {
+    height: 40px;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+    .plusIcon {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+      width: 14px;
+      height: 14px;
+    }
+    .minusIcon {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+    }
+
+    .hidden {
+      opacity: 0;
+    }
+  }
+
+  li {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    transition: all ease 0.5s;
+
+    label {
+      width: 100px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: #c2bebe;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      input {
+        margin-right: 10px;
+        display: inline;
+      }
+    }
+  }
+}
