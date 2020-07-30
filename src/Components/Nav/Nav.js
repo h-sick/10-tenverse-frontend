@@ -13,6 +13,7 @@ class Nav extends Component {
     super();
     this.state = {
       navSearchBtnActive: false,
+      didScroll: false,
     };
   }
 

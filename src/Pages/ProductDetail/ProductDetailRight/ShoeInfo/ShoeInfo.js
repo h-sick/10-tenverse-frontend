@@ -8,22 +8,26 @@ class ShoeInfo extends Component {
   render() {
     const { product } = this.props;
     const [shoeDetailRef, reviewRef] = this.props.refArr;
-    const { name, price, gender, main_detail } = product[0] || [];
+    const { name, price, gender, main_detail } = product || {};
+
     return (
       <div className="ShoeInfo">
-        {product.length !== 0 && (
-          <>
-            <div className="shoeName">{name}</div>
-            <div className="shoePrice">{price} 원</div>
-            <div className="gender">{gender}</div>
-            <div>
-              {main_detail}
-              <span onClick={() => this.props.scrollTo(shoeDetailRef)} className="grey">
-                더보기
-              </span>
-            </div>
-          </>
-        )}
+        <>
+          {product.name && (
+            <>
+              <div className="shoeName">{name}</div>
+              <div className="shoePrice">{price} 원</div>
+              <div className="gender">{gender}</div>
+              <div>
+                {main_detail}
+                <span onClick={() => this.props.scrollTo(shoeDetailRef)} className="grey">
+                  더보기
+                </span>
+              </div>
+            </>
+          )}
+        </>
+
         <div onClick={() => this.props.scrollTo(reviewRef)} className="iconStarWrap">
           {this.listIconStar}
           <span className="starPoint text">별점</span>

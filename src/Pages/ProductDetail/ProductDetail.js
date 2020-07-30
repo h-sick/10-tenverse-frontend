@@ -10,7 +10,7 @@ class ProductDetail extends Component {
   constructor() {
     super();
     this.state = {
-      product: [],
+      product: {},
     };
     this.shoeDetailRef = React.createRef();
     this.reviewRef = React.createRef();
@@ -18,8 +18,7 @@ class ProductDetail extends Component {
 
   componentDidMount() {
     const urlId = this.props.match.params.id;
-    fetch("http://localhost:3000/data/shoe.json")
-      // fetch(`http://10.58.3.38:8000/product/detail/${urlId}`)
+    fetch(`http://10.58.3.38:8000/product/detail/${urlId}`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -54,13 +53,20 @@ class ProductDetail extends Component {
         <Nav />
         <div className="ProductDetailWrapper">
           <div className="productDetailContainer">
-            <ProductDetailLeft refArr={[this.shoeDetailRef, this.reviewRef]} product={product} />
-            <ProductDetailRight
-              scrollTo={this.scrollTo}
-              refArr={[this.shoeDetailRef, this.reviewRef]}
-              product={product}
-              urlId={this.urlId}
-            />
+            {product.name && (
+              <>
+                <ProductDetailLeft
+                  refArr={[this.shoeDetailRef, this.reviewRef]}
+                  product={product}
+                />
+                <ProductDetailRight
+                  scrollTo={this.scrollTo}
+                  refArr={[this.shoeDetailRef, this.reviewRef]}
+                  product={product}
+                  urlId={this.urlId}
+                />
+              </>
+            )}
           </div>
           <Footer />
         </div>

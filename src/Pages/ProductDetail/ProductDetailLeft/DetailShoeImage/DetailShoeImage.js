@@ -21,17 +21,17 @@ class DetailShoeImage extends Component {
   render() {
     const { showMoreActive, showMoreText } = this.state;
     const { shoeDetailRef, product } = this.props;
-    const { name, main_detail, features, feature_image } = product[0] || [];
+    const { name, main_detail, features, feature_image } = product || {};
 
     return (
       <div className="DetailShoeImage" ref={shoeDetailRef}>
         <div className="detailShoeInfo">
-          {product.length !== 0 && (
+          {product.name && (
             <>
               <div className="title">{name}</div>
               <div className="subTitle">{main_detail}</div>
               <ul>
-                {features.split(", ").map((feat, i) => {
+                {features.split(", ").map((feat) => {
                   return <li>{feat}</li>;
                 })}
               </ul>
@@ -48,6 +48,7 @@ class DetailShoeImage extends Component {
               </div>
             </>
           )}
+
           <button onClick={this.handleShowMore}>{showMoreText ? "더보기+" : "닫기-"}</button>
         </div>
       </div>
