@@ -6,8 +6,7 @@ import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
 import ItemList from "../Components/ItemList/ItemList";
 import Footer from "../../../Components/Footer/Footer";
-import { shoesListAPI } from "../../../config";
-import { gif } from "../../../config";
+import { shoesListAPI, filterAPI, gif } from "../../../config";
 import "./Shoes.scss";
 
 const headerData = {
@@ -45,44 +44,7 @@ class Shoes extends React.Component {
     this.setState({ clickedColorNumber: e });
   };
 
-  onScroll = (e) => {
-    this.setState({
-      scroll: e.srcElement.scrollingElement.scrollTop,
-    });
-
-    const { scroll, offset } = this.state;
-
-    let queryString = this.props.location.search;
-    let splitString = queryString.split("&");
-    splitString.splice(0, 2);
-    splitString = splitString.join("&");
-    splitString = "&".concat(splitString);
-
-    if (parseInt(scroll) > 1500 + 2000 * offset) {
-      this.setState({ offset: offset + 1 });
-      this.setState({ loading: true });
-
-      fetch(
-        `${shoesListAPI}?page=${this.state.offset}&limit=${limit}${
-          queryString.length > 0 ? splitString : ""
-        })`
-      )
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState(
-            {
-              itemDatas: this.state.itemDatas.concat(json.products),
-            },
-            () => {
-              this.setState({ loading: false });
-            }
-          );
-        })
-        .catch((error) => console.error("Error:", error));
-    }
-  };
-
-  // onScroll = (e, prevProps) => {
+  // onScroll = (e) => {
   //   this.setState({
   //     scroll: e.srcElement.scrollingElement.scrollTop,
   //   });
@@ -99,48 +61,88 @@ class Shoes extends React.Component {
   //     this.setState({ offset: offset + 1 });
   //     this.setState({ loading: true });
 
-  //     if (queryString.length > 0) {
-  //       // this.setState({ offset: offset + 1 });
-  //       // this.setState({ loading: true });
-
-  //       fetch(
-  //         `${shoesListAPI}?page=${this.state.offset}&limit=${limit}${splitString}`
-  //       )
-  //         .then((res) => res.json())
-  //         .then((json) => {
-  //           this.setState(
-  //             {
-  //               itemDatas: this.state.itemDatas.concat(json.products),
-  //             },
-  //             () => {
-  //               this.setState({ loading: false });
-  //             }
-  //           );
-  //         })
-  //         .catch(
-  //           (error) => console.error("Error:", error),
-  //           this.setState({ fetchErr: true })
+  //     fetch(
+  //       `${shoesListAPI}?page=${this.state.offset}&limit=${limit}${
+  //         queryString.length > 0 ? splitString : ""
+  //       }`
+  //     )
+  //       .then((res) => res.json())
+  //       .then((json) => {
+  //         this.setState(
+  //           {
+  //             itemDatas: this.state.itemDatas.concat(json.products),
+  //           },
+  //           () => {
+  //             this.setState({ loading: false });
+  //           }
   //         );
-  //     } else {
-  //       // this.setState({ offset: offset + 1 });
-  //       // this.setState({ loading: true });
-
-  //       fetch(`${shoesListAPI}?page=${this.state.offset}&limit=${limit}`)
-  //         .then((res) => res.json())
-  //         .then((json) => {
-  //           this.setState(
-  //             {
-  //               itemDatas: this.state.itemDatas.concat(json.products),
-  //             },
-  //             () => {
-  //               this.setState({ loading: false });
-  //             }
-  //           );
-  //         })
-  //         .catch((error) => console.error("Error:", error));
-  //     }
+  //       })
+  //       .catch((error) => console.error("Error:", error));
   //   }
   // };
+
+  onScroll = (e) => {
+    this.setState({
+      scroll: e.srcElement.scrollingElement.scrollTop,
+    });
+
+    const { scroll, offset } = this.state;
+
+    let queryString = this.props.location.search;
+    let splitString = queryString.split("&");
+    splitString.splice(0, 2);
+    splitString = splitString.join("&");
+    splitString = "&".concat(splitString);
+
+    if (parseInt(scroll) > 1500 + 2000 * offset) {
+      // this.setState({ offset: offset + 1 });
+      // this.setState({ loading: true });
+      console.log(this.state.scroll);
+
+      if (queryString.length > 0) {
+        this.setState({ offset: offset + 1 });
+        this.setState({ loading: true });
+
+        // console.log(this.state.offset);
+
+        fetch(
+          `${filterAPI}?page=${this.state.offset}&limit=${limit}${splitString}`
+        )
+          .then((res) => res.json())
+          .then((json) => {
+            this.setState(
+              {
+                itemDatas: this.state.itemDatas.concat(json.products),
+              },
+              () => {
+                this.setState({ loading: false });
+              }
+            );
+          })
+          .catch(
+            (error) => console.error("Error:", error),
+            this.setState({ fetchErr: true })
+          );
+      } else {
+        this.setState({ offset: offset + 1 });
+        this.setState({ loading: true });
+
+        fetch(`${shoesListAPI}?page=${this.state.offset}&limit=${limit}`)
+          .then((res) => res.json())
+          .then((json) => {
+            this.setState(
+              {
+                itemDatas: this.state.itemDatas.concat(json.products),
+              },
+              () => {
+                this.setState({ loading: false });
+              }
+            );
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+    }
+  };
 
   handleFilterUrl = (name, value) => {
     const newString = `&${name}=${value}`;
@@ -182,6 +184,7 @@ class Shoes extends React.Component {
   render() {
     const { itemDatas, loading } = this.state;
     const { sortedByHighPrice, filterDatas } = this.state;
+    // console.log(this.state.scroll);
 
     return (
       <section className="Shoes">
