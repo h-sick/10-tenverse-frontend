@@ -57,4 +57,4 @@ class GenderTypeFilterBox extends React.Component {
   }
 }
 
-export default GenderFilterBox;
+export default GenderTypeFilterBox;

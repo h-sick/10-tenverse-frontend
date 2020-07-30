@@ -41,43 +41,6 @@ class Shoes extends React.Component {
     this.setState({ clickedColorNumber: e });
   };
 
-  // onScroll = (e) => {
-  //   this.setState({
-  //     scroll: e.srcElement.scrollingElement.scrollTop,
-  //   });
-
-  //   const { scroll, offset } = this.state;
-
-  //   let queryString = this.props.location.search;
-  //   let splitString = queryString.split("&");
-  //   splitString.splice(0, 2);
-  //   splitString = splitString.join("&");
-  //   splitString = "&".concat(splitString);
-
-  //   if (parseInt(scroll) > 1500 + 2000 * offset) {
-  //     this.setState({ offset: offset + 1 });
-  //     this.setState({ loading: true });
-
-  //     fetch(
-  //       `${shoesListAPI}?page=${this.state.offset}&limit=${limit}${
-  //         queryString.length > 0 ? splitString : ""
-  //       }`
-  //     )
-  //       .then((res) => res.json())
-  //       .then((json) => {
-  //         this.setState(
-  //           {
-  //             itemDatas: this.state.itemDatas.concat(json.products),
-  //           },
-  //           () => {
-  //             this.setState({ loading: false });
-  //           }
-  //         );
-  //       })
-  //       .catch((error) => console.error("Error:", error));
-  //   }
-  // };
-
   onScroll = (e) => {
     const { offset, itemDatas } = this.state;
     const scroll = e.srcElement.scrollingElement.scrollTop;
@@ -89,13 +52,11 @@ class Shoes extends React.Component {
     splitString = splitString.join("&");
     splitString = "&".concat(splitString);
 
-    console.log("scroll: ", scroll);
-    console.log("조건: ", 1500 + 2000 * offset);
-
     const fetchUrl = queryString ? filterAPI : shoesListAPI;
     const scrollCondition = scroll > 1500 + 2000 * offset;
 
-    scrollCondition &&
+    if (scrollCondition) {
+      this.setState({ offset: offset + 1, loading: true });
       fetch(
         `${fetchUrl}?page=${offset}&limit=${limit}${
           queryString.length ? splitString : ""
@@ -116,8 +77,7 @@ class Shoes extends React.Component {
           (error) => console.error("Error:", error),
           this.setState({ fetchErr: true })
         );
-
-    this.setState({ offset: offset + 1, loading: true });
+    }
   };
 
   handleFilterUrl = (name, value) => {

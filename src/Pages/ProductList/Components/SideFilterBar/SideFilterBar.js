@@ -1,7 +1,5 @@
 import React from "react";
 import GenderTypeFilterBox from "./Components/GenderTypeFilterBox/GenderTypeFilterBox";
-// import GenderFilterBox from "./Components/GenderFilterBox/GenderFilterBox";
-// import TypeFilterBox from "./Components/TypeFilterBox/TypeFilterBox";
 import ColorFilterBox from "./Components/ColorFilterBox/ColorFilterBox";
 import SizeFilterBox from "./Components/SizeFilterBox/SizeFilterBox";
 import "./SideFilterBar.scss";
