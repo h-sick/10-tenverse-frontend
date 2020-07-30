@@ -12,13 +12,25 @@ class InstaList extends Component {
       data: [],
     };
   }
+
+  closeModal = (e) => {
+    if (e.target.className === "InstaModal") {
+      this.setState({
+        modalState: false,
+      });
+    }
+    document.body.style.overflow = "unset";
+  };
+
   modalStateHandler = (index) => {
     const { modalState } = this.state;
     this.setState({
       modalState: !modalState,
       currentModalIdx: index,
     });
+    document.body.style.overflow = "hidden";
   };
+
   nextIdxHandler = (index) => {
     const { currentModalIdx } = this.state;
     this.setState({
@@ -51,7 +63,6 @@ class InstaList extends Component {
                 userId={item.user}
                 profile={item.user_profile_image}
                 modalState={this.state.modalState}
-                // instaBoxHandler={this.instaBoxHandler}
                 modalStateHandler={this.modalStateHandler}
               />
             );
@@ -62,6 +73,7 @@ class InstaList extends Component {
               data={data}
               nextIdxHandler={this.nextIdxHandler}
               backIdxHandler={this.backIdxHandler}
+              closeModal={this.closeModal}
             />
           )}
         </div>

@@ -6,3 +6,7 @@ export const iconKaKao =
   "M12,0C5.373,0,0,4.238,0,9.465c0,3.403,2.277,6.386,5.693,8.054 c-0.251,0.935-0.909,3.387-1.04,3.912c-0.163,0.65,0.239,0.643,0.502,0.467c0.206-0.138,3.288-2.229,4.618-3.13 c0.722,0.106,1.466,0.163,2.227,0.163c6.627,0,12-4.238,12-9.466C24,4.238,18.627,0,12,0";
 export const signinAPI = "http://10.58.3.38:8000/user/signin";
 export const signupAPI = "http://10.58.3.38:8000/user/signup";
+export const mainAPI = "http://10.58.3.38:8000/product";
+export const instaAPI = "http://10.58.3.38:8000/instagram";
+export const gif =
+  "https://image.converse.co.kr/cmsstatic/theme/b-commerce/assets/images/preloader.gif";

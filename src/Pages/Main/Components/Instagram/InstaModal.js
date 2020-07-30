@@ -14,9 +14,12 @@ class InstaModal extends Component {
 
   render() {
     const { user, image, text, user_profile_image } = this.props.data[0];
+    let changedText = text.split("%").join("\n");
+    // console.log("ChangeText: ", changedText);
+    // console.log("InstaModal: ", text);
 
     return (
-      <div className="InstaModal">
+      <div className="InstaModal" onClick={this.props.closeModal}>
         <button className="backBtn" onClick={this.clickBackHandler}>
           <IoIosArrowBack className="btn" />
         </button>
@@ -38,7 +41,7 @@ class InstaModal extends Component {
               </div>
             </div>
             <div className="modalContent">
-              <p>{text}</p>
+              <p>{changedText}</p>
             </div>
             <div className="btnBox">
               <button>이 스타일 구매하기</button>

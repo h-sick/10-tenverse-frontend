@@ -23,6 +23,7 @@ class InstaBox extends React.Component {
   render() {
     const { isHovered } = this.state;
     const { img, text } = this.props;
+    let changedText = text.split("%").join("\n");
 
     return (
       <div className="InstaBox" onClick={this.modalHandler}>
@@ -44,7 +45,7 @@ class InstaBox extends React.Component {
                 "https://static.vecteezy.com/system/resources/thumbnails/000/097/181/small/free-black-leather-vector.jpg"
               }
             />
-            <p>{text}</p>
+            <p>{changedText}</p>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
+import { iconKaKao, signupAPI } from "../../config";
 import "./SignUp.scss";
-import { iconKaKao } from "../../config";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class SignUp extends React.Component {
       gender.length !== 0 &&
       !incorrectEntireCheck
     ) {
-      fetch("http://10.58.3.38:8000/user/signup", {
+      fetch(signupAPI, {
         method: "POST",
         body: JSON.stringify({
           email: userEmail,

@@ -5,7 +5,7 @@ import "./ItemBox.scss";
 class ItemBox extends React.Component {
   render() {
     const { price, name, imgUrl, hoverImgUrl } = this.props;
-
+    let newPrice = price.toString().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
     return (
       <div className="ItemBox">
         <div className="imgBox">
@@ -20,7 +20,7 @@ class ItemBox extends React.Component {
           </svg>
           <div className="productText">
             <p className="name">{name}</p>
-            <p className="price">{price}원</p>
+            <p className="price">{newPrice}원</p>
           </div>
         </div>
       </div>
