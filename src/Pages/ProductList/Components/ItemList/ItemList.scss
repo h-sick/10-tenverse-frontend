@@ -1,0 +1,12 @@
+.ItemList {
+  width: 1120px;
+  padding: 0 20px 120px 20;
+  display: flex;
+  justify-content: center;
+
+  .box {
+    width: 1080px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

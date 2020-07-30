@@ -1,0 +1,93 @@
+@import "../../../../../../Styles/Common.scss";
+
+.ColorFilterBox {
+  padding: 10px 0;
+  border-top: $border;
+
+  .fold {
+    height: 40px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+
+    ul {
+      opacity: 0;
+    }
+  }
+
+  .display {
+    height: inherit;
+    transition: height 0.3s ease-in-out;
+
+    ul {
+      opacity: 1;
+      transition: opacity 0.7s ease-in-out;
+    }
+  }
+
+  header {
+    height: 40px;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+    .plusIcon {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+      width: 14px;
+      height: 14px;
+    }
+
+    .minusIcon {
+      position: absolute;
+      right: 0;
+      opacity: 1;
+    }
+
+    .hidden {
+      opacity: 0;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+
+    li {
+      width: 22px;
+      height: 22px;
+      margin-right: 10px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all ease 0.6s;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      .white {
+        border: $border;
+      }
+
+      .selected {
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+      }
+    }
+  }
+}

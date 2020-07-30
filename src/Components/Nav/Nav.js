@@ -13,6 +13,7 @@ class Nav extends Component {
     super();
     this.state = {
       navSearchBtnActive: false,
+      sideBar: false,
     };
   }
 
@@ -20,6 +21,11 @@ class Nav extends Component {
     const { navSearchBtnActive } = this.state;
     this.setState({ navSearchBtnActive: !navSearchBtnActive });
     this.props.handleNavSearchBtn();
+  };
+
+  handleShoesClick = () => {
+    this.setState({ sideBar: true });
+    this.props.handleSideBar();
   };
 
   render() {
@@ -32,7 +38,7 @@ class Nav extends Component {
             <ConverseLogo />
           </Link>
           <ul>
-            <li>신발</li>
+            <li onClick={this.handleShoesClick}>신발</li>
             <li>의류</li>
             <li>아동</li>
             <li>런칭캘린더</li>
