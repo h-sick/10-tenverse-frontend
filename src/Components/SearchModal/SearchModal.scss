@@ -2,8 +2,8 @@
   position: relative;
 
   .modalOverlay {
-    position: absolute;
     height: 100vh;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
@@ -11,7 +11,7 @@
     color: #000;
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.6);
-    transition: all 0.5s;
+    transition: all 0.2s;
 
     &.hidden,
     &.hidden ~ .searchBox {
@@ -19,19 +19,19 @@
       height: 0;
       left: 0;
       overflow: hidden;
-      transition: all 0.5s;
+      transition: all 0.2s;
     }
   }
 
   .searchBox {
-    width: 100vw;
+    width: 1440px;
     background-color: #fff;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
     opacity: 1;
-    transition: all 0.5s;
+    transition: all 0.2s;
     overflow: hidden;
 
     .searchContainer {
@@ -236,7 +236,7 @@
   }
 
   @media screen and (min-width: 768px) {
-    height: 740px;
+    // height: 740px;
     border-top: 1px solid;
   }
 }

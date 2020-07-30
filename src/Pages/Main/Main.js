@@ -40,9 +40,9 @@ class Main extends React.Component {
     return (
       <div className="entireWrapper">
         <Banner />
-        <SearchModal handleSearchModal={activatedBtn} />
         <div className="pageWrapper">
           <Nav handleNavSearchBtn={this.handleNavSearchBtn} />
+          <SearchModal handleSearchModal={activatedBtn} />
           <FirstPage product={product.women_collection} />
           <SecondPage product={product.jack_purcell} />
           <ThirdPage product={product} />
