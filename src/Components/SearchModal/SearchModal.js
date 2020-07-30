@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { shoesListAPI } from "../../config";
 import {
@@ -22,7 +23,8 @@ class SearchModal extends React.Component {
 
   handleInputChange = (e) => {
     const { nameDatas } = this.state;
-    const { value, keyCode } = e.target;
+    const { value } = e.target;
+    const { keyCode } = e;
 
     let resultFunction = nameDatas
       .filter((name) => {
@@ -32,7 +34,7 @@ class SearchModal extends React.Component {
 
     if (value.length) {
       if (keyCode === 13) {
-        this.props.history.push(`/search?${value}`);
+        this.props.history.push(`/search/${value}`);
       }
       this.setState({ nameResult: resultFunction });
     } else this.setState({ nameResult: [] });
@@ -53,7 +55,6 @@ class SearchModal extends React.Component {
   render() {
     const { handleSearchModal } = this.props;
     const { nameResult } = this.state;
-    console.log(nameResult);
 
     return (
       <section className="SearchModal">
@@ -131,7 +132,7 @@ class SearchModal extends React.Component {
                   <input
                     type="text"
                     placeholder="검색어를 입력해주세요"
-                    onChange={this.handleInputChange}
+                    onKeyUp={this.handleInputChange}
                   />
                   <svg id="nav-search" viewBox="0 0 32 32">
                     <path d={magnifier}></path>
@@ -160,4 +161,4 @@ class SearchModal extends React.Component {
   }
 }
 
-export default SearchModal;
+export default withRouter(SearchModal);

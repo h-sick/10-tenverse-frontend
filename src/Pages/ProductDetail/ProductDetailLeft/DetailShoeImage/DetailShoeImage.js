@@ -48,7 +48,9 @@ class DetailShoeImage extends Component {
               </div>
             </>
           )}
-          <button onClick={this.handleShowMore}>{showMoreText ? "더보기+" : "닫기-"}</button>
+          <button onClick={this.handleShowMore}>
+            {showMoreText ? "더보기+" : "닫기-"}
+          </button>
         </div>
       </div>
     );

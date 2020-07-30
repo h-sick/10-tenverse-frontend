@@ -56,14 +56,22 @@ class Shoes extends React.Component {
     const filter = queryString ? "/filter" : "";
     const scrollCondition = scroll > 1500 + 2000 * offset;
 
+    const { pathname } = this.props.location;
+    const condition = pathname.includes("search");
+    const search = `shoes/filter?name=${urlId}&page=${offset}&limit=${limit}${
+      queryString.length ? splitString : ""
+    }`;
+    const click = `${urlId}${filter}?page=${offset}&limit=${limit}${
+      queryString.length ? splitString : ""
+    }`;
+
     if (scrollCondition) {
       this.setState({ offset: offset + 1, loading: true });
 
-      fetch(
-        `${shoesListAPI}/${urlId}${filter}?page=${offset}&limit=${limit}${
-          queryString.length ? splitString : ""
-        }`
-      )
+      fetch(`${shoesListAPI}/${condition ? search : click}`)
+        // `${shoesListAPI}/${urlId}${filter}?page=${offset}&limit=${limit}${
+        //   queryString.length ? splitString : ""
+        // }`
         .then((res) => res.json())
         .then(({ products }) => {
           this.setState(
@@ -96,8 +104,12 @@ class Shoes extends React.Component {
 
   componentDidMount() {
     const urlId = this.props.match.params.id;
+    const { pathname } = this.props.location;
+    const condition = pathname.includes("search");
+    const search = `shoes/filter?name=${urlId}`;
+    const click = `${urlId}?page=${this.state.offset}&limit=${limit}`;
 
-    fetch(`${shoesListAPI}/${urlId}?page=${this.state.offset}&limit=${limit}`)
+    fetch(`${shoesListAPI}/${condition ? search : click}`)
       .then((res) => res.json())
       .then((json) => {
         this.setState({ itemDatas: json.products, filterDatas: json.filters });
