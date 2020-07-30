@@ -35,9 +35,6 @@ class Shoes extends React.Component {
 
   handleList = (i) => {
     this.setState({ sortedByHighPrice: !Boolean(i) });
-    // i === 0
-    //   ? this.setState({ sortedByHighPrice: true })
-    //   : this.setState({ sortedByHighPrice: false });
   };
 
   handleColorNumber = (e) => {
@@ -82,16 +79,12 @@ class Shoes extends React.Component {
   // };
 
   onScroll = (e) => {
-    // this.setState({
-    //   scroll: e.srcElement.scrollingElement.scrollTop,
-    // });
-
+    const { offset, itemDatas } = this.state;
     const scroll = e.srcElement.scrollingElement.scrollTop;
-
-    const { offset } = this.state;
 
     let queryString = this.props.location.search;
     let splitString = queryString.split("&");
+
     splitString.splice(0, 2);
     splitString = splitString.join("&");
     splitString = "&".concat(splitString);
@@ -99,53 +92,32 @@ class Shoes extends React.Component {
     console.log("scroll: ", scroll);
     console.log("조건: ", 1500 + 2000 * offset);
 
-    if (scroll > 1500 + 2000 * offset) {
-      // this.setState({ offset: offset + 1 });
-      // this.setState({ loading: true });
+    const fetchUrl = queryString ? filterAPI : shoesListAPI;
+    const scrollCondition = scroll > 1500 + 2000 * offset;
 
-      if (queryString.length > 0) {
-        this.setState({ offset: offset + 1 });
-        this.setState({ loading: true });
-
-        // console.log("fetch");
-
-        fetch(
-          `${filterAPI}?page=${this.state.offset}&limit=${limit}${splitString}`
-        )
-          .then((res) => res.json())
-          .then((json) => {
-            this.setState(
-              {
-                itemDatas: this.state.itemDatas.concat(json.products),
-              },
-              () => {
-                this.setState({ loading: false });
-              }
-            );
-          })
-          .catch(
-            (error) => console.error("Error:", error),
-            this.setState({ fetchErr: true })
+    scrollCondition &&
+      fetch(
+        `${fetchUrl}?page=${offset}&limit=${limit}${
+          queryString.length ? splitString : ""
+        }`
+      )
+        .then((res) => res.json())
+        .then(({ products }) => {
+          this.setState(
+            {
+              itemDatas: [...itemDatas, ...products],
+            },
+            () => {
+              this.setState({ loading: false });
+            }
           );
-      } else {
-        this.setState({ offset: offset + 1 });
-        this.setState({ loading: true });
+        })
+        .catch(
+          (error) => console.error("Error:", error),
+          this.setState({ fetchErr: true })
+        );
 
-        fetch(`${shoesListAPI}?page=${this.state.offset}&limit=${limit}`)
-          .then((res) => res.json())
-          .then((json) => {
-            this.setState(
-              {
-                itemDatas: this.state.itemDatas.concat(json.products),
-              },
-              () => {
-                this.setState({ loading: false });
-              }
-            );
-          })
-          .catch((error) => console.error("Error:", error));
-      }
-    }
+    this.setState({ offset: offset + 1, loading: true });
   };
 
   handleFilterUrl = (name, value) => {
