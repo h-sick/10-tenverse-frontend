@@ -27,10 +27,14 @@ class Main extends React.Component {
 
   handleNavSearchBtn = () => {
     this.setState({ activatedBtn: !this.state.activatedBtn });
+    document.body.style.overflow = this.state.activatedBtn ? "unset" : "hidden";
   };
 
   handleSideBar = () => {
     this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+    document.body.style.overflow = this.state.sideBarDisplay
+      ? "unset"
+      : "hidden";
   };
 
   componentDidMount() {

@@ -1,7 +1,12 @@
 .Cart {
-  .cartWrapper {
-    display: flex;
-    justify-content: center;
-    padding-top: 40px;
+  .pageWrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+
+    .cartWrapper {
+      display: flex;
+      justify-content: center;
+      padding-top: 40px;
+    }
   }
 }

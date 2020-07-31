@@ -26,10 +26,14 @@ class Cart extends Component {
 
   handleNavSearchBtn = () => {
     this.setState({ activatedBtn: !this.state.activatedBtn });
+    document.body.style.overflow = this.state.activatedBtn ? "unset" : "hidden";
   };
 
   handleSideBar = () => {
     this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+    document.body.style.overflow = this.state.sideBarDisplay
+      ? "unset"
+      : "hidden";
   };
 
   componentDidMount() {
@@ -49,7 +53,7 @@ class Cart extends Component {
       .then(
         this.setState({
           totalCount: products.length,
-        }),
+        })
       );
   }
 
@@ -75,29 +79,43 @@ class Cart extends Component {
   };
 
   render() {
-    const { products, totalPrice, price, sideBarDisplay, activatedBtn } = this.state;
+    const {
+      products,
+      totalPrice,
+      price,
+      sideBarDisplay,
+      activatedBtn,
+    } = this.state;
     const { removeHandler, makeEmptyCart } = this;
     return (
       <div className="Cart">
         <Banner />
-        <Nav handleNavSearchBtn={this.handleNavSearchBtn} handleSideBar={this.handleSideBar} />
-        <SearchModal handleSearchModal={activatedBtn} />
-        <SideBar sideBarDisplay={sideBarDisplay} handleSideBar={this.handleSideBar} />
-        <div className="cartWrapper">
-          {products.length ? (
-            <>
-              <CartLeft
-                products={products}
-                totalPrice={totalPrice}
-                removeHandler={removeHandler}
-                makeEmptyCart={makeEmptyCart}
-                price={price}
-              />
-              <CartRight totalPrice={totalPrice} />
-            </>
-          ) : (
-            <EmptyCart />
-          )}
+        <div className="pageWrapper">
+          <Nav
+            handleNavSearchBtn={this.handleNavSearchBtn}
+            handleSideBar={this.handleSideBar}
+          />
+          <SearchModal handleSearchModal={activatedBtn} />
+          <SideBar
+            sideBarDisplay={sideBarDisplay}
+            handleSideBar={this.handleSideBar}
+          />
+          <div className="cartWrapper">
+            {products.length ? (
+              <>
+                <CartLeft
+                  products={products}
+                  totalPrice={totalPrice}
+                  removeHandler={removeHandler}
+                  makeEmptyCart={makeEmptyCart}
+                  price={price}
+                />
+                <CartRight totalPrice={totalPrice} />
+              </>
+            ) : (
+              <EmptyCart />
+            )}
+          </div>
         </div>
         <Footer />
       </div>

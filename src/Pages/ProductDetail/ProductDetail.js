@@ -23,10 +23,14 @@ class ProductDetail extends Component {
 
   handleNavSearchBtn = () => {
     this.setState({ activatedBtn: !this.state.activatedBtn });
+    document.body.style.overflow = this.state.activatedBtn ? "unset" : "hidden";
   };
 
   handleSideBar = () => {
     this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+    document.body.style.overflow = this.state.sideBarDisplay
+      ? "unset"
+      : "hidden";
   };
 
   componentDidMount() {
@@ -64,9 +68,15 @@ class ProductDetail extends Component {
       <div className="ProductDetail">
         <Banner />
         <div className="ProductDetailWrapper">
-          <Nav handleNavSearchBtn={this.handleNavSearchBtn} handleSideBar={this.handleSideBar} />
+          <Nav
+            handleNavSearchBtn={this.handleNavSearchBtn}
+            handleSideBar={this.handleSideBar}
+          />
           <SearchModal handleSearchModal={activatedBtn} />
-          <SideBar sideBarDisplay={sideBarDisplay} handleSideBar={this.handleSideBar} />
+          <SideBar
+            sideBarDisplay={sideBarDisplay}
+            handleSideBar={this.handleSideBar}
+          />
 
           <div className="productDetailContainer">
             {product.name && (

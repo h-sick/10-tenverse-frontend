@@ -9,7 +9,7 @@ class ColorFilterBox extends React.Component {
     super();
     this.state = {
       fold: false,
-      colorFilterValue: "",
+      colorFilterValue: [],
     };
   }
 
@@ -19,13 +19,21 @@ class ColorFilterBox extends React.Component {
 
   handleFilterChange = (e) => {
     const { name, value } = e.target;
+    const { colorFilterValue } = this.state;
+    const findIndex = colorFilterValue.indexOf(value);
+    console.log(value);
+
     this.props.handleFilterChange(name, value);
-    this.setState({ colorFilterNumber: value });
+    this.setState({
+      colorFilterValue: colorFilterValue.includes(value)
+        ? colorFilterValue.splice(findIndex, 1)
+        : [...colorFilterValue, value],
+    });
   };
 
   handleClassName = (filter) => {
     const { colorFilterValue } = this.state;
-    const isSameColor = colorFilterValue === filter;
+    const isSameColor = colorFilterValue.includes(filter);
 
     if (filter === "white") {
       return `white ${isSameColor ? "selected" : ""}`;
