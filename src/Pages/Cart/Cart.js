@@ -5,6 +5,8 @@ import Footer from "../../Components/Footer/Footer";
 import CartLeft from "./CartLeft/CartLeft";
 import CartRight from "./CartRight/CartRight";
 import EmptyCart from "./EmptyCart/EmptyCart";
+import { cartAPI } from "../../config";
+import { cartDeleteAPI } from "../../config";
 import "./Cart.scss";
 
 class Cart extends Component {
@@ -20,10 +22,9 @@ class Cart extends Component {
 
   componentDidMount() {
     const { products } = this.state;
-    fetch("http://10.58.3.38:8000/order/cart", {
+    fetch(cartAPI, {
       headers: {
-        Authorization:
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.6mlhvmw9MyBvInOVrhOnQNizB8iPI47xZ_2sC1gUcXs",
+        Authorization: sessionStorage.getItem("access_token"),
       },
     })
       .then((res) => res.json())
@@ -42,18 +43,15 @@ class Cart extends Component {
 
   removeHandler = (id) => {
     const { products } = this.state;
-    const productFilter = products.filter((product) => {
-      return product.id !== id;
-    });
+    const productFilter = products.filter((product) => product.id !== id);
     this.setState({ products: productFilter });
   };
 
   makeEmptyCart = () => {
-    fetch("http://10.58.3.38:8000/order/delete", {
+    fetch(cartDeleteAPI, {
       method: "POST",
       headers: {
-        Authorization:
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.6mlhvmw9MyBvInOVrhOnQNizB8iPI47xZ_2sC1gUcXs",
+        Authorization: sessionStorage.getItem("access_token"),
       },
     })
       .then((res) => res.json())
@@ -72,7 +70,7 @@ class Cart extends Component {
         <Banner />
         <Nav />
         <div className="cartWrapper">
-          {products.length > 0 ? (
+          {products.length ? (
             <>
               <CartLeft
                 products={products}

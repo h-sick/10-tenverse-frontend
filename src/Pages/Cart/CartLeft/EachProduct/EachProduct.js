@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { cartUpdateAPI } from "../../../../config";
 import IconWish from "../../svg/IconWish";
 import IconClock from "../../svg/IconClock";
 import "./EachProduct.scss";
@@ -48,11 +49,10 @@ class EachProduct extends Component {
     if (num === 1 && quantity === 5) {
       return;
     } else {
-      fetch("http://10.58.3.38:8000/order/update", {
+      fetch(cartUpdateAPI, {
         method: "POST",
         headers: {
-          Authorization:
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.6mlhvmw9MyBvInOVrhOnQNizB8iPI47xZ_2sC1gUcXs",
+          Authorization: sessionStorage.getItem("access_token"),
         },
         body: JSON.stringify({
           order_id: order_id,

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { cartAPI } from "../../../config";
 import "./CartRight.scss";
 
 class CartRight extends Component {
@@ -12,11 +13,10 @@ class CartRight extends Component {
   }
 
   handleOrder = () => {
-    fetch("http://10.58.3.38:8000/order/cart", {
+    fetch(cartAPI, {
       method: "POST",
       headers: {
-        Authorization:
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.6mlhvmw9MyBvInOVrhOnQNizB8iPI47xZ_2sC1gUcXs",
+        Authorization: sessionStorage.getItem("access_token"),
       },
     }).then((res) => {
       alert("주문이 완료되었습니다.");

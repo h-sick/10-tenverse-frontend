@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import SizeTable from "./SizeTable/SizeTable";
 import ModalSizeGuide from "./ModalSizeGuide/ModalSizeGuide";
+import { orderAPI } from "../../../../config";
 import "../../../../Components/Nav/svg/NavHeart";
 import "./ShoeSize.scss";
 import NavHeart from "../../../../Components/Nav/svg/NavHeart";
@@ -72,11 +73,10 @@ class ShoeSize extends Component {
     const { shoeSize, count } = this.state;
 
     shoeSize !== 0
-      ? fetch("http://10.58.3.38:8000/order", {
+      ? fetch(orderAPI, {
           method: "POST",
           headers: {
-            Authorization:
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.6mlhvmw9MyBvInOVrhOnQNizB8iPI47xZ_2sC1gUcXs",
+            Authorization: sessionStorage.getItem("access_token"),
           },
           body: JSON.stringify({
             id: product.id,
