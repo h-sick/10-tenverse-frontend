@@ -20,6 +20,7 @@ class Nav extends Component {
   handleNavSearchBtn = () => {
     const { navSearchBtnActive } = this.state;
     this.setState({ navSearchBtnActive: !navSearchBtnActive });
+    this.props.handleNavSearchBtn();
   };
 
   handleShoesClick = () => {
@@ -45,8 +46,12 @@ class Nav extends Component {
           </ul>
         </div>
         <div className="navRight">
-          <NavProfile />
-          <NavCart />
+          <Link to="/login">
+            <NavProfile />
+          </Link>
+          <Link to="/cart">
+            <NavCart />
+          </Link>
           <NavHeart />
           <NavCs />
           <button

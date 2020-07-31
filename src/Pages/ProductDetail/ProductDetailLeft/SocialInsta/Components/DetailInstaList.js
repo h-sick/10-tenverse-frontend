@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import InstaBox from "./InstaBox";
-import InstaModal from "./InstaModal";
-import "./InstaList.scss";
+import DetailInstaBox from "./DetailInstaBox";
+import DetailInstaModal from "./DetailInstaModal";
+import "./DetailInstaList.scss";
 
-class InstaList extends Component {
+class DetailInstaList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ class InstaList extends Component {
   }
 
   closeModal = (e) => {
-    if (e.target.className === "InstaModal") {
+    if (e.target.className === "DetailInstaModal") {
       this.setState({
         modalState: false,
       });
@@ -51,11 +51,11 @@ class InstaList extends Component {
     let data = posts.filter((item, index) => index === currentModalIdx);
 
     return (
-      <div className="InstaList">
+      <div className="DetailInstaList">
         {posts.length !== 0 &&
           posts.map((item, idx) => {
             return (
-              <InstaBox
+              <DetailInstaBox
                 idx={idx}
                 id={item.id}
                 img={item.image}
@@ -68,8 +68,8 @@ class InstaList extends Component {
             );
           })}
         <div className={modalState ? "visible" : "hidden"}>
-          {data.length && (
-            <InstaModal
+          {data.length !== 0 && (
+            <DetailInstaModal
               data={data}
               nextIdxHandler={this.nextIdxHandler}
               backIdxHandler={this.backIdxHandler}
@@ -81,4 +81,4 @@ class InstaList extends Component {
     );
   }
 }
-export default InstaList;
+export default DetailInstaList;

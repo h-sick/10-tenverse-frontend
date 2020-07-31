@@ -2,7 +2,6 @@
 
 .Nav {
   height: 60px;
-  width: 1428px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,6 +45,7 @@
 
   .navRight {
     display: flex;
+    align-items: center;
 
     .navProfile {
       width: 20px;
@@ -114,7 +114,6 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 20px;
-        margin: 10px;
         transition: all 400ms ease;
 
         .navSearchText {

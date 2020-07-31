@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Banner from "../../Components/Nav/Banner/Banner";
 import Nav from "../../Components/Nav/Nav";
+import SideBar from "../../Components/SideBar/SideBar";
+import SearchModal from "../../Components/SearchModal/SearchModal";
 import Footer from "../../Components/Footer/Footer";
 import CartLeft from "./CartLeft/CartLeft";
 import CartRight from "./CartRight/CartRight";
@@ -17,8 +19,18 @@ class Cart extends Component {
       totalCount: 0,
       price: 0,
       totalPrice: 0,
+      activatedBtn: false,
+      sideBarDisplay: false,
     };
   }
+
+  handleNavSearchBtn = () => {
+    this.setState({ activatedBtn: !this.state.activatedBtn });
+  };
+
+  handleSideBar = () => {
+    this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+  };
 
   componentDidMount() {
     const { products } = this.state;
@@ -63,12 +75,14 @@ class Cart extends Component {
   };
 
   render() {
-    const { products, totalPrice, price } = this.state;
+    const { products, totalPrice, price, sideBarDisplay, activatedBtn } = this.state;
     const { removeHandler, makeEmptyCart } = this;
     return (
       <div className="Cart">
         <Banner />
-        <Nav />
+        <Nav handleNavSearchBtn={this.handleNavSearchBtn} handleSideBar={this.handleSideBar} />
+        <SearchModal handleSearchModal={activatedBtn} />
+        <SideBar sideBarDisplay={sideBarDisplay} handleSideBar={this.handleSideBar} />
         <div className="cartWrapper">
           {products.length ? (
             <>

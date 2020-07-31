@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import "./InstaModal.scss";
+import "./DetailInstaModal.scss";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 
-class InstaModal extends Component {
+class DetailInstaModal extends Component {
   clickNextHandler = () => {
     this.props.nextIdxHandler();
   };
@@ -17,7 +17,7 @@ class InstaModal extends Component {
     let changedText = text.split("%").join("\n");
 
     return (
-      <div className="InstaModal" onClick={this.props.closeModal}>
+      <div className="DetailInstaModal" onClick={this.props.closeModal}>
         <button className="backBtn" onClick={this.clickBackHandler}>
           <IoIosArrowBack className="btn" />
         </button>
@@ -25,7 +25,7 @@ class InstaModal extends Component {
           <div
             className="modalLeft"
             style={{ backgroundImage: `url(${image})` }}
-          />
+          ></div>
           <div className="modalRight">
             <div className="profileContainer">
               <img
@@ -53,4 +53,4 @@ class InstaModal extends Component {
     );
   }
 }
-export default InstaModal;
+export default DetailInstaModal;

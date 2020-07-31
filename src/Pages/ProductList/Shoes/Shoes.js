@@ -1,6 +1,8 @@
 import React from "react";
 import Nav from "../../../Components/Nav/Nav";
 import Banner from "../../../Components/Nav/Banner/Banner";
+import SideBar from "../../../Components/SideBar/SideBar";
+import SearchModal from "../../../Components/SearchModal/SearchModal";
 import Header from "../Components/Header/Header";
 import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
@@ -30,8 +32,18 @@ class Shoes extends React.Component {
       sortedByHighPrice: true,
       offset: 0,
       loading: false,
+      activatedBtn: false,
+      sideBarDisplay: false,
     };
   }
+
+  handleNavSearchBtn = () => {
+    this.setState({ activatedBtn: !this.state.activatedBtn });
+  };
+
+  handleSideBar = () => {
+    this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+  };
 
   handleList = (i) => {
     this.setState({ sortedByHighPrice: !Boolean(i) });
@@ -56,14 +68,19 @@ class Shoes extends React.Component {
     const filter = queryString ? "/filter" : "";
     const scrollCondition = scroll > 1500 + 2000 * offset;
 
+    const { pathname } = this.props.location;
+    const condition = pathname.includes("search");
+    const search = `shoes/filter?name=${urlId}&page=${offset}&limit=${limit}${
+      queryString.length ? splitString : ""
+    }`;
+    const click = `${urlId}${filter}?page=${offset}&limit=${limit}${
+      queryString.length ? splitString : ""
+    }`;
+
     if (scrollCondition) {
       this.setState({ offset: offset + 1, loading: true });
 
-      fetch(
-        `${shoesListAPI}/${urlId}${filter}?page=${offset}&limit=${limit}${
-          queryString.length ? splitString : ""
-        }`
-      )
+      fetch(`${shoesListAPI}/${condition ? search : click}`)
         .then((res) => res.json())
         .then(({ products }) => {
           this.setState(
@@ -72,13 +89,10 @@ class Shoes extends React.Component {
             },
             () => {
               this.setState({ loading: false });
-            }
+            },
           );
         })
-        .catch(
-          (error) => console.error("Error:", error),
-          this.setState({ fetchErr: true })
-        );
+        .catch((error) => console.error("Error:", error), this.setState({ fetchErr: true }));
     }
   };
 
@@ -91,13 +105,19 @@ class Shoes extends React.Component {
 
     const joinString = filterQueryString.join("");
     const newUrl = `?page=0&limit=20${joinString}`;
-    this.props.history.push(`/category/shoes${newUrl}`);
+    const urlId = this.props.match.params.id;
+
+    this.props.history.push(`/category/${urlId}${newUrl}`);
   };
 
   componentDidMount() {
     const urlId = this.props.match.params.id;
+    const { pathname } = this.props.location;
+    const condition = pathname.includes("search");
+    const search = `shoes/filter?name=${urlId}`;
+    const click = `${urlId}?page=${this.state.offset}&limit=${limit}`;
 
-    fetch(`${shoesListAPI}/${urlId}?page=${this.state.offset}&limit=${limit}`)
+    fetch(`${shoesListAPI}/${condition ? search : click}`)
       .then((res) => res.json())
       .then((json) => {
         this.setState({ itemDatas: json.products, filterDatas: json.filters });
@@ -112,6 +132,8 @@ class Shoes extends React.Component {
   componentDidUpdate(prevProps) {
     const queryString = this.props.location.search;
     const urlId = this.props.match.params.id;
+    console.log(urlId);
+    console.log(queryString);
 
     if (prevProps.location.search !== queryString) {
       fetch(`${shoesListAPI}/${urlId}/filter${queryString}`)
@@ -127,7 +149,7 @@ class Shoes extends React.Component {
   }
 
   render() {
-    const { itemDatas, loading } = this.state;
+    const { itemDatas, loading, sideBarDisplay, activatedBtn } = this.state;
     const { sortedByHighPrice, filterDatas } = this.state;
 
     return (
@@ -137,28 +159,18 @@ class Shoes extends React.Component {
         </div>
         <Banner />
         <div className="headerWrapper">
-          <Nav />
-          <Header
-            links={headerData.links}
-            title={headerData.title}
-            imgUrl={headerData.imgUrl}
-          />
+          <Nav handleNavSearchBtn={this.handleNavSearchBtn} handleSideBar={this.handleSideBar} />
+          <SearchModal handleSearchModal={activatedBtn} />
+          <SideBar sideBarDisplay={sideBarDisplay} handleSideBar={this.handleSideBar} />
+          <Header links={headerData.links} title={headerData.title} imgUrl={headerData.imgUrl} />
         </div>
         {itemDatas && (
-          <TopFilterBar
-            dataNumber={itemDatas.length}
-            sortedByPrice={this.handleList}
-          />
+          <TopFilterBar dataNumber={itemDatas.length} sortedByPrice={this.handleList} />
         )}
         <main>
           <div className="mainBox">
-            <SideFilterBar
-              filterDatas={filterDatas}
-              handleFilterChange={this.handleFilterUrl}
-            />
-            {itemDatas && (
-              <ItemList datas={itemDatas} handleSort={sortedByHighPrice} />
-            )}
+            <SideFilterBar filterDatas={filterDatas} handleFilterChange={this.handleFilterUrl} />
+            {itemDatas && <ItemList datas={itemDatas} handleSort={sortedByHighPrice} />}
           </div>
         </main>
         <Footer />

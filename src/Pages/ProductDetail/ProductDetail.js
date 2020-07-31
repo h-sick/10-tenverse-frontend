@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Banner from "../../Components/Nav/Banner/Banner";
 import Nav from "../../Components/Nav/Nav";
+import SideBar from "../../Components/SideBar/SideBar";
+import SearchModal from "../../Components/SearchModal/SearchModal";
 import Footer from "../../Components/Footer/Footer";
 import ProductDetailLeft from "./ProductDetailLeft/ProductDetailLeft";
 import ProductDetailRight from "./ProductDetailRight/ProductDetailRight";
+import { shoeDetailAPI } from "../../config";
 import "./ProductDetail.scss";
 
 class ProductDetail extends Component {
@@ -11,14 +14,24 @@ class ProductDetail extends Component {
     super();
     this.state = {
       product: {},
+      activatedBtn: false,
+      sideBarDisplay: false,
     };
     this.shoeDetailRef = React.createRef();
     this.reviewRef = React.createRef();
   }
 
+  handleNavSearchBtn = () => {
+    this.setState({ activatedBtn: !this.state.activatedBtn });
+  };
+
+  handleSideBar = () => {
+    this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+  };
+
   componentDidMount() {
     const urlId = this.props.match.params.id;
-    fetch(`http://10.58.3.38:8000/product/detail/${urlId}`)
+    fetch(`${shoeDetailAPI}${urlId}`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -31,7 +44,7 @@ class ProductDetail extends Component {
     const urlId = this.props.match.params.id;
     const prevUrlId = prevProps.match.params.id;
     if (urlId !== prevUrlId) {
-      fetch(`http://10.58.3.38:8000/product/detail/${urlId}`)
+      fetch(`${shoeDetailAPI}${urlId}`)
         .then((res) => res.json())
         .then((res) => {
           this.setState({
@@ -46,12 +59,15 @@ class ProductDetail extends Component {
   };
 
   render() {
-    const { product } = this.state;
+    const { product, sideBarDisplay, activatedBtn } = this.state;
     return (
       <div className="ProductDetail">
         <Banner />
-        <Nav />
         <div className="ProductDetailWrapper">
+          <Nav handleNavSearchBtn={this.handleNavSearchBtn} handleSideBar={this.handleSideBar} />
+          <SearchModal handleSearchModal={activatedBtn} />
+          <SideBar sideBarDisplay={sideBarDisplay} handleSideBar={this.handleSideBar} />
+
           <div className="productDetailContainer">
             {product.name && (
               <>

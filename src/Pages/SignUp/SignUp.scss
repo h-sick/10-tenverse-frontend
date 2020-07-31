@@ -1,11 +1,10 @@
+.signUpNav {
+  padding: 0 10%;
+}
 .SignUp {
-  height: 1104.62px;
-  margin-top: 130px;
-
   .signUpHeader {
     background-image: url("https://image.converse.co.kr/cmsstatic/bg-register-top-pc.jpg");
     height: 260px;
-
     .textBox {
       width: 830px;
       height: 260px;
@@ -16,31 +15,25 @@
       margin-left: 800px;
       text-align: center;
       color: white;
-
       .firstLine {
         font-size: 40px;
         font-weight: bold;
       }
-
       .secondLine {
         margin-top: 20px;
       }
     }
   }
-
   .signUpBody {
     margin-top: 61px;
     display: flex;
-
     .leftBody {
       width: 807px;
       padding: 0 30px 30px;
       margin: 0 auto;
-
       .innerBox {
         width: 418px;
         margin: 0 auto;
-
         .kakaoSignUpBox {
           width: 384px;
           height: 50.64px;
@@ -52,73 +45,60 @@
           font-weight: bold;
           display: flex;
           justify-content: center;
-
           svg {
             width: 20px;
             height: 20px;
             margin-right: 10px;
           }
         }
-
         .breakLine {
           display: flex;
           align-items: center;
           font-size: 14px;
           margin-top: 25px;
           color: grey;
-
           .line {
             width: 175px;
             height: 1px;
             border-bottom: 1px solid rgb(229, 229, 229);
           }
         }
-
         .mustInfoBox {
           margin-top: 40px;
-
           .fieldHeader {
             margin-bottom: 20px;
           }
-
           .fieldRow {
             display: flex;
             flex-direction: column;
             margin-bottom: 10px;
-
             .infoBox {
               width: 384px;
               height: 50px;
               border: 1px solid rgb(229, 229, 229);
               padding-left: 20px;
             }
-
             .warningText {
               font-size: 12px;
               color: red;
               padding-top: 8px;
             }
-
             .hidden {
               display: none;
             }
-
             .birthDay {
               color: grey;
               margin-bottom: 8px;
               font-size: 12px;
             }
           }
-
           .genderBtn {
             display: flex;
-
             button {
               width: 190px;
               height: 46px;
               border: 1px solid #e5e5e5;
               background-color: #f4f4f4;
-
               &.click {
                 background-color: white;
                 border: 1px solid black;
@@ -131,68 +111,56 @@
         }
       }
     }
-
     .rightBody {
       width: 807px;
       padding: 0 30px 30px;
       border-left: 1px solid rgb(229, 229, 229);
-
       .innerBox {
         width: 418px;
         margin: 0 auto;
-
         .fieldRow {
           margin-bottom: 40px;
-
           .checkBox {
             display: flex;
             align-items: center;
             margin-bottom: 14px;
-
             .checkAll {
               font-size: 16px;
               font-weight: bold;
               color: black;
             }
-
             p {
               font-size: 14px;
               color: rgb(145, 145, 145);
               margin-left: 7px;
             }
-
             .agreeCheck {
               margin-bottom: 7px;
             }
           }
-
           .agreeText {
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 14px;
-
             .eventNews {
               color: rgb(95, 214, 228);
               font-size: 14px;
               margin-top: 7px;
             }
           }
-
           .agreeList {
             margin-top: 14px;
             font-size: 14px;
             color: rgb(145, 145, 145);
-
             li {
               padding-left: 7px;
               margin-top: 7px;
             }
             :nth-child(odd) {
-              list-style-type: "-";
+              list-style-type: “-”;
             }
           }
         }
-
         .signBtn {
           width: 384px;
           height: 50.64px;
@@ -203,7 +171,6 @@
           text-align: center;
           font-size: 14px;
           font-weight: bold;
-
           &:focus,
           &:hover {
             background-color: white;
@@ -213,5 +180,24 @@
         }
       }
     }
+  }
+  .loadingModal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 300;
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  .hidden {
+    display: none;
   }
 }

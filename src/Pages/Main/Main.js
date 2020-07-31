@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../../Components/Nav/Nav";
 import Banner from "../../Components/Nav/Banner/Banner";
+import SearchModal from "../../Components/SearchModal/SearchModal";
 import SideBar from "../../Components/SideBar/SideBar";
 import FirstPage from "./FirstPage/FirstPage";
 import SecondPage from "./SecondPage/SecondPage";
@@ -11,22 +12,29 @@ import InstaPage from "./InstaPage/InstaPage";
 import Footer from "../../Components/Footer/Footer";
 import "./Main.scss";
 import "../../Components/Nav/Nav.scss";
+import { mainAPI } from "../../config";
+import ProductDetail from "../ProductDetail/ProductDetail";
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       product: [],
+      activatedBtn: false,
       sideBarDisplay: false,
     };
   }
+
+  handleNavSearchBtn = () => {
+    this.setState({ activatedBtn: !this.state.activatedBtn });
+  };
 
   handleSideBar = () => {
     this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
   };
 
   componentDidMount() {
-    fetch("http://localhost:3000/data/main.json")
+    fetch(mainAPI)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -36,14 +44,17 @@ class Main extends React.Component {
   }
 
   render() {
-    const { product } = this.state;
-    const { sideBarDisplay } = this.state;
+    const { product, sideBarDisplay, activatedBtn } = this.state;
 
     return (
       <div className="entireWrapper">
         <Banner />
         <div className="pageWrapper">
-          <Nav handleSideBar={this.handleSideBar} />
+          <Nav
+            handleNavSearchBtn={this.handleNavSearchBtn}
+            handleSideBar={this.handleSideBar}
+          />
+          <SearchModal handleSearchModal={activatedBtn} />
           <SideBar
             sideBarDisplay={sideBarDisplay}
             handleSideBar={this.handleSideBar}

@@ -5,7 +5,6 @@ import "./ShoeColor.scss";
 class ShoeColor extends Component {
   render() {
     const { product } = this.props;
-
     const shoeIdList = product.color_list.map((color) => {
       return color.id;
     });
