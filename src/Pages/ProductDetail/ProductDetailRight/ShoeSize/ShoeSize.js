@@ -16,7 +16,7 @@ class ShoeSize extends Component {
       count: 1,
       modal: false,
       limit: false,
-      isLoggedIn: true,
+      isLoggedIn: false,
     };
   }
 
@@ -40,7 +40,7 @@ class ShoeSize extends Component {
     this.setState({
       modal: !modal,
     });
-    document.body.style.overflow = modal ? "hidden" : "unset";
+    document.body.style.overflow = modal ? "unset" : "hidden";
   };
 
   handleCount = (num) => {
@@ -98,14 +98,24 @@ class ShoeSize extends Component {
   render() {
     const { product } = this.props;
     const { modal, count, isBtnActive, isLoggedIn, limit } = this.state;
-    const { sizeTableBtn, addToCart, handleModal, handleCount, moveToLogin } = this;
+    const {
+      sizeTableBtn,
+      addToCart,
+      handleModal,
+      handleCount,
+      moveToLogin,
+    } = this;
     return (
       <div className="ShoeSize">
         <div className="sizeGuide">
           <div className="sizeConsider">사이즈가 고민되면 클릭하세요!</div>
           <button onClick={handleModal}>사이즈 가이드</button>
         </div>
-        <SizeTable product={product} sizeTableBtn={sizeTableBtn} isBtnActive={isBtnActive} />
+        <SizeTable
+          product={product}
+          sizeTableBtn={sizeTableBtn}
+          isBtnActive={isBtnActive}
+        />
         <div className="countWrap">
           <div className="count num">{count}</div>
           <button onClick={() => handleCount(-1)} className="count minus">

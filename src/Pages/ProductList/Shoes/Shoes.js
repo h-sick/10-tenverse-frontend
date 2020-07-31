@@ -39,10 +39,14 @@ class Shoes extends React.Component {
 
   handleNavSearchBtn = () => {
     this.setState({ activatedBtn: !this.state.activatedBtn });
+    document.body.style.overflow = this.state.activatedBtn ? "unset" : "hidden";
   };
 
   handleSideBar = () => {
     this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+    document.body.style.overflow = this.state.sideBarDisplay
+      ? "unset"
+      : "hidden";
   };
 
   handleList = (i) => {
@@ -89,10 +93,13 @@ class Shoes extends React.Component {
             },
             () => {
               this.setState({ loading: false });
-            },
+            }
           );
         })
-        .catch((error) => console.error("Error:", error), this.setState({ fetchErr: true }));
+        .catch(
+          (error) => console.error("Error:", error),
+          this.setState({ fetchErr: true })
+        );
     }
   };
 
@@ -159,18 +166,36 @@ class Shoes extends React.Component {
         </div>
         <Banner />
         <div className="headerWrapper">
-          <Nav handleNavSearchBtn={this.handleNavSearchBtn} handleSideBar={this.handleSideBar} />
+          <Nav
+            handleNavSearchBtn={this.handleNavSearchBtn}
+            handleSideBar={this.handleSideBar}
+          />
           <SearchModal handleSearchModal={activatedBtn} />
-          <SideBar sideBarDisplay={sideBarDisplay} handleSideBar={this.handleSideBar} />
-          <Header links={headerData.links} title={headerData.title} imgUrl={headerData.imgUrl} />
+          <SideBar
+            sideBarDisplay={sideBarDisplay}
+            handleSideBar={this.handleSideBar}
+          />
+          <Header
+            links={headerData.links}
+            title={headerData.title}
+            imgUrl={headerData.imgUrl}
+          />
         </div>
         {itemDatas && (
-          <TopFilterBar dataNumber={itemDatas.length} sortedByPrice={this.handleList} />
+          <TopFilterBar
+            dataNumber={itemDatas.length}
+            sortedByPrice={this.handleList}
+          />
         )}
         <main>
           <div className="mainBox">
-            <SideFilterBar filterDatas={filterDatas} handleFilterChange={this.handleFilterUrl} />
-            {itemDatas && <ItemList datas={itemDatas} handleSort={sortedByHighPrice} />}
+            <SideFilterBar
+              filterDatas={filterDatas}
+              handleFilterChange={this.handleFilterUrl}
+            />
+            {itemDatas && (
+              <ItemList datas={itemDatas} handleSort={sortedByHighPrice} />
+            )}
           </div>
         </main>
         <Footer />
