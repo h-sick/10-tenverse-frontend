@@ -21,7 +21,6 @@ class SizeTable extends Component {
     const product = this.props.product;
     const { isBtnActive } = this.state;
     const { sizeTableBtn } = this;
-    // console.log(this.state.shoeSize);
 
     return (
       <div className="SizeTable">

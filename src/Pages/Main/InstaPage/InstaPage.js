@@ -1,16 +1,49 @@
 import React from "react";
 import "./InstaPage.scss";
 import InstaList from "../Components/Instagram/InstaList";
+import { instaAPI } from "../../../config";
+import { gif } from "../../../config";
+
+const LIMIT = 8;
 
 class InstaPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
+      offset: 0,
+      loading: false,
     };
   }
+
+  clickViewMore = () => {
+    const { offset, posts, loading } = this.state;
+
+    this.setState(
+      {
+        offset: offset + 1,
+        loading: true,
+      },
+      () => {
+        fetch(`${instaAPI}?page=${this.state.offset}&limit=${LIMIT}`)
+          .then((res) => res.json())
+          .then((res) => {
+            this.setState(
+              {
+                posts: [...this.state.posts, ...res.posts],
+              },
+              () => {
+                this.setState({ loading: false });
+              }
+            );
+          });
+      }
+    );
+  };
+
   componentDidMount() {
-    fetch("http://localhost:3000/data/insta.json")
+    const { offset } = this.state;
+    fetch(`${instaAPI}?page=${offset}&limit=${LIMIT}`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -20,7 +53,7 @@ class InstaPage extends React.Component {
   }
 
   render() {
-    const { posts } = this.state;
+    const { posts, loading } = this.state;
 
     return (
       <div className="InstaPage">
@@ -31,8 +64,14 @@ class InstaPage extends React.Component {
           <InstaList posts={posts} />
         </div>
         <div className="viewMoreBox">
-          <button type="text">더보기</button>
+          <button type="text" onClick={this.clickViewMore}>
+            더보기
+          </button>
         </div>
+        <div className={`loadingModal ${loading ? "" : "hidden"}`}>
+          <img src={gif} alt="preloader gif" />
+        </div>
+        ;
       </div>
     );
   }

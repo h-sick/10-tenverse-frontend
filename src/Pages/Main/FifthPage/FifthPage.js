@@ -10,14 +10,7 @@ class FifthPage extends React.Component {
     return (
       <div className="FifthPage" style={fifthImg}>
         <div className="textContainer">
-          <p
-            className="title"
-            style={{
-              height: 80,
-            }}
-          >
-            SUMMER SPECIAL
-          </p>
+          <p className="title">SUMMER SPECIAL</p>
           <p className="sub">
             일상적이지만 특별하게,
             <br />

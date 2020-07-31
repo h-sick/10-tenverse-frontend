@@ -43,9 +43,10 @@ class SecondPage extends React.Component {
               <p className="hoverText">더 알아보기</p>
             </div>
             <img
+              alt="호버이미지"
               src="https://image.converse.co.kr/cmsstatic/structured-content/17531/KakaoTalk_20200709_134326255.jpg?gallery"
               className="hoverImg"
-            ></img>
+            />
           </div>
 
           <div className="smallBox">

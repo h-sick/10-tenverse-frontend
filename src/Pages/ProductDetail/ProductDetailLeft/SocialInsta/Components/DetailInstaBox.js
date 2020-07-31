@@ -1,7 +1,7 @@
 import React from "react";
-import "./InstaBox.scss";
+import "./DetailInstaBox.scss";
 
-class InstaBox extends React.Component {
+class DetailInstaBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ class InstaBox extends React.Component {
     let changedText = text.split("%").join("\n");
 
     return (
-      <div className="InstaBox" onClick={this.modalHandler}>
+      <div className="DetailInstaBox" onClick={this.modalHandler}>
         <div
           className="imgBox"
           onMouseEnter={this.hoverHandler}
@@ -52,4 +52,4 @@ class InstaBox extends React.Component {
     );
   }
 }
-export default InstaBox;
+export default DetailInstaBox;

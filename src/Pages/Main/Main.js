@@ -12,6 +12,8 @@ import InstaPage from "./InstaPage/InstaPage";
 import Footer from "../../Components/Footer/Footer";
 import "./Main.scss";
 import "../../Components/Nav/Nav.scss";
+import { mainAPI } from "../../config";
+import ProductDetail from "../ProductDetail/ProductDetail";
 
 class Main extends React.Component {
   constructor(props) {
@@ -32,7 +34,7 @@ class Main extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:3000/data/main.json")
+    fetch(mainAPI)
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -42,8 +44,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const { product, activatedBtn } = this.state;
-    const { sideBarDisplay } = this.state;
+    const { product, sideBarDisplay, activatedBtn } = this.state;
 
     return (
       <div className="entireWrapper">

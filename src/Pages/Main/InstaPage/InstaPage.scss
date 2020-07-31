@@ -6,7 +6,6 @@
   }
 
   .imgContainer {
-    height: 720px;
     margin-top: 20px;
     z-index: 1;
   }
@@ -29,4 +28,26 @@
       }
     }
   }
+}
+
+.loadingModal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 300;
+
+  img {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.hidden {
+  display: none;
 }
