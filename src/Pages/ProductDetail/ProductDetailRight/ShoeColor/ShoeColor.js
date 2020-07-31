@@ -23,7 +23,7 @@ class ShoeColor extends Component {
                     shoeColorList={shoeColorList[k]}
                     shoeIdList={shoeIdList[k]}
                   />
-                  <div className="underShoeColorImage"></div>
+                  <div className="underShoeColorImage" />
                 </div>
               );
             })}

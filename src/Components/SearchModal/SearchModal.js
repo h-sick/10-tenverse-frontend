@@ -3,13 +3,13 @@ import { withRouter } from "react-router-dom";
 import CollectionBox from "../SearchModal/CollectionBox/CollectionBox";
 import ProductBox from "../SearchModal/ProductBox/ProductBox";
 import TextBox from "../SearchModal/TextBox/TextBox";
-import { shoesListAPI } from "../../config";
 import {
   magnifier,
   memberOnlyImg,
   jackpurcellImg,
   chuckImg,
   collectionImg,
+  shoesListAPI,
 } from "../../config";
 import "./SearchModal.scss";
 
@@ -25,8 +25,10 @@ class SearchModal extends React.Component {
 
   handleInputChange = (e) => {
     const { nameDatas } = this.state;
-    const { value } = e.target;
-    const { keyCode } = e;
+    const {
+      keyCode,
+      target: { value },
+    } = e;
 
     let resultFunction = nameDatas
       .filter((name) => {
@@ -34,20 +36,17 @@ class SearchModal extends React.Component {
       })
       .slice(0, 4);
 
-    if (value.length) {
-      if (keyCode === 13) {
-        this.props.history.push(`/search/${value}`);
-      }
-      this.setState({ nameResult: resultFunction });
-    } else this.setState({ nameResult: [] });
-
-    this.setState({ nameInput: value });
+    value.length &&
+      keyCode === 13 &&
+      this.props.history.push(`/search/${value}`);
+    this.setState({
+      nameResult: value.length ? resultFunction : [],
+      nameInput: value,
+    });
   };
 
   componentDidMount() {
-    const searchAPI = `${shoesListAPI}/search`;
-
-    fetch(searchAPI)
+    fetch(`${shoesListAPI}/search`)
       .then((res) => res.json())
       .then(({ products }) => {
         this.setState({ nameDatas: products });

@@ -121,9 +121,7 @@
 
         .popularWords {
           height: 370px;
-          padding-top: 46px;
-          padding-left: 9.7%;
-          padding-right: 13%;
+          padding-top: 46px, 13%, 0 9.7%;
 
           ul {
             padding-top: 46px;

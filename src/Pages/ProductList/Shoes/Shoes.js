@@ -69,9 +69,6 @@ class Shoes extends React.Component {
       this.setState({ offset: offset + 1, loading: true });
 
       fetch(`${shoesListAPI}/${condition ? search : click}`)
-        // `${shoesListAPI}/${urlId}${filter}?page=${offset}&limit=${limit}${
-        //   queryString.length ? splitString : ""
-        // }`
         .then((res) => res.json())
         .then(({ products }) => {
           this.setState(
@@ -99,7 +96,9 @@ class Shoes extends React.Component {
 
     const joinString = filterQueryString.join("");
     const newUrl = `?page=0&limit=20${joinString}`;
-    this.props.history.push(`/category/shoes${newUrl}`);
+    const urlId = this.props.match.params.id;
+
+    this.props.history.push(`/category/${urlId}${newUrl}`);
   };
 
   componentDidMount() {
@@ -124,6 +123,8 @@ class Shoes extends React.Component {
   componentDidUpdate(prevProps) {
     const queryString = this.props.location.search;
     const urlId = this.props.match.params.id;
+    console.log(urlId);
+    console.log(queryString);
 
     if (prevProps.location.search !== queryString) {
       fetch(`${shoesListAPI}/${urlId}/filter${queryString}`)
