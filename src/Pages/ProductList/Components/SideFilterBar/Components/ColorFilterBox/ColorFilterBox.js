@@ -34,15 +34,6 @@ class ColorFilterBox extends React.Component {
     }
   };
 
-  // if (colorFilterValue === filter) {
-  //   if (filter === "white") {
-  //     return "white selected";
-  //   }
-  //   return "selected";
-  // } else if (filter === "white" && colorFilterValue !== filter) {
-  //   return "white";
-  // }
-
   render() {
     const { fold } = this.state;
     const { filters } = this.props;

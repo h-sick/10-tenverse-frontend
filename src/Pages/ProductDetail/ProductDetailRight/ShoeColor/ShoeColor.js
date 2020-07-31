@@ -19,8 +19,11 @@ class ShoeColor extends Component {
             {shoeColorList.map((_, k) => {
               return (
                 <div className="shoeColorImageEach">
-                  <ShoeColorList shoeColorList={shoeColorList[k]} shoeIdList={shoeIdList[k]} />
-                  <div className="underShoeColorImage"></div>
+                  <ShoeColorList
+                    shoeColorList={shoeColorList[k]}
+                    shoeIdList={shoeIdList[k]}
+                  />
+                  <div className="underShoeColorImage" />
                 </div>
               );
             })}
@@ -33,7 +36,9 @@ class ShoeColor extends Component {
       <div className="ShoeColor">
         <div className="shoeColorText">
           <span className="grey">컬러</span>
-          <span className="shoeColor">{product.length !== 0 ? product[0].color_name : null}</span>
+          <span className="shoeColor">
+            {product.length !== 0 ? product[0].color_name : null}
+          </span>
         </div>
         <div className="shoeColorImage">{listShoeColor}</div>
       </div>

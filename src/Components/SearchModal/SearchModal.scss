@@ -1,0 +1,145 @@
+@import "../../Styles/Common.scss";
+
+.SearchModal {
+  position: relative;
+
+  .modalOverlay {
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: #000;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all 0.2s;
+
+    &.hidden,
+    &.hidden ~ .searchBox {
+      width: 0;
+      height: 0;
+      left: 0;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+  }
+
+  .searchBox {
+    width: 1440px;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 1;
+    transition: all 0.2s;
+    overflow: hidden;
+
+    .searchContainer {
+      display: flex;
+      justify-content: center;
+      min-width: 1440px;
+
+      .boxLeft {
+        width: 720px;
+        display: flex;
+        flex-wrap: wrap;
+
+        .box {
+          width: 360px;
+          height: 370px;
+        }
+
+        .colectionImg {
+          height: 370px;
+          width: 360px;
+          font-size: 14px;
+          color: #000000;
+        }
+
+        .smallImg {
+          width: 360px;
+          height: 185px;
+        }
+      }
+
+      .boxRight {
+        width: 720px;
+        border-left: 1px solid black;
+
+        h1 {
+          font-size: 40px;
+          font-weight: 800;
+        }
+
+        .search {
+          height: 370px;
+          width: 720px;
+          border-bottom: 1px solid black;
+          padding-top: 46px;
+          padding-left: 9.7%;
+          padding-right: 13%;
+
+          .inputBox {
+            width: 500px;
+            position: relative;
+
+            input {
+              width: 500px;
+              height: 64px;
+              padding: 26px 10px 10px 10px;
+              margin-top: 20px;
+              margin-left: 20px;
+              border-bottom: 1px solid black;
+              font-size: 20px;
+
+              &::placeholder {
+                font-size: 20px;
+                font-weight: 600;
+              }
+            }
+            svg,
+            path {
+              width: 14px;
+              height: 14px;
+              position: absolute;
+              right: 0px;
+              top: 55px;
+            }
+          }
+
+          .searchResult {
+            padding: 10px 30px;
+            li {
+              font-size: 20px;
+              font-weight: 700;
+              margin-top: 12px;
+            }
+          }
+        }
+
+        .popularWords {
+          height: 370px;
+          padding-top: 46px, 13%, 0 9.7%;
+
+          ul {
+            padding-top: 46px;
+            padding-left: 46px;
+
+            li {
+              font-size: 18px;
+              font-weight: 600;
+              margin-bottom: 20px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    border-top: 1px solid;
+  }
+}

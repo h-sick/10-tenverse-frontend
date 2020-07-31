@@ -51,10 +51,13 @@ class ProductDetail extends Component {
     return (
       <div className="ProductDetail">
         <Banner />
-        <Nav />
         <div className="ProductDetailWrapper">
+          <Nav />
           <div className="productDetailContainer">
-            <ProductDetailLeft refArr={[this.shoeDetailRef, this.reviewRef]} product={product} />
+            <ProductDetailLeft
+              refArr={[this.shoeDetailRef, this.reviewRef]}
+              product={product}
+            />
             <ProductDetailRight
               scrollTo={this.scrollTo}
               refArr={[this.shoeDetailRef, this.reviewRef]}

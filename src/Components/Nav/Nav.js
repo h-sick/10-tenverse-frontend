@@ -20,6 +20,7 @@ class Nav extends Component {
   handleNavSearchBtn = () => {
     const { navSearchBtnActive } = this.state;
     this.setState({ navSearchBtnActive: !navSearchBtnActive });
+    this.props.handleNavSearchBtn();
   };
 
   handleShoesClick = () => {
