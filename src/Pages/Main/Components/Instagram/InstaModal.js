@@ -25,7 +25,7 @@ class InstaModal extends Component {
           <div
             className="modalLeft"
             style={{ backgroundImage: `url(${image})` }}
-          ></div>
+          />
           <div className="modalRight">
             <div className="profileContainer">
               <img

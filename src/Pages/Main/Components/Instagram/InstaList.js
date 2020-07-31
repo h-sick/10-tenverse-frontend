@@ -68,7 +68,7 @@ class InstaList extends Component {
             );
           })}
         <div className={modalState ? "visible" : "hidden"}>
-          {data.length !== 0 && (
+          {data.length && (
             <InstaModal
               data={data}
               nextIdxHandler={this.nextIdxHandler}

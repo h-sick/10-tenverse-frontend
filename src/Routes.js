@@ -5,7 +5,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import Main from "./Pages/Main/Main";
 import Shoes from "./Pages/ProductList/Shoes/Shoes";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail";
-import ProductList from "./Pages/ProductList/ProductList";
+// import ProductList from "./Pages/ProductList/ProductList";
 import Nav from "./Components/Nav/Nav";
 import InstaModal from "./Pages/Main/Components/Instagram/InstaModal";
 
