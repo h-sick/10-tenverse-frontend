@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../../Components/Nav/Nav";
 import Banner from "../../Components/Nav/Banner/Banner";
+import SearchModal from "../../Components/SearchModal/SearchModal";
 import SideBar from "../../Components/SideBar/SideBar";
 import FirstPage from "./FirstPage/FirstPage";
 import SecondPage from "./SecondPage/SecondPage";
@@ -19,9 +20,14 @@ class Main extends React.Component {
     super(props);
     this.state = {
       product: [],
+      activatedBtn: false,
       sideBarDisplay: false,
     };
   }
+
+  handleNavSearchBtn = () => {
+    this.setState({ activatedBtn: !this.state.activatedBtn });
+  };
 
   handleSideBar = () => {
     this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
@@ -38,13 +44,17 @@ class Main extends React.Component {
   }
 
   render() {
-    const { product, sideBarDisplay } = this.state;
+    const { product, sideBarDisplay, activatedBtn } = this.state;
 
     return (
       <div className="entireWrapper">
         <Banner />
         <div className="pageWrapper">
-          <Nav handleSideBar={this.handleSideBar} />
+          <Nav
+            handleNavSearchBtn={this.handleNavSearchBtn}
+            handleSideBar={this.handleSideBar}
+          />
+          <SearchModal handleSearchModal={activatedBtn} />
           <SideBar
             sideBarDisplay={sideBarDisplay}
             handleSideBar={this.handleSideBar}

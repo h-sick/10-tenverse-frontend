@@ -1,0 +1,28 @@
+.TextBox {
+  width: 360px;
+  height: 185px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2 {
+    padding-bottom: 15px;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    p {
+      margin-left: 5px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}

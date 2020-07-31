@@ -56,14 +56,19 @@ class Shoes extends React.Component {
     const filter = queryString ? "/filter" : "";
     const scrollCondition = scroll > 1500 + 2000 * offset;
 
+    const { pathname } = this.props.location;
+    const condition = pathname.includes("search");
+    const search = `shoes/filter?name=${urlId}&page=${offset}&limit=${limit}${
+      queryString.length ? splitString : ""
+    }`;
+    const click = `${urlId}${filter}?page=${offset}&limit=${limit}${
+      queryString.length ? splitString : ""
+    }`;
+
     if (scrollCondition) {
       this.setState({ offset: offset + 1, loading: true });
 
-      fetch(
-        `${shoesListAPI}/${urlId}${filter}?page=${offset}&limit=${limit}${
-          queryString.length ? splitString : ""
-        }`
-      )
+      fetch(`${shoesListAPI}/${condition ? search : click}`)
         .then((res) => res.json())
         .then(({ products }) => {
           this.setState(
@@ -91,13 +96,19 @@ class Shoes extends React.Component {
 
     const joinString = filterQueryString.join("");
     const newUrl = `?page=0&limit=20${joinString}`;
-    this.props.history.push(`/category/shoes${newUrl}`);
+    const urlId = this.props.match.params.id;
+
+    this.props.history.push(`/category/${urlId}${newUrl}`);
   };
 
   componentDidMount() {
     const urlId = this.props.match.params.id;
+    const { pathname } = this.props.location;
+    const condition = pathname.includes("search");
+    const search = `shoes/filter?name=${urlId}`;
+    const click = `${urlId}?page=${this.state.offset}&limit=${limit}`;
 
-    fetch(`${shoesListAPI}/${urlId}?page=${this.state.offset}&limit=${limit}`)
+    fetch(`${shoesListAPI}/${condition ? search : click}`)
       .then((res) => res.json())
       .then((json) => {
         this.setState({ itemDatas: json.products, filterDatas: json.filters });
@@ -112,6 +123,8 @@ class Shoes extends React.Component {
   componentDidUpdate(prevProps) {
     const queryString = this.props.location.search;
     const urlId = this.props.match.params.id;
+    console.log(urlId);
+    console.log(queryString);
 
     if (prevProps.location.search !== queryString) {
       fetch(`${shoesListAPI}/${urlId}/filter${queryString}`)
