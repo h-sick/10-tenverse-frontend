@@ -34,7 +34,7 @@ class Login extends React.Component {
   handlePw = () => {
     const numbers = /[0-9]/;
     const spellings = /[a-zA-Z]/;
-    const specialCharacters = /[~!@#$%<>^&*]/;
+    const specialCharacters = /[~!@#$%&*]/;
     const { pw } = this.state;
 
     if (
@@ -79,10 +79,7 @@ class Login extends React.Component {
             this.props.history.push("/");
           }
         })
-        .catch(
-          (error) => console.error("Error:", error),
-          this.setState({ loginErr: true })
-        );
+        .catch((error) => console.error("Error:", error), this.setState({ loginErr: true }));
     } else {
       return null;
     }
@@ -155,8 +152,8 @@ class Login extends React.Component {
                 <svg id="icon-giftbox" viewBox="0 0 32 32">
                   <path d={iconGiftBox}></path>
                 </svg>
-                지금 회원으로 가입하시고, 특별한 멤버십 혜택과 <br></br>다양한
-                회원 전용 상품을 만나보세요.
+                지금 회원으로 가입하시고, 특별한 멤버십 혜택과 <br></br>다양한 회원 전용 상품을
+                만나보세요.
               </div>
             </section>
           </div>

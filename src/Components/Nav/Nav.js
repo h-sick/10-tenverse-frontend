@@ -46,14 +46,16 @@ class Nav extends Component {
           </ul>
         </div>
         <div className="navRight">
-          <NavProfile />
-          <NavCart />
+          <Link to="/login">
+            <NavProfile />
+          </Link>
+          <Link to="/cart">
+            <NavCart />
+          </Link>
           <NavHeart />
           <NavCs />
           <button
-            className={
-              navSearchBtnActive ? "navSearchBtn Changed" : "navSearchBtn"
-            }
+            className={navSearchBtnActive ? "navSearchBtn Changed" : "navSearchBtn"}
             onClick={this.handleNavSearchBtn}
           >
             <div class="navSearchText">검색</div>

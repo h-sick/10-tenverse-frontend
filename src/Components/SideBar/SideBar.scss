@@ -10,7 +10,7 @@
     left: 0;
     background-color: black;
     opacity: 0;
-    z-index: 1;
+    z-index: 500;
     transition: all 0.2s;
 
     &:not(.sideBarInner) {
@@ -35,7 +35,7 @@
     left: 0;
     background-color: #fff;
     opacity: 1;
-    z-index: 2;
+    z-index: 550;
     transition: all 0.1s;
 
     &.hidden {

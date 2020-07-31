@@ -1,0 +1,126 @@
+@import "../../../../Styles/Common.scss";
+
+.EachProduct {
+  height: 165px;
+  display: flex;
+  justify-content: space-between;
+  border: $border;
+  border-top: none;
+  padding: 20px;
+
+  &:first-child {
+    border-top: $border;
+  }
+
+  .productPic {
+    img {
+      width: 100px;
+      height: 123px;
+      cursor: pointer;
+    }
+  }
+
+  .productInfo {
+    width: 85%;
+
+    .infoTopLine,
+    .infoMidLine,
+    .infoBottomeLine {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .infoTopLine {
+      margin-bottom: 8px;
+
+      .productName {
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .productPrice {
+        cursor: pointer;
+      }
+    }
+
+    .infoMidLine {
+      .colorSize {
+        font-size: 14px;
+      }
+
+      .productCount {
+        width: 150px;
+        display: flex;
+
+        .countNumber,
+        button {
+          height: 90%;
+          @extend %flexCenter;
+          border: $border;
+          margin-bottom: 15px;
+          background-color: white;
+        }
+
+        .countNumber {
+          width: 46%;
+          font-size: 15px;
+        }
+
+        button {
+          width: 27%;
+          font-size: 23px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .infoHideLine {
+      display: flex;
+      justify-content: flex-end;
+      height: 22px;
+
+      span {
+        color: $red;
+        font-size: 12px;
+      }
+    }
+
+    .hide {
+      visibility: hidden;
+    }
+
+    .infoBottomLine {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+
+      .icon {
+        font-size: 14px;
+
+        span {
+          cursor: pointer;
+
+          .IconWish,
+          .IconClock {
+            width: 17px;
+            height: 17px;
+            margin-right: 5px;
+            padding-top: 1%;
+          }
+        }
+      }
+
+      .optionDelete {
+        color: $gray;
+        text-decoration: underline;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      span {
+        margin-left: 15px;
+      }
+    }
+  }
+}

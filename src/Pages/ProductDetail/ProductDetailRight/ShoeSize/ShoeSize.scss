@@ -30,7 +30,7 @@
   }
 
   .countWrap {
-    padding: 30px 0;
+    padding: 30px 0 10px 0;
     display: flex;
 
     .count {
@@ -53,8 +53,21 @@
     }
   }
 
+  .infoHideLine {
+    height: 22px;
+
+    span {
+      color: $red;
+      font-size: 12px;
+    }
+  }
+
+  .hide {
+    visibility: hidden;
+  }
+
   .loginBtn {
-    width: 340px;
+    width: 100%;
     height: 50px;
     margin-bottom: 25px;
     background-color: $black;
@@ -64,8 +77,61 @@
     cursor: pointer;
   }
 
+  .afterLogin {
+    height: 50px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+
+    button {
+      height: 100%;
+
+      &.basketBtn,
+      &.directBuy {
+        width: 42%;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+
+      &.basketBtn {
+        background-color: $white;
+        border: 1px solid $black;
+        font-weight: bold;
+      }
+
+      &.directBuy {
+        background-color: $black;
+        color: $white;
+
+        &:hover {
+          border: 1px solid $black;
+          background-color: $white;
+          color: $black;
+          font-weight: bold;
+        }
+      }
+
+      &.iconWish {
+        width: 13%;
+        border: 1px solid $black;
+        background-color: $white;
+
+        &:hover .navHeart {
+          transform: scale(1.3);
+          transition: transform 0.3s;
+        }
+
+        .navHeart {
+          width: 40%;
+          padding-top: 5%;
+          transition: transform 0.3s;
+        }
+      }
+    }
+  }
+
   .infoDelivery {
-    width: 340px;
+    width: 100%;
     height: 50px;
     margin-bottom: 25px;
     border: $border;

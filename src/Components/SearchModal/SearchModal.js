@@ -36,9 +36,7 @@ class SearchModal extends React.Component {
       })
       .slice(0, 4);
 
-    value.length &&
-      keyCode === 13 &&
-      this.props.history.push(`/search/${value}`);
+    value.length && keyCode === 13 && this.props.history.push(`/search/${value}`);
     this.setState({
       nameResult: value.length ? resultFunction : [],
       nameInput: value,
@@ -63,24 +61,13 @@ class SearchModal extends React.Component {
         <div className="searchBox">
           <div className="searchContainer">
             <div className="boxLeft">
-              <CollectionBox
-                title="썸머 티 컬렉션"
-                src={collectionImg}
-                color="white"
-              />
+              <CollectionBox title="썸머 티 컬렉션" src={collectionImg} color="white" />
               <div className="box">
                 <TextBox title="베스트셀러" text="구매하기" />
-                <ProductBox
-                  title="회원전용상품"
-                  alt="회원전용상품 이미지"
-                  src={memberOnlyImg}
-                />
+                <ProductBox title="회원전용상품" alt="회원전용상품 이미지" src={memberOnlyImg} />
               </div>
               <div className="box">
-                <TextBox
-                  title="무엇을 도와드릴까요?"
-                  text="FAQ에서 궁금한 내용을 찾아보세요."
-                />
+                <TextBox title="무엇을 도와드릴까요?" text="FAQ에서 궁금한 내용을 찾아보세요." />
                 <ProductBox
                   title="젝퍼셀 클래식 화이트"
                   alt="젝퍼셀 상품이미지"
@@ -88,11 +75,7 @@ class SearchModal extends React.Component {
                   color="black"
                 />
               </div>
-              <CollectionBox
-                title="척 70 뉴컬러"
-                src={chuckImg}
-                color="black"
-              />
+              <CollectionBox title="척 70 뉴컬러" src={chuckImg} color="black" />
             </div>
             <div className="boxRight">
               <div className="search">

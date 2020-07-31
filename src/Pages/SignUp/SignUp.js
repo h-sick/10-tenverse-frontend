@@ -3,7 +3,9 @@ import { iconKaKao, signupAPI } from "../../config";
 import "./SignUp.scss";
 import Nav from "../../Components/Nav/Nav";
 import Banner from "../../Components/Nav/Banner/Banner";
-
+import SideBar from "../../Components/SideBar/SideBar";
+import SearchModal from "../../Components/SearchModal/SearchModal";
+import { gif } from "../../config";
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -20,8 +22,19 @@ class SignUp extends React.Component {
       secondCheck: false,
       thirdCheck: false,
       fourthCheck: false,
+      loading: false,
+      activatedBtn: false,
+      sideBarDisplay: false,
     };
   }
+
+  handleNavSearchBtn = () => {
+    this.setState({ activatedBtn: !this.state.activatedBtn });
+  };
+
+  handleSideBar = () => {
+    this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+  };
 
   handleSignUp = () => {
     const {
@@ -33,6 +46,7 @@ class SignUp extends React.Component {
       gender,
       incorrectEntireCheck,
     } = this.state;
+    this.setState({ loading: true });
     if (
       this.handleId() &&
       this.handlePw() &&
@@ -62,17 +76,14 @@ class SignUp extends React.Component {
         .catch((error) => console.error("Error:", error));
     }
   };
-
   handleInput = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-
   handleId = () => {
     const { userEmail } = this.state;
     return userEmail.length === 0 || userEmail.includes("@");
   };
-
   handlePw = () => {
     const numbers = /[0-9]/;
     const spellings = /[a-zA-Z]/;
@@ -97,36 +108,27 @@ class SignUp extends React.Component {
       return false;
     }
   };
-
   checkingPw = () => {
     const { userPw, userRePw } = this.state;
     return userRePw.length === 0 || userPw === userRePw;
   };
-
   checkingName = () => {
     const { userName } = this.state;
     return userName.length === 0 || userName.length > 0;
   };
-
   checkingNumber = () => {
     const { userNumber } = this.state;
-    return (
-      userNumber.length === 0 ||
-      (userNumber.length === 11 && parseInt(userNumber[0]) === 0)
-    );
+    return userNumber.length === 0 || (userNumber.length === 11 && parseInt(userNumber[0]) === 0);
   };
-
   checkingBirth = () => {
     const { userBirthDate } = this.state;
     return userBirthDate.length === 0 || userBirthDate.length === 10;
   };
-
   checkingGender = (e) => {
     this.setState({
       gender: e.target.name === "남성",
     });
   };
-
   checkingState = (e) => {
     this.setState({
       firstCheck: !this.state.firstCheck,
@@ -135,22 +137,24 @@ class SignUp extends React.Component {
       fourthCheck: !this.state.fourthCheck,
     });
   };
-
   render() {
-    // console.log(this.state);
     const {
       firstCheck,
       secondCheck,
       thirdCheck,
       fourthCheck,
       gender,
+      loading,
+      sideBarDisplay,
+      activatedBtn,
     } = this.state;
-
     return (
       <>
         <Banner />
         <div className="signUpNav">
-          <Nav />
+          <Nav handleNavSearchBtn={this.handleNavSearchBtn} handleSideBar={this.handleSideBar} />
+          <SearchModal handleSearchModal={activatedBtn} />
+          <SideBar sideBarDisplay={sideBarDisplay} handleSideBar={this.handleSideBar} />
         </div>
         <div className="SignUp">
           <div className="signUpHeader">
@@ -190,9 +194,7 @@ class SignUp extends React.Component {
                       placeholder="이메일 형태로 입력해주세요.(필수)"
                       onKeyUp={this.handleInput}
                     ></input>
-                    <span
-                      className={this.handleId() ? "hidden" : "warningText"}
-                    >
+                    <span className={this.handleId() ? "hidden" : "warningText"}>
                       이메일 형태로 입력해주세요
                     </span>
                   </div>
@@ -204,9 +206,7 @@ class SignUp extends React.Component {
                       placeholder="비밀번호 (영문/숫자/특수문자 조합 8자이상)"
                       onKeyUp={this.handleInput}
                     ></input>
-                    <span
-                      className={this.handlePw() ? "hidden" : "warningText"}
-                    >
+                    <span className={this.handlePw() ? "hidden" : "warningText"}>
                       영문/숫자/특수문자 조합 8~16자 조합으로 입력해주세요.
                     </span>
                   </div>
@@ -218,9 +218,7 @@ class SignUp extends React.Component {
                       placeholder="비밀번호 입력 확인"
                       onKeyUp={this.handleInput}
                     ></input>
-                    <span
-                      className={this.checkingPw() ? "hidden" : "warningText"}
-                    >
+                    <span className={this.checkingPw() ? "hidden" : "warningText"}>
                       입력값이 일치하지 않습니다
                     </span>
                   </div>
@@ -232,9 +230,7 @@ class SignUp extends React.Component {
                       placeholder="이름을 입력해주세요.(필수)"
                       onKeyUp={this.handleInput}
                     ></input>
-                    <span
-                      className={this.checkingName() ? "hidden" : "warningText"}
-                    >
+                    <span className={this.checkingName() ? "hidden" : "warningText"}>
                       필수 입력 항목입니다
                     </span>
                   </div>
@@ -243,21 +239,15 @@ class SignUp extends React.Component {
                       className="infoBox"
                       name="userNumber"
                       type="number"
-                      placeholder="휴대폰 번호'-'표 없이 입력해주세요.(필수)"
+                      placeholder="휴대폰 번호‘-’표 없이 입력해주세요.(필수)"
                       onKeyUp={this.handleInput}
                     ></input>
-                    <span
-                      className={
-                        this.checkingNumber() ? "hidden" : "warningText"
-                      }
-                    >
+                    <span className={this.checkingNumber() ? "hidden" : "warningText"}>
                       올바른 휴대폰 번호를 입력해주세요.
                     </span>
                   </div>
                   <div className="fieldRow">
-                    <span className="birthDay">
-                      *생일/성별은 기입 후 수정이 불가합니다
-                    </span>
+                    <span className="birthDay">*생일/성별은 기입 후 수정이 불가합니다</span>
                     <input
                       className="infoBox"
                       name="userBirthDate"
@@ -265,13 +255,8 @@ class SignUp extends React.Component {
                       placeholder="생년월일을 입력해주세요.(1999-01-01)"
                       onKeyUp={this.handleInput}
                     ></input>
-                    <span
-                      className={
-                        this.checkingBirth() ? "hidden" : "warningText"
-                      }
-                    >
-                      생년월일(YYYY-MM-DD)은 숫자 8자리 와 "-" 총 10자리만 입력
-                      가능합니다
+                    <span className={this.checkingBirth() ? "hidden" : "warningText"}>
+                      생년월일(YYYY-MM-DD)은 숫자 8자리 와 "-" 총 10자리만 입력 가능합니다
                     </span>
                   </div>
                   <div className="genderBtn">
@@ -301,34 +286,21 @@ class SignUp extends React.Component {
                     <p class="checkAll">모든 약관 동의</p>
                   </div>
                   <span className="firstSpan">
-                    <p>
-                      아래 모든 약관(필수), 개인정보 수집 및 이용에 대한 동의
-                    </p>
-                    <p>
-                      (필수) 및 광고성 정보수신 동의(선택) 내용을 확인하고 전체
-                    </p>
+                    <p>아래 모든 약관(필수), 개인정보 수집 및 이용에 대한 동의</p>
+                    <p>(필수) 및 광고성 정보수신 동의(선택) 내용을 확인하고 전체</p>
                     <p>동의합니다.</p>
                   </span>
                   <ul className="agreeList">
-                    <li>
-                      필수 정보의 수집 및 이용에 관한 동의를 거부하실 수 있으나,
-                      다
-                    </li>
-                    <li>
-                      만 이 경우 회원 가입 및 관련 서비스 이용은 불가합니다.
-                    </li>
-                    <li>
-                      선택 항목에 대한 동의를 거부하더라도 회원가입에 영향을
-                      미치
-                    </li>
+                    <li>필수 정보의 수집 및 이용에 관한 동의를 거부하실 수 있으나, 다</li>
+                    <li>만 이 경우 회원 가입 및 관련 서비스 이용은 불가합니다.</li>
+                    <li>선택 항목에 대한 동의를 거부하더라도 회원가입에 영향을 미치</li>
                     <li>지 않습니다.</li>
                     <li>만 14세 미만은 서비스 이용이 불가합니다.</li>
                   </ul>
                 </div>
                 <div className="fieldRow">
                   <p className="agreeText">
-                    컨버스 공식 온라인 스토어 회원 약관 및 개인정보 수집•이용에
-                    대한 동의
+                    컨버스 공식 온라인 스토어 회원 약관 및 개인정보 수집•이용에 대한 동의
                   </p>
                   <div className="checkBox">
                     <input type="checkbox" checked={firstCheck} />
@@ -336,17 +308,13 @@ class SignUp extends React.Component {
                   </div>
                   <div className="checkBox">
                     <input type="checkbox" checked={secondCheck} />
-                    <p clssName="agreeCheck">
-                      (필수) 개인정보 수집 및 이용에 대한 동의
-                    </p>
+                    <p clssName="agreeCheck">(필수) 개인정보 수집 및 이용에 대한 동의</p>
                   </div>
                 </div>
                 <div className="fieldRow">
                   <p className="agreeText">
                     광고성 정보 수신 동의
-                    <p className="eventNews">
-                      (회원 전용 다양한 이벤트 소식을 받아보세요)
-                    </p>
+                    <p className="eventNews">(회원 전용 다양한 이벤트 소식을 받아보세요)</p>
                   </p>
                   <div className="checkBox">
                     <input type="checkbox" checked={thirdCheck} />
@@ -363,10 +331,12 @@ class SignUp extends React.Component {
               </div>
             </div>
           </div>
+          <div className={`loadingModal ${loading ? "" : "hidden"}`}>
+            <img src={gif} alt="preloader gif" />
+          </div>
         </div>
       </>
     );
   }
 }
-
 export default SignUp;

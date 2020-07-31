@@ -1,6 +1,8 @@
 import React from "react";
 import Nav from "../../../Components/Nav/Nav";
 import Banner from "../../../Components/Nav/Banner/Banner";
+import SideBar from "../../../Components/SideBar/SideBar";
+import SearchModal from "../../../Components/SearchModal/SearchModal";
 import Header from "../Components/Header/Header";
 import TopFilterBar from "../Components/TopfilterBar/TopFilterBar";
 import SideFilterBar from "../Components/SideFilterBar/SideFilterBar";
@@ -30,8 +32,18 @@ class Shoes extends React.Component {
       sortedByHighPrice: true,
       offset: 0,
       loading: false,
+      activatedBtn: false,
+      sideBarDisplay: false,
     };
   }
+
+  handleNavSearchBtn = () => {
+    this.setState({ activatedBtn: !this.state.activatedBtn });
+  };
+
+  handleSideBar = () => {
+    this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+  };
 
   handleList = (i) => {
     this.setState({ sortedByHighPrice: !Boolean(i) });
@@ -77,13 +89,10 @@ class Shoes extends React.Component {
             },
             () => {
               this.setState({ loading: false });
-            }
+            },
           );
         })
-        .catch(
-          (error) => console.error("Error:", error),
-          this.setState({ fetchErr: true })
-        );
+        .catch((error) => console.error("Error:", error), this.setState({ fetchErr: true }));
     }
   };
 
@@ -140,7 +149,7 @@ class Shoes extends React.Component {
   }
 
   render() {
-    const { itemDatas, loading } = this.state;
+    const { itemDatas, loading, sideBarDisplay, activatedBtn } = this.state;
     const { sortedByHighPrice, filterDatas } = this.state;
 
     return (
@@ -150,28 +159,18 @@ class Shoes extends React.Component {
         </div>
         <Banner />
         <div className="headerWrapper">
-          <Nav />
-          <Header
-            links={headerData.links}
-            title={headerData.title}
-            imgUrl={headerData.imgUrl}
-          />
+          <Nav handleNavSearchBtn={this.handleNavSearchBtn} handleSideBar={this.handleSideBar} />
+          <SearchModal handleSearchModal={activatedBtn} />
+          <SideBar sideBarDisplay={sideBarDisplay} handleSideBar={this.handleSideBar} />
+          <Header links={headerData.links} title={headerData.title} imgUrl={headerData.imgUrl} />
         </div>
         {itemDatas && (
-          <TopFilterBar
-            dataNumber={itemDatas.length}
-            sortedByPrice={this.handleList}
-          />
+          <TopFilterBar dataNumber={itemDatas.length} sortedByPrice={this.handleList} />
         )}
         <main>
           <div className="mainBox">
-            <SideFilterBar
-              filterDatas={filterDatas}
-              handleFilterChange={this.handleFilterUrl}
-            />
-            {itemDatas && (
-              <ItemList datas={itemDatas} handleSort={sortedByHighPrice} />
-            )}
+            <SideFilterBar filterDatas={filterDatas} handleFilterChange={this.handleFilterUrl} />
+            {itemDatas && <ItemList datas={itemDatas} handleSort={sortedByHighPrice} />}
           </div>
         </main>
         <Footer />
