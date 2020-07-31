@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../../Components/Nav/Nav";
 import Banner from "../../Components/Nav/Banner/Banner";
+import SideBar from "../../Components/SideBar/SideBar";
 import FirstPage from "./FirstPage/FirstPage";
 import SecondPage from "./SecondPage/SecondPage";
 import ThirdPage from "./ThirdPage/ThirdPage";
@@ -18,8 +19,13 @@ class Main extends React.Component {
     super(props);
     this.state = {
       product: [],
+      sideBarDisplay: false,
     };
   }
+
+  handleSideBar = () => {
+    this.setState({ sideBarDisplay: !this.state.sideBarDisplay });
+  };
 
   componentDidMount() {
     fetch(mainAPI)
@@ -32,12 +38,17 @@ class Main extends React.Component {
   }
 
   render() {
-    const { product } = this.state;
+    const { product, sideBarDisplay } = this.state;
+
     return (
       <div className="entireWrapper">
         <Banner />
         <div className="pageWrapper">
-          <Nav />
+          <Nav handleSideBar={this.handleSideBar} />
+          <SideBar
+            sideBarDisplay={sideBarDisplay}
+            handleSideBar={this.handleSideBar}
+          />
           <FirstPage product={product.women_collection} />
           <SecondPage product={product.jack_purcell} />
           <ThirdPage product={product} />

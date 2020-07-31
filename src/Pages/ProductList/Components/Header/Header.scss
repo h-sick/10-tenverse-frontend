@@ -1,0 +1,36 @@
+.Header {
+  width: 1400px;
+  margin: auto;
+
+  .headerNav {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 400;
+
+    a {
+      font-size: 12px;
+      margin-right: 5px;
+
+      &:not(:last-child) {
+        opacity: 0.5;
+
+        &::after {
+          content: "/";
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  .headerImg {
+    height: 190px;
+    background-size: 1400px 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    font-weight: 900;
+  }
+}

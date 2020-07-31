@@ -71,7 +71,8 @@ class Login extends React.Component {
         })
         .then((res) => {
           if (res.access_token) {
-            this.props.history.push("/main");
+            sessionStorage.setItem("access_token", res.access_token);
+            this.props.history.push("/");
           }
         })
         .catch(
